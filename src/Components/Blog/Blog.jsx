@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { apiUrl } from "../../config/api";
 import "./Blog.scss";
 
 export default function Blog() {
@@ -11,7 +12,6 @@ export default function Blog() {
 
   const organization = import.meta.env.VITE_DEVTO_ORG || "itcs11";
   const devtoApiBase = import.meta.env.VITE_DEVTO_API_BASE || "https://dev.to/api";
-  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -19,7 +19,7 @@ export default function Blog() {
       try {
         const [devRes, approvedRes] = await Promise.all([
           fetch(`${devtoApiBase}/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
-          axios.get(`${backendUrl}/api/blogs/approved-ids`)
+          axios.get(apiUrl("/api/blogs/approved-ids"))
         ]);
 
         const devBlogs = await devRes.json();

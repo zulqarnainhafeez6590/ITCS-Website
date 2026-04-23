@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { apiUrl } from '../../../config/api'
 import './ApplyJob.scss'
 
 const ApplyJob = () => {
@@ -109,7 +110,7 @@ const ApplyJob = () => {
     submitData.append('jobLocation', jobDetails?.location || '')
 
     try {
-      const response = await fetch('http://localhost:5000/api/jobs/apply', {
+      const response = await fetch(apiUrl('/api/jobs/apply'), {
         method: 'POST',
         body: submitData,
       })

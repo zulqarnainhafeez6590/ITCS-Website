@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from '../../config/msalConfig'
+import { apiUrl } from '../../config/api'
 import alignitLogo from '../../assets/logos/itcsLogo.png'
 import './Login.scss'
 
@@ -55,7 +56,7 @@ const Login = () => {
       })
 
       // Send token to backend for verification
-      const response = await fetch('http://localhost:5000/api/auth/microsoft', {
+      const response = await fetch(apiUrl('/api/auth/microsoft'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

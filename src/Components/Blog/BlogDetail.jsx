@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { apiUrl } from "../../config/api";
 import "./Blog.scss";
 import "./BlogDetail.scss";
 
@@ -21,7 +22,7 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchCustomAuthor = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/blogs/approved-ids");
+        const res = await fetch(apiUrl("/api/blogs/approved-ids"));
         const data = await res.json();
 
         const match = data.find((blog) => blog.devId === Number(id));

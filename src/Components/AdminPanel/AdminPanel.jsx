@@ -7,6 +7,7 @@ import BlogApproval from './BlogApproval/BlogApproval';
 import AdminBlogDetail from './BlogApproval/AdminBlogDetail';
 import './AdminPanel.scss';
 import axios from 'axios';
+import { apiUrl } from '../../config/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faAddressCard, 
@@ -55,7 +56,7 @@ const AdminPanel = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/admin/add-user',
+        apiUrl('/api/admin/add-user'),
         {
           fullName,
           username,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import DOMPurify from 'dompurify'
+import { apiUrl } from '../../../config/api'
 import './AdminBlogDetail.scss'
 
 const AdminBlogDetail = ({ setActiveTab }) => {
@@ -36,7 +37,7 @@ const AdminBlogDetail = ({ setActiveTab }) => {
         return
       }
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs/approved-ids`)
+        const res = await fetch(apiUrl('/api/blogs/approved-ids'))
         const data = await res.json()
         const match = data.find(blog => blog.devId === Number(id))
         if (match && match.customAuthor) setCustomAuthor(match.customAuthor)

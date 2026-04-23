@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { apiUrl } from "../../../config/api";
 import "./BlogApproval.scss";
 
 export default function BlogApproval() {
@@ -14,7 +15,6 @@ export default function BlogApproval() {
   const blogsPerPage = 9;
 
   const organization = "itcs11";
-  const backendUrl = "http://localhost:5000";
 
   // Fetch all Dev.to blogs
   const fetchAllDevBlogs = async () => {
@@ -47,7 +47,7 @@ export default function BlogApproval() {
     try {
       const [devBlogs, statusRes] = await Promise.all([
         fetchAllDevBlogs(),
-        axios.get(`${backendUrl}/api/blogs/statuses`)
+        axios.get(apiUrl("/api/blogs/statuses"))
       ]);
 
       const statusMap = {};
@@ -81,7 +81,7 @@ export default function BlogApproval() {
   // Update blog status
   const updateStatus = async (devId, status) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { status });
+      await axios.patch(apiUrl(`/api/blogs/${devId}/status`), { status });
       setStatuses(prev => ({ ...prev, [devId]: status }));
       if (status === "rejected") setBlogs(prev => prev.filter(blog => blog.id !== devId));
     } catch {
@@ -92,7 +92,7 @@ export default function BlogApproval() {
   // Update author
   const updateAuthor = async (devId, author) => {
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customAuthor: author });
+      await axios.patch(apiUrl(`/api/blogs/${devId}/status`), { customAuthor: author });
       setAuthors(prev => ({ ...prev, [devId]: author }));
     } catch {
       alert("Failed to update author.");
@@ -103,7 +103,7 @@ export default function BlogApproval() {
   const updateDate = async (devId, customDate) => {
     if (!customDate) return alert("Date cannot be empty.");
     try {
-      await axios.patch(`${backendUrl}/api/blogs/${devId}/status`, { customDate });
+      await axios.patch(apiUrl(`/api/blogs/${devId}/status`), { customDate });
       setDates(prev => {
         const newDates = { ...prev, [devId]: customDate };
         setBlogs(prevBlogs => sortBlogsByDate(prevBlogs, newDates));

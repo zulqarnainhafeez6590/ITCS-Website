@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../../../config/api';
 import './JobList.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faClock, faTrash, faClipboardList, faCircleMinus } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +20,7 @@ const JobList = () => {
   const loadJobs = async () => {
     setLoading(true)
     try {
-      const res = await axios.get('http://localhost:5000/api/jobsAdd');
+      const res = await axios.get(apiUrl('/api/jobsAdd'));
       setJobs(Array.isArray(res.data) ? res.data : [])
     } catch (err) {
       console.error('Error loading jobs:', err)
@@ -32,7 +33,7 @@ const JobList = () => {
   const handleDelete = async (jobId) => {
     if (!window.confirm('Are you sure you want to delete this job?')) return
     try {
-      await axios.delete(`http://localhost:5000/api/jobsAdd/${jobId}`);
+      await axios.delete(apiUrl(`/api/jobsAdd/${jobId}`));
       setJobs(prev => prev.filter(job => job._id !== jobId))
     } catch (err) {
       console.error('Error deleting job:', err)
