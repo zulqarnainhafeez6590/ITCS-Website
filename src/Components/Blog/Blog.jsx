@@ -9,15 +9,16 @@ export default function Blog() {
   const [activeTag, setActiveTag] = useState("all");
   const [loading, setLoading] = useState(true);
 
-  const organization = "itcs11";
-  const backendUrl = "http://localhost:5000";
+  const organization = import.meta.env.VITE_DEVTO_ORG || "itcs11";
+  const devtoApiBase = import.meta.env.VITE_DEVTO_API_BASE || "https://dev.to/api";
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
         const [devRes, approvedRes] = await Promise.all([
-          fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
+          fetch(`${devtoApiBase}/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
           axios.get(`${backendUrl}/api/blogs/approved-ids`)
         ]);
 
