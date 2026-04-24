@@ -1,6 +1,13 @@
 const normalizeBaseUrl = (value) => {
   if (typeof value !== "string") return "";
-  return value.trim().replace(/\/+$/, "");
+  const trimmed = value.trim().replace(/\/+$/, "");
+  if (!trimmed) return "";
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    return trimmed;
+  }
+
+  return trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
 };
 
 const isLocalhostBaseUrl = (value) => {
@@ -28,5 +35,17 @@ export const API_BASE_URL = canUseConfiguredBaseUrl
 export const apiUrl = (path = "") => {
   if (!path) return API_BASE_URL;
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${API_BASE_URL}${normalizedPath}`;
+
+  if (!API_BASE_URL) {
+    return normalizedPath;
+  }
+
+  const baseEndsWithApi = /\/api$/i.test(API_BASE_URL);
+  const pathStartsWithApi = /^\/api(?:\/|$)/i.test(normalizedPath);
+  const dedupedPath =
+    baseEndsWithApi && pathStartsWithApi
+      ? normalizedPath.replace(/^\/api(?=\/|$)/i, "")
+      : normalizedPath;
+
+  return `${API_BASE_URL}${dedupedPath}`;
 };
