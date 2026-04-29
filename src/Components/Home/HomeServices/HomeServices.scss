@@ -26,13 +26,13 @@
     .section-badge {
       display: inline-block;
       padding: 8px 16px;
-      background: rgba(74, 158, 255, 0.1);
-      border: 1px solid rgba(74, 158, 255, 0.3);
+      background: rgba(0, 91, 169, 0.1);
+      border: 1px solid rgba(0, 91, 169, 0.3);
       border-radius: 50px;
-      color: var(--accent-blue);
+      color: white;
       font-size: 13px;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       margin-bottom: 20px;
     }
 
@@ -83,7 +83,7 @@
       height: 80px;
       margin-bottom: 24px;
       padding: 16px;
-      background: rgba(74, 158, 255, 0.1);
+      background: rgba(0, 91, 169, 0.1);
       border-radius: 16px;
       display: flex;
       align-items: center;
@@ -142,7 +142,7 @@
     &:hover {
       transform: translateY(-8px);
       border-color: var(--card-color);
-      box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 91, 169, 0.3);
 
       .card-glow {
         opacity: 0.1;

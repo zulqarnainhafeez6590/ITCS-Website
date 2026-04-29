@@ -1,7 +1,10 @@
 import React from 'react';
 import './CloudHero.scss';
+import { useNavigate } from 'react-router-dom';
 
 const CloudHero = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="cloud-hero">
       <div className="hero-background">
@@ -14,26 +17,27 @@ const CloudHero = () => {
       <div className="hero-container">
         <div className="hero-badge">
           <span className="badge-icon">☁️</span>
-          <span>MICROSOFT CLOUD PARTNER</span>
+          <span>MICROSOFT GOLD PARTNER</span>
         </div>
 
         <h1 className="hero-title">
-          Transform Your Business with
-          <span className="gradient-text"> Cloud Solutions</span>
+          Empower Your Business with<br />
+          <span className="gradient-text">ITCS Cloud Solutions</span>
         </h1>
 
         <p className="hero-description">
-          Unlock Business 4.0 with our Microsoft Cloud partnership. Experience seamless 
-          edge-to-cloud transformation with Azure, enhanced security, and unparalleled scalability.
+          Welcome to ITCS, your premier partner for cloud solutions powered by Microsoft. 
+          As a Microsoft Gold Partner, we bring you a suite of cloud services designed to 
+          elevate your business, featuring Azure, Microsoft 365, and professional web hosting.
         </p>
 
         <div className="hero-actions">
-          <button className="btn-primary">
-            Start Your Journey
+          <button className="btn-primary" onClick={() => navigate('/contact')}>
+            Get Started
             <span className="btn-arrow">→</span>
           </button>
-          <button className="btn-secondary">
-            View Solutions
+          <button className="btn-secondary" onClick={() => navigate('/services')}>
+            View All Services
             <span className="btn-icon">▶</span>
           </button>
         </div>
@@ -66,4 +70,3 @@ const CloudHero = () => {
 };
 
 export default CloudHero;
-

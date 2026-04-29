@@ -20,5 +20,6 @@ export const loginRequest = {
   scopes: ['User.Read'],
 }
 
-export const msalInstance = new PublicClientApplication(msalConfig)
+const msalInstance = new PublicClientApplication(msalConfig)
 
+export default msalInstance

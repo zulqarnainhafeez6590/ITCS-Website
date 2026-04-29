@@ -15,6 +15,7 @@ const isAdmin = async (req, res, next) => {
     const user = await User.findById(decoded.id)
 
     if (!user) return res.status(403).json({ message: 'Forbidden' })
+    if (!user.isAdmin) return res.status(403).json({ message: 'Admin access required' })
 
     req.user = user
     next()

@@ -59,6 +59,7 @@ const Header = () => {
                     <li><a className="dropdown-item" onClick={() => { navigate('/services/enterprise-solutions'); closeMenu() }} style={{ cursor: 'pointer' }}>Enterprise Solutions</a></li>
                     <li><a className="dropdown-item" onClick={() => { navigate('/services/it-services'); closeMenu() }} style={{ cursor: 'pointer' }}>IT Services</a></li>
                     <li><a className="dropdown-item" onClick={() => { navigate('/services/network-solutions'); closeMenu() }} style={{ cursor: 'pointer' }}>Network Solutions</a></li>
+                    <li><a className="dropdown-item" onClick={() => { navigate('/services/web-development'); closeMenu() }} style={{ cursor: 'pointer' }}>Web Development</a></li>
                   </ul>
                 </li>
                 

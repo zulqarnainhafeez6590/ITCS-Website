@@ -1,52 +1,136 @@
 .cloudSection3 {
-    margin-top: 120px;
-    background-image: url("./../../../../assets/images/CloudSection3bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-  
-    h3 {
-      padding-top: 20px;
-      margin: 0px;
-      font-weight: bold;
-      text-align: center;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 40px 24px;
+  position: relative;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(0, 91, 169, 0.1);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+      margin-bottom: 12px;
     }
-  
-    .partnerships {
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+      }
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  .logos-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+
+    .logo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 24px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 20px 50px;
-      column-gap: 250px;
-  
-      h2 {
-        font-weight: bold;
+      gap: 12px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: #008ABD;
+        transform: translateY(-3px);
       }
-  
-      .microsoft {
-        width: 180px;
-        height: 110px;
-        border-radius: 20px;
+
+      img {
+        height: 32px;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .label {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        white-space: nowrap;
       }
     }
-  
-    @media (max-width: 600px) {
-      margin-top: 60px;
-  
-      .partnerships {
-        flex-direction: column;
-        column-gap: 30px;
-        padding: 20px 15px;
-        h2{
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-        .microsoft {
-          width: 120px;
-          height: 80px;
-          margin-bottom: 40px; /* Added spacing between images */
-        }
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      gap: 16px;
+
+      .logo-card {
+        width: 100%;
+        justify-content: center;
       }
     }
   }
-  
+
+  .benefits-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+
+      svg {
+        font-size: 14px;
+        color: #008ABD;
+      }
+    }
+
+    @media (max-width: 600px) {
+      gap: 16px;
+
+      .benefit-item {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
+}

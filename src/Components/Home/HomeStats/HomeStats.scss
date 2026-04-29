@@ -12,7 +12,7 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
-    background: radial-gradient(circle, rgba(74, 158, 255, 0.1), transparent 70%);
+    background: radial-gradient(circle, rgba(0, 91, 169, 0.1), transparent 70%);
     animation: pulse 4s ease-in-out infinite;
   }
 
@@ -59,7 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(74, 158, 255, 0.1);
+      background: rgba(0, 91, 169, 0.1);
       border-radius: 16px;
       color: var(--accent-blue);
       transition: all var(--transition-normal);
@@ -96,7 +96,7 @@
     &:hover {
       transform: translateY(-8px);
       border-color: var(--accent-blue);
-      box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 91, 169, 0.3);
 
       &::before {
         transform: scaleX(1);

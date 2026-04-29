@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(74, 158, 255, 0.08) 0%, transparent 60%);
+    background: radial-gradient(circle at 30% 50%, rgba(0, 91, 169, 0.08) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -133,12 +133,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all var(--transition-normal);
-            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 91, 169, 0.3);
             margin-top: 20px;
 
             &:hover {
               transform: translateY(-2px);
-              box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+              box-shadow: 0 6px 20px rgba(0, 91, 169, 0.4);
             }
           }
         }

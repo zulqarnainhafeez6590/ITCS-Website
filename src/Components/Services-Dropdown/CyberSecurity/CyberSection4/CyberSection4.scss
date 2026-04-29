@@ -1,0 +1,100 @@
+.cyberSection4 {
+  padding: 40px 24px;
+  background: var(--bg-primary);
+
+  .cyberSection4-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cyberSection4-content {
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      text-align: center;
+
+      @media (max-width: 768px) {
+        font-size: 26px;
+      }
+    }
+
+    > p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      max-width: 900px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+
+    @media (max-width: 968px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      text-align: left;
+
+      &:hover {
+        border-color: #008ABD;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 91, 169, 0.1);
+      }
+
+      .benefit-check {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+
+        svg {
+          font-size: 14px;
+          color: white;
+        }
+      }
+
+      .benefit-text {
+        strong {
+          display: block;
+          font-size: 16px;
+          color: var(--text-primary);
+          margin-bottom: 6px;
+        }
+
+        span {
+          font-size: 13px;
+          color: var(--text-secondary);
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
+}

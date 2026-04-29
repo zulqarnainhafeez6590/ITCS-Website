@@ -1,126 +1,209 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './EnterpriseNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBuilding, faChartBar, faSync, faMobileAlt, faLink, faUsers} from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faChartLine, faHandshake, faCogs, faUsers, faNetworkWired, faCloud, faDatabase } from '@fortawesome/free-solid-svg-icons';
 
-const EnterpriseHero = () => (
-  <section className="service-hero enterprise-hero">
-    <div className="hero-background">
-      <div className="enterprise-pattern"></div>
-    </div>
-    <div className="hero-container">
+const EnterpriseHero = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="enterprise-hero-section">
       <div className="hero-badge">
         <FontAwesomeIcon icon={faBuilding} />
         <span>ENTERPRISE SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
-        Empower Your Enterprise with
-        <span className="gradient-text"> Intelligent Solutions</span>
+        Enterprise Solutions for<br />
+        <span className="gradient-text">Business Growth</span>
       </h1>
       <p className="hero-description">
-        Transform your business operations with comprehensive enterprise solutions. From ERP to CRM, 
-        we provide integrated systems that drive efficiency and growth.
+        Transform your business with comprehensive enterprise solutions. 
+        We help organizations streamline operations, enhance efficiency, and make data-driven decisions.
       </p>
       <div className="hero-actions">
-        <button className="btn-primary">
+        <button className="btn-secondary" onClick={() => navigate('/contact')}>
           Explore Solutions
           <span>→</span>
         </button>
-        <button className="btn-secondary">
-          Request Demo
-        </button>
-      </div>
-      <div className="hero-badges-row">
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faChartBar} />
-          <span>Integrated Systems</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faSync} />
-          <span>Process Automation</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faChartBar} />
-          <span>Business Intelligence</span>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const EnterpriseFeatures = () => {
-  const features = [
-    { icon: faBuilding, title: 'ERP Systems', description: 'Comprehensive enterprise resource planning solutions for streamlined operations.' },
-    { icon: faUsers, title: 'CRM Solutions', description: 'Customer relationship management platforms to enhance customer engagement.' },
-    { icon: faChartBar, title: 'Business Intelligence', description: 'Data analytics and reporting tools for informed decision-making.' },
-    { icon: faSync, title: 'Workflow Automation', description: 'Automate business processes for increased efficiency and reduced errors.' },
-    { icon: faMobileAlt, title: 'Mobile Solutions', description: 'Enterprise mobile applications for on-the-go business management.' },
-    { icon: faLink, title: 'System Integration', description: 'Seamlessly integrate existing systems for unified business operations.' }
-  ];
-
-  return (
-    <section className="service-features">
-      <div className="features-container">
-        <div className="features-header">
-          <span className="section-badge">COMPLETE SOLUTIONS</span>
-          <h2 className="section-title">Enterprise-Grade Applications</h2>
-          <p className="section-description">
-            Powerful solutions designed to meet the complex needs of modern enterprises.
-          </p>
-        </div>
-        <div className="features-grid">
-          {features.map((feature, idx) => (
-            <div className="feature-card" key={idx}>
-              <div className="feature-icon">
-                <FontAwesomeIcon icon={feature.icon} size="2x" />
-              </div>
-              <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
 };
 
-const EnterpriseCTA = () => (
-  <section className="service-cta">
-    <div className="cta-container">
-      <h2 style={{fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px'}}>
-        Ready to <span className="gradient-text">Scale</span> Your Business?
-      </h2>
-      <p style={{fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px'}}>
-        Let's discuss how our enterprise solutions can transform your operations.
-      </p>
-      <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px'}}>
-        <button className="btn-primary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white'}}>
-          Get Started
-        </button>
-        <button className="btn-secondary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)'}}>
-          Contact Sales
-        </button>
-      </div>
-      <div className="cta-stats">
-        <div className="stat-item">
-          <div className="stat-number">150+</div>
-          <div className="stat-label">Enterprise Clients</div>
+const EnterpriseSection2 = () => {
+  const services = [
+    { icon: faChartLine, title: 'Business Intelligence', desc: 'Data-driven insights for better decisions' },
+    { icon: faCogs, title: 'Process Automation', desc: 'Automate workflows for efficiency' },
+    { icon: faNetworkWired, title: 'System Integration', desc: 'Connect all your business systems' },
+    { icon: faUsers, title: 'Team Collaboration', desc: 'Enhance team productivity' }
+  ]
+
+  return (
+    <div className='enterpriseSection2'>
+      <div className="enterpriseSection2-wrapper">
+        <div className="content-side">
+          <h2>Comprehensive Enterprise Solutions</h2>
+          <p>Transform your business with our end-to-end enterprise solutions. We deliver scalable, integrated systems tailored to meet your specific business requirements.</p>
+          <p>From small businesses to large enterprises, our solutions grow with you, providing the tools you need to succeed in today's competitive market.</p>
+          
+          <div className="services-list">
+            {services.map((item, idx) => (
+              <div className="service-item" key={idx}>
+                <div className="service-icon">
+                  <FontAwesomeIcon icon={item.icon} />
+                </div>
+                <div>
+                  <strong>{item.title}</strong>
+                  <span>{item.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">99.5%</div>
-          <div className="stat-label">System Uptime</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">50M+</div>
-          <div className="stat-label">Transactions Processed</div>
+        
+        <div className="image-side">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Enterprise Solutions" />
         </div>
       </div>
     </div>
-  </section>
-);
+  )
+}
+
+const EnterpriseFeatures = () => {
+  const features = [
+    { icon: faBuilding, title: 'ERP Solutions', description: 'Enterprise resource planning for streamlined operations' },
+    { icon: faDatabase, title: 'Data Management', description: 'Secure and efficient data storage solutions' },
+    { icon: faCloud, title: 'Cloud Integration', description: 'Seamless cloud migration and integration' },
+    { icon: faCogs, title: 'Process Automation', description: 'Automate business processes for efficiency' },
+    { icon: faUsers, title: 'Team Management', description: 'Tools for effective team collaboration' },
+    { icon: faChartLine, title: 'Analytics', description: 'Business intelligence and analytics' }
+  ];
+
+  return (
+    <section className="enterprise-features-section">
+      <div className="section-header">
+        <h2>Our Enterprise Solutions</h2>
+        <p>Powerful tools to transform your business</p>
+      </div>
+      <div className="features-grid">
+        {features.map((feature, idx) => (
+          <div className="feature-card" key={idx}>
+            <div className="card-icon">
+              <FontAwesomeIcon icon={feature.icon} />
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const EnterpriseSection4 = () => {
+  const benefits = [
+    { title: 'Scalable Solutions', description: 'Grow your business with flexible systems' },
+    { title: 'Expert Support', description: 'Team of certified professionals' },
+    { title: 'Data Security', description: 'Enterprise-grade security measures' },
+    { title: '24/7 Monitoring', description: 'Round-the-clock system support' }
+  ];
+
+  return (
+    <div className="enterpriseSection4">
+      <div className="section-header">
+        <h2>Why Choose ITCS for Enterprise?</h2>
+        <p>Trusted by leading enterprises</p>
+      </div>
+      <div className="benefits-grid">
+        {benefits.map((benefit, idx) => (
+          <div className="benefit-item" key={idx}>
+            <div className="benefit-check">✓</div>
+            <div className="benefit-text">
+              <strong>{benefit.title}</strong>
+              <span>{benefit.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const EnterpriseSection3 = () => {
+  const benefits = [
+    { text: '150+ Enterprise Clients' },
+    { text: '99.5% Uptime' },
+    { text: '50M+ Transactions' },
+    { text: 'Industry Leaders' }
+  ]
+
+  return (
+    <div className='enterpriseSection3'>
+      <div className="logo-section">
+        <div className="logo-card">
+          <span className="logo-icon">🏢</span>
+          <span>SAP</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">💿</span>
+          <span>Microsoft</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">🟦</span>
+          <span>Oracle</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">📊</span>
+          <span>Salesforce</span>
+        </div>
+      </div>
+      <div className="benefits-row">
+        {benefits.map((item, idx) => (
+          <div className="benefit-item" key={idx}>
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const EnterpriseCTA = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="enterprise-cta">
+      <div className="cta-container">
+        <h2>
+          Let's Discuss Your <span className="gradient-text">Project</span>
+        </h2>
+        <p>Get free consultation and transform your business with enterprise solutions.</p>
+        <button className="btn-primary" onClick={() => navigate('/contact')}>
+          Get Free Consultation
+          <span>→</span>
+        </button>
+        <div className="cta-stats">
+          <div className="stat-item">
+            <div className="stat-number">150+</div>
+            <div className="stat-label">Clients</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">99.5%</div>
+            <div className="stat-label">Uptime</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">50M+</div>
+            <div className="stat-label">Transactions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const EnterpriseNew = () => {
   useEffect(() => {
@@ -130,11 +213,13 @@ const EnterpriseNew = () => {
   return (
     <>
       <EnterpriseHero />
+      <EnterpriseSection2 />
       <EnterpriseFeatures />
+      <EnterpriseSection4 />
+      <EnterpriseSection3 />
       <EnterpriseCTA />
     </>
   );
 };
 
 export default EnterpriseNew;
-

@@ -8,6 +8,10 @@ import dotenv from 'dotenv'
 dotenv.config()
 const router = express.Router()
 
+const ALLOWED_ADMIN_EMAILS = process.env.ALLOWED_ADMIN_EMAILS
+  ? process.env.ALLOWED_ADMIN_EMAILS.split(',').map(e => e.trim().toLowerCase())
+  : ['zulqarnain.hafeez@itcs.com.pk'];
+
 
 // Login route (for manual login - kept for backward compatibility)
 router.post('/login', async (req, res) => {
@@ -34,7 +38,7 @@ router.post('/login', async (req, res) => {
       expiresIn: '1h',
     })
 
-    res.status(200).json({ message: 'Login successful', token, user })
+    res.status(200).json({ message: 'Login successful', token, user: { ...user, password: undefined } })
   } catch (error) {
     console.error(error)
     res.status(500).json({ message: 'Server error' })
@@ -66,19 +70,19 @@ router.post('/microsoft', async (req, res) => {
       let user = await User.findOne({ email: userEmail })
 
       if (!user) {
-        // Create new user if doesn't exist
         user = new User({
           fullName: userName,
           username: userEmail.split('@')[0],
           email: userEmail,
-          password: '', // No password needed for OAuth users
+          password: '',
           role: 'admin',
           isAdmin: true,
         })
         await user.save()
       } else {
-        // Update user info if exists
         user.fullName = userName
+        user.isAdmin = true
+        user.role = 'admin'
         await user.save()
       }
 
@@ -87,6 +91,7 @@ router.post('/microsoft', async (req, res) => {
         expiresIn: '1h',
       })
 
+      // Include isAdmin in response
       res.status(200).json({
         message: 'Login successful',
         token,
@@ -95,6 +100,7 @@ router.post('/microsoft', async (req, res) => {
           email: user.email,
           fullName: user.fullName,
           role: user.role,
+          isAdmin: user.isAdmin,
         },
       })
     } catch (graphError) {

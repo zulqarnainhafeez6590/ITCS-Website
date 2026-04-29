@@ -13,24 +13,21 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    // Check if user already has a token (already logged in)
     const token = localStorage.getItem('token')
-    if (token) {
+    const user = JSON.parse(localStorage.getItem('user') || 'null')
+    
+    if (token && user?.isAdmin) {
+      navigate('/admin', { replace: true })
+      return
+    } else if (token) {
       navigate('/admin', { replace: true })
       return
     }
 
-    // If no token, ensure MSAL cache is cleared to prevent auto-login
-    // This ensures clean state after logout
     const accounts = instance.getAllAccounts()
     if (accounts.length > 0 && !token) {
-      // Clear MSAL cache if user is on login page without token
       instance.clearCache()
     }
-
-    // Don't auto-login with MSAL accounts - user must click the button
-    // This prevents auto-login after logout
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleMicrosoftLogin = async () => {
@@ -67,15 +64,18 @@ const Login = () => {
       })
 
       const data = await response.json()
-      if (!response.ok) throw new Error(data.message || 'Authentication failed.')
+      if (!response.ok) {
+        setLoading(false)
+        throw new Error(data.message || 'Authentication failed.')
+      }
 
       // Store auth info
       localStorage.setItem('token', data.token)
       localStorage.setItem('user', JSON.stringify(data.user))
       localStorage.setItem('email', data.user.email)
 
-      // Navigate to private route
-      navigate('/admin')
+      setLoading(false)
+      navigate('/admin', { replace: true })
     } catch (err) {
       console.error('Backend authentication error:', err)
       setError(err.message || 'Failed to authenticate with server')

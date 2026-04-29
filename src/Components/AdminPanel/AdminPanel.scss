@@ -62,14 +62,14 @@
         }
 
         &:hover {
-          background: rgba(74, 158, 255, 0.1);
-          color: var(--accent-blue, #4a9eff);
+          background: rgba(0, 91, 169, 0.1);
+          color: var(--accent-blue);
         }
 
         &.active {
-          background: linear-gradient(135deg, rgba(74, 158, 255, 0.2) 0%, rgba(74, 158, 255, 0.1) 100%);
-          color: var(--accent-blue, #4a9eff);
-          border-left: 3px solid var(--accent-blue, #4a9eff);
+          background: linear-gradient(135deg, rgba(0, 91, 169, 0.2) 0%, rgba(0, 91, 169, 0.1) 100%);
+          color: var(--accent-blue);
+          border-left: 3px solid var(--accent-blue);
         }
       }
     }
@@ -169,7 +169,7 @@
 
           &.active {
             border-left: none;
-            border-bottom: 3px solid var(--accent-blue, #4a9eff);
+            border-bottom: 3px solid var(--accent-blue);
           }
         }
       }
@@ -279,8 +279,8 @@
 
           &:focus {
             outline: none;
-            border-color: var(--accent-blue, #4a9eff);
-            box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(0, 91, 169, 0.1);
           }
         }
       }
@@ -292,7 +292,7 @@
 
         button {
           padding: 14px 32px;
-          background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+          background: var(--gradient-logo);
           border: none;
           border-radius: 8px;
           color: white;
@@ -303,7 +303,7 @@
 
           &:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(74, 158, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 91, 169, 0.4);
           }
 
           &:disabled {

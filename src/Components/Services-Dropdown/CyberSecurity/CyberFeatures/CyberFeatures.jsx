@@ -1,40 +1,39 @@
 import React from 'react';
 import './CyberFeatures.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faLock, faShieldAlt, faEye, faBolt, faClipboard } from '@fortawesome/free-solid-svg-icons';
-
+import { faSearch, faLock, faShieldAlt, faEye, faBolt, faCloud } from '@fortawesome/free-solid-svg-icons';
 
 const CyberFeatures = () => {
   const features = [
     {
-      icon: faSearch,
-      title: 'Threat Detection',
-      description: 'Advanced AI-powered threat detection and real-time monitoring to identify and neutralize threats before they cause damage.'
+      icon: faShieldAlt,
+      title: 'Cybersecurity Consulting',
+      description: 'Discover the ultimate fit for your specific cybersecurity requirements with our tailor-made solutions.'
     },
     {
       icon: faLock,
-      title: 'Data Encryption',
-      description: 'Military-grade encryption for data at rest and in transit, ensuring your sensitive information stays protected.'
-    },
-    {
-      icon: faShieldAlt,
-      title: 'Firewall Protection',
-      description: 'Next-generation firewall solutions with deep packet inspection and intrusion prevention systems.'
+      title: 'Digital Identity Management',
+      description: 'Enhance the security of your identity and access management with expert consulting.'
     },
     {
       icon: faEye,
-      title: 'Security Audits',
-      description: 'Comprehensive security assessments and vulnerability testing to identify and address potential weaknesses.'
+      title: 'Security as a Service',
+      description: 'Elevate your business security level with our platform-centric approach.'
+    },
+    {
+      icon: faCloud,
+      title: 'Secure Cloud Transformation',
+      description: 'Stay ahead of cyber threats with our Cloud Security Services solution.'
+    },
+    {
+      icon: faSearch,
+      title: 'Vulnerability Management',
+      description: 'Strengthen your defense against cyber attacks with vulnerability assessment.'
     },
     {
       icon: faBolt,
-      title: 'Incident Response',
-      description: 'Rapid incident response team available 24/7 to handle security breaches and minimize damage.'
-    },
-    {
-      icon: faClipboard,
-      title: 'Compliance Management',
-      description: 'Ensure compliance with industry standards including GDPR, HIPAA, PCI-DSS, and ISO 27001.'
+      title: 'Zero Trust Security',
+      description: 'Protect your digital assets by modernizing and securing user access.'
     }
   ];
 
@@ -42,11 +41,12 @@ const CyberFeatures = () => {
     <section className="cyber-features">
       <div className="features-container">
         <div className="features-header">
-          <span className="section-badge">COMPREHENSIVE PROTECTION</span>
-          <h2 className="section-title">Multi-Layered Security Approach</h2>
+          <span className="section-badge">OUR SERVICES</span>
+          <h2 className="section-title">Ensuring Business Growth through Proactive Cybersecurity</h2>
           <p className="section-description">
-            Protect your digital assets with our comprehensive cybersecurity solutions
-            designed to defend against modern threats.
+            In today's dynamic digital landscape, cybersecurity is critical for driving business growth 
+            and success. With the threat perimeter constantly expanding, we provide robust cybersecurity 
+            measures to protect your organization.
           </p>
         </div>
 
@@ -67,4 +67,3 @@ const CyberFeatures = () => {
 };
 
 export default CyberFeatures;
-

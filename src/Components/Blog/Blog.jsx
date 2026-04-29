@@ -75,7 +75,8 @@ export default function Blog() {
 
       {loading && <p className="loading-text">Loading approved blogs...</p>}
 
-      <div className="tag-pills">
+      {/* Tag pills hidden */}
+      {/* <div className="tag-pills">
         {tags.map(tag => (
           <button
             key={tag}
@@ -85,7 +86,7 @@ export default function Blog() {
             #{tag}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <div className="blog-grid">
         {filteredPosts.length > 0 ? (

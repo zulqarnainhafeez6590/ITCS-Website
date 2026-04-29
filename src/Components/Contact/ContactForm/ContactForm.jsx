@@ -28,7 +28,7 @@ const ContactForm = () => {
   const contactInfo = [
     {
       icon: faMapMarkerAlt,
-      title: "Visit Us",
+      title: "Head Office",
       description: "6/K Block 2, P.E.C.H.S, Karachi, Pakistan"
     },
     {

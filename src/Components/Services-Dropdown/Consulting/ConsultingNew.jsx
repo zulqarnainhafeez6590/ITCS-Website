@@ -1,128 +1,207 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './ConsultingNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faChartBar, faBullseye, faLightbulb, faSearch, faTools, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faChartLine, faHandshake, faLightbulb, faRocket, faUsers, faCogs, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
-
-const ConsultingHero = () => (
-  <section className="service-hero consulting-hero">
-    <div className="hero-background">
-      <div className="consulting-pattern"></div>
-    </div>
-    <div className="hero-container">
+const ConsultingHero = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="consulting-hero-section">
       <div className="hero-badge">
         <FontAwesomeIcon icon={faBriefcase} />
-        <span>STRATEGIC IT CONSULTING</span>
+        <span>CONSULTING SERVICES</span>
       </div>
       <h1 className="hero-title">
-        Transform Your Business with
-        <span className="gradient-text"> Expert IT Consulting</span>
+        Strategy for Business<br />
+        <span className="gradient-text">Transformation</span>
       </h1>
       <p className="hero-description">
-        Navigate digital transformation with confidence. Our expert consultants help you align
-        technology with business goals for sustainable growth and competitive advantage.
+        Success in a changing world requires a purpose-driven transformative strategy. 
+        We help organizations navigate digital transformation with strategic planning and expert guidance.
       </p>
       <div className="hero-actions">
-        <button className="btn-primary">
+        <button className="btn-secondary" onClick={() => navigate('/contact')}>
           Start Consultation
           <span>→</span>
         </button>
-        <button className="btn-secondary">
-          View Services
-        </button>
-      </div>
-      <div className="hero-badges-row">
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faChartBar} />
-          <span>Strategic Planning</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faBullseye} />
-          <span>Goal Alignment</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faChartBar} />
-          <span>Growth Focused</span>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const ConsultingFeatures = () => {
-  const features = [
-    { icon: faBullseye, title: 'IT Strategy & Planning', description: 'Develop comprehensive IT strategies aligned with your business objectives.' },
-    { icon: faLightbulb, title: 'Digital Transformation', description: 'Guide your organization through successful digital transformation initiatives.' },
-    { icon: faSearch, title: 'Technology Assessment', description: 'Evaluate your current technology landscape and identify improvement opportunities.' },
-    { icon: faTools, title: 'Solution Architecture', description: 'Design scalable and efficient technology solutions for your business needs.' },
-    { icon: faChartBar, title: 'Process Optimization', description: 'Streamline business processes through technology integration and automation.' },
-    { icon: faUsers, title: 'Change Management', description: 'Ensure smooth technology adoption with comprehensive change management support.' }
-  ];
-
-  return (
-    <section className="service-features">
-      <div className="features-container">
-        <div className="features-header">
-          <span className="section-badge">OUR EXPERTISE</span>
-          <h2 className="section-title">Comprehensive Consulting Services</h2>
-          <p className="section-description">
-            Strategic guidance and expert advice to help you make informed technology decisions.
-          </p>
-        </div>
-        <div className="features-grid">
-          {features.map((feature, idx) => (
-            <div className="feature-card" key={idx}>
-              <div className="feature-icon">
-                <FontAwesomeIcon icon={feature.icon} size="2x" />
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px' }}>{feature.title}</h3>
-              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{feature.description}</p>
-            </div>
-
-          ))}
-        </div>
       </div>
     </section>
   );
 };
 
-const ConsultingCTA = () => (
-  <section className="service-cta">
-    <div className="cta-container">
-      <h2 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px' }}>
-        Ready to <span className="gradient-text">Transform</span> Your IT Strategy?
-      </h2>
-      <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px' }}>
-        Let our experienced consultants help you navigate your digital transformation journey.
-      </p>
-      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
-        <button className="btn-primary" style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white' }}>
-          Schedule Consultation
-        </button>
-        <button className="btn-secondary" style={{ padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)' }}>
-          Contact Us
-        </button>
-      </div>
-      <div className="cta-stats">
-        <div className="stat-item">
-          <div className="stat-number">200+</div>
-          <div className="stat-label">Successful Projects</div>
+const ConsultingSection2 = () => {
+  const services = [
+    { icon: faChartLine, title: 'Strategic Planning', desc: 'Expert business strategy development' },
+    { icon: faHandshake, title: 'Digital Transformation', desc: 'Modernize your business processes' },
+    { icon: faLightbulb, title: 'Innovation Consulting', desc: 'Drive innovation across organization' },
+    { icon: faRocket, title: 'Growth Strategy', desc: 'Scale your business effectively' }
+  ]
+
+  return (
+    <div className='consultingSection2'>
+      <div className="consultingSection2-wrapper">
+        <div className="content-side">
+          <h2>Expert Business Consulting for Growth</h2>
+          <p>Transform your business with our comprehensive consulting solutions. We deliver strategic guidance and expert advice tailored to meet your specific business requirements.</p>
+          <p>From startup to enterprise, our consulting services grow with your business, providing the insights you need to succeed.</p>
+          
+          <div className="services-list">
+            {services.map((item, idx) => (
+              <div className="service-item" key={idx}>
+                <div className="service-icon">
+                  <FontAwesomeIcon icon={item.icon} />
+                </div>
+                <div>
+                  <strong>{item.title}</strong>
+                  <span>{item.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">15+</div>
-          <div className="stat-label">Years Experience</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">98%</div>
-          <div className="stat-label">Client Satisfaction</div>
+        
+        <div className="image-side">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600" alt="Business Consulting" />
         </div>
       </div>
     </div>
-  </section>
-);
+  )
+}
+
+const ConsultingFeatures = () => {
+  const features = [
+    { icon: faCogs, title: 'Process Optimization', description: 'Streamline operations for efficiency' },
+    { icon: faChartLine, title: 'Financial Consulting', description: 'Expert financial planning and analysis' },
+    { icon: faUsers, title: 'Organizational Development', description: 'Build high-performing teams' },
+    { icon: faLightbulb, title: 'Innovation Strategy', description: 'Drive innovation and growth' }
+  ];
+
+  return (
+    <section className="consulting-features-section">
+      <div className="section-header">
+        <h2>Our Consulting Services</h2>
+        <p>Professional consulting to help your business thrive</p>
+      </div>
+      <div className="features-grid">
+        {features.map((feature, idx) => (
+          <div className="feature-card" key={idx}>
+            <div className="card-icon">
+              <FontAwesomeIcon icon={feature.icon} />
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const ConsultingSection4 = () => {
+  const benefits = [
+    { title: 'Expert Consultants', description: 'Team of certified professionals with years of experience' },
+    { title: 'Proven Methodology', description: 'Data-driven approach for measurable results' },
+    { title: 'Tailored Solutions', description: 'Customized strategies for your specific needs' },
+    { title: 'Long-term Partnership', description: 'Ongoing support for sustainable growth' }
+  ];
+
+  return (
+    <div className="consultingSection4">
+      <div className="section-header">
+        <h2>Why Choose ITCS for Consulting?</h2>
+        <p>Partner with experts who understand your business</p>
+      </div>
+      <div className="benefits-grid">
+        {benefits.map((benefit, idx) => (
+          <div className="benefit-item" key={idx}>
+            <div className="benefit-check">✓</div>
+            <div className="benefit-text">
+              <strong>{benefit.title}</strong>
+              <span>{benefit.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ConsultingSection3 = () => {
+  const benefits = [
+    { text: '200+ Projects Delivered' },
+    { text: '15+ Years Experience' },
+    { text: '98% Client Satisfaction' },
+    { text: 'Industry Experts' }
+  ]
+
+  return (
+    <div className='consultingSection3'>
+      <div className="logo-section">
+        <div className="logo-card">
+          <span className="logo-icon">📊</span>
+          <span>McKinsey</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">💼</span>
+          <span>Deloitte</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">🔷</span>
+          <span>BCG</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">📈</span>
+          <span>Bain</span>
+        </div>
+      </div>
+      <div className="benefits-row">
+        {benefits.map((item, idx) => (
+          <div className="benefit-item" key={idx}>
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const ConsultingCTA = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="consulting-cta">
+      <div className="cta-container">
+        <h2>
+          Let's Discuss Your <span className="gradient-text">Project</span>
+        </h2>
+        <p>Get free consultation and transform your business with expert guidance.</p>
+        <button className="btn-primary" onClick={() => navigate('/contact')}>
+          Get Free Consultation
+          <span>→</span>
+        </button>
+        <div className="cta-stats">
+          <div className="stat-item">
+            <div className="stat-number">200+</div>
+            <div className="stat-label">Projects</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">15+</div>
+            <div className="stat-label">Years</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">98%</div>
+            <div className="stat-label">Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const ConsultingNew = () => {
   useEffect(() => {
@@ -132,11 +211,13 @@ const ConsultingNew = () => {
   return (
     <>
       <ConsultingHero />
+      <ConsultingSection2 />
       <ConsultingFeatures />
+      <ConsultingSection4 />
+      <ConsultingSection3 />
       <ConsultingCTA />
     </>
   );
 };
 
 export default ConsultingNew;
-

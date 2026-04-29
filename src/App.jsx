@@ -21,13 +21,22 @@ import AdminRoute from './Components/AdminPanel/AdminRoute'
 
 //Dropdowns
 import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
+import CloudDesign from './Components/Services-Dropdown/Cloud/CloudDesign/CloudDesign'
+import CloudMigration from './Components/Services-Dropdown/Cloud/CloudMigration/CloudMigration'
+import CloudSecurity from './Components/Services-Dropdown/Cloud/CloudSecurity/CloudSecurity'
 import Consulting from './Components/Services-Dropdown/Consulting/Consulting'
 import CyberSecurity from './Components/Services-Dropdown/CyberSecurity/CyberSecurity'
 import Enterprise from './Components/Services-Dropdown/Enterprise-Solutions/Enterprise'
 import ITServices from './Components/Services-Dropdown/IT-Services/ITServices'
 import Network from './Components/Services-Dropdown/Network-Solutions/Network'
+import NetworkDesign from './Components/Services-Dropdown/Network-Solutions/NetworkDesign/NetworkDesign'
+import NetworkSecurity from './Components/Services-Dropdown/Network-Solutions/NetworkSecurity/NetworkSecurity'
+import NetworkSupport from './Components/Services-Dropdown/Network-Solutions/NetworkSupport/NetworkSupport'
+import WebDevelopment from './Components/Services-Dropdown/WebDevelopment/WebDevelopment'
+import SecurityAssessment from './Components/Services-Dropdown/CyberSecurity/SecurityAssessment/SecurityAssessment'
 import Careers from './Components/Careers/Careers'
 import ApplyJob from './Components/Careers/ApplyJob/ApplyJob'
+import JobDetail from './Components/Careers/JobDetail/JobDetail'
 
 function App() {
   const location = useLocation()
@@ -43,15 +52,24 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/cloud" element={<Cloud />} />
+        <Route path="/services/cloud/design" element={<CloudDesign />} />
+        <Route path="/services/cloud/migration" element={<CloudMigration />} />
+        <Route path="/services/cloud/security" element={<CloudSecurity />} />
         <Route path="/services/cyber-security" element={<CyberSecurity />} />
+        <Route path="/services/cyber-security/assessment" element={<SecurityAssessment />} />
         <Route path="/services/consulting" element={<Consulting />} />
         <Route path="/services/enterprise-solutions" element={<Enterprise />} />
         <Route path="/services/it-services" element={<ITServices />} />
         <Route path="/services/network-solutions" element={<Network />} />
+        <Route path="/services/network-solutions/design" element={<NetworkDesign />} />
+        <Route path="/services/network-solutions/security" element={<NetworkSecurity />} />
+        <Route path="/services/network-solutions/support" element={<NetworkSupport />} />
+        <Route path="/services/web-development" element={<WebDevelopment />} />
         <Route path="/vision-mission" element={<Vision />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/careers" element={<Careers />} />
+        <Route path="/careers/:id" element={<JobDetail />} />
         <Route path="/apply" element={<ApplyJob />} />
 
         <Route path="/login" element={<Login />} />

@@ -7,6 +7,7 @@ import consulting from "./../../../assets/logos/SConsulting.png";
 import enterpriseSol from "./../../../assets/logos/SEnterpriseSol.png";
 import itServices from "./../../../assets/logos/SITservices.png";
 import networkSolutions from "./../../../assets/logos/SNetworkSolutions.png";
+import webDevelopment from "./../../../assets/logos/SNetworkSolutions.png";
 
 const ServicesGrid = () => {
   const navigate = useNavigate();
@@ -53,6 +54,13 @@ const ServicesGrid = () => {
       description: "Optimize network performance and security with our comprehensive network solutions.",
       path: "/services/network-solutions",
       features: ["Network Design", "Performance Monitoring", "Security Implementation"]
+    },
+    {
+      logo: webDevelopment,
+      title: "Web Development",
+      description: "Build modern, responsive websites and web applications that drive business growth.",
+      path: "/services/web-development",
+      features: ["Custom Websites", "E-Commerce", "Web Applications"]
     },
   ];
 

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="footer-container">
         
         {/* Logo & Intro Section */}
-        <div className="logo-section">
+        <div className="footer-col logo-section">
           <a href="/" className="logo-link">
             <img src={itcsLogo} alt="ITCS Logo" className="itcs-logo" />
           </a>
@@ -22,69 +22,62 @@ const Footer = () => {
             solutions using the latest available technology.
           </p>
           <div className="social-icons">
-            <a href="#" className="icon twitter" aria-label="Twitter">
-              <img src={Twitter} alt="Twitter" />
+            <a href="https://x.com/itcspakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="X">
+              <img src={Twitter} alt="X" />
             </a>
-            <a
-              href="https://www.facebook.com/itcspakistan"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="icon facebook"
-              aria-label="Facebook"
-            >
+            <a href="https://www.facebook.com/itcspakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
               <img src={Facebook} alt="Facebook" />
             </a>
-            <a
-              href="https://www.instagram.com/itcs.pakistan"  // Update with real link if available
-              target="_blank"
-              rel="noopener noreferrer"
-              className="icon instagram"
-              aria-label="Instagram"
-            >
+            <a href="https://www.instagram.com/itcs.pakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
               <img src={Instagram} alt="Instagram" />
             </a>
-            <a
-              href="https://www.linkedin.com/company/itconsultingandservices"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="icon linkedin"
-              aria-label="LinkedIn"
-            >
+            <a href="https://www.linkedin.com/company/itconsultingandservices" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
               <img src={LinkedIn} alt="LinkedIn" />
             </a>
           </div>
         </div>
 
         {/* Head Office Info */}
-        <div className="info-section">
+        <div className="footer-col info-section">
           <h3>Head Office</h3>
-          <p className="head-para">6/K Block 2, P.E.C.H.S, Karachi, Pakistan</p>
-          <p className="head-para">
-            <a href="mailto:info@itcs.com.pk">info@itcs.com.pk</a>
-          </p>
-          <p className="head-para">
-            <a href="tel:+9221111482711">Phone: 021 111-482-711</a>
-          </p>
-          <p className="head-para">Fax: 021 4554818</p>
+          <div className="contact-info">
+            <p><span className="icon">📍</span> 6/K Block 2, P.E.C.H.S, Karachi, Pakistan</p>
+            <p><span className="icon">📧</span> <a href="mailto:info@itcs.com.pk">info@itcs.com.pk</a></p>
+            <p><span className="icon">📞</span> <a href="tel:+9221111482711">021 111-482-711</a></p>
+            <p><span className="icon">📠</span> Fax: 021 4554818</p>
+          </div>
         </div>
 
         {/* Services Links */}
-        <div className="services-section">
+        <div className="footer-col services-section">
           <h3>Services</h3>
-          <ul>
+          <ul className="services-links">
             <li><Link to="/services/cloud">Cloud Solutions</Link></li>
             <li><Link to="/services/consulting">IT Consulting</Link></li>
             <li><Link to="/services/enterprise-solutions">Enterprise Solutions</Link></li>
             <li><Link to="/services/it-services">IT Services</Link></li>
             <li><Link to="/services/network-solutions">Network Solutions</Link></li>
             <li><Link to="/services/cyber-security">Cybersecurity</Link></li>
+            <li><Link to="/services/web-development">Web Development</Link></li>
+          </ul>
+        </div>
+
+        {/* Quick Links */}
+        <div className="footer-col quick-links">
+          <h3>Quick Links</h3>
+          <ul className="links-list">
+            <li><Link to="/about-us">About Us</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+            <li><Link to="/careers">Careers</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
           </ul>
         </div>
       </div>
 
-      {/* Optional: Copyright Line */}
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} ITCS Pakistan. All rights reserved.</p>
+        <div className="footer-bottom-content">
+          <p>&copy; {new Date().getFullYear()} ITCS Pakistan. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );

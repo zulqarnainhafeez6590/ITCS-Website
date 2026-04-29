@@ -96,9 +96,9 @@ const CareerPositions = () => {
                 <p className="position-description">{position.description}</p>
                 <button
                   className="apply-btn"
-                  onClick={() => navigate("/apply", { state: { job: position } })}
+                  onClick={() => navigate(`/careers/${position._id}`)}
                 >
-                  Apply Now →
+                  View Details →
                 </button>
               </div>
             ))}

@@ -111,7 +111,6 @@ const AdminPanel = () => {
 
           <button
             className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
-            utilisée
             onClick={() => setActiveTab('blog-approval')}
           >
             <span className="nav-icon"><FontAwesomeIcon icon={faBlog} /></span>

@@ -2,15 +2,10 @@
   min-height: 100vh;
   padding: 160px 40px 80px;
   margin-top: 0;
-  background: linear-gradient(
-      135deg,
-      rgba(26, 26, 26, 0.95) 0%,
-      rgba(36, 36, 36, 0.92) 100%
-    ),
-    url("./../../../assets/images/homepage-bg.webp");
+  background: var(--bg-primary);
   background-size: cover;
   background-position: center;
-  color: #fff;
+  color: var(--text-primary);
   text-align: center;
   border-radius: 12px;
   position: relative;
@@ -22,7 +17,7 @@
     inset: 0;
     background: radial-gradient(
       circle at center,
-      rgba(74, 158, 255, 0.12) 0%,
+      rgba(0, 91, 169, 0.12) 0%,
       transparent 70%
     );
     pointer-events: none;
@@ -32,8 +27,9 @@
     font-size: 48px; 
     font-weight: 700;
     margin: 30px 0 40px;
-    background: linear-gradient(90deg, #4a9eff, #7bc9ff);
+    background: var(--gradient-logo);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 1px;
     text-align: center;
@@ -52,7 +48,7 @@
 
     &:hover {
       transform: scale(1.02);
-      box-shadow: 0 12px 45px rgba(74, 158, 255, 0.25);
+      box-shadow: 0 12px 45px rgba(0, 91, 169, 0.25);
     }
   }
 
@@ -62,8 +58,9 @@
     margin-bottom: 15px;  
     text-align: center;
 
-    background: linear-gradient(90deg, #4a9eff, #7bc9ff);
+    background: var(--gradient-logo);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     }
 
@@ -74,9 +71,9 @@
     text-align: left;
     font-size: 22px; 
     line-height: 2;   
-    color: #fff; 
+    color: var(--text-primary); 
     position: relative;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--bg-secondary);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;

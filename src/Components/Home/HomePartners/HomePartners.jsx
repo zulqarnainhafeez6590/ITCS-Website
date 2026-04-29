@@ -26,10 +26,30 @@ import Vmware from "./../../../assets/images/Vmware.png";
 import Zoom from "./../../../assets/images/Zoom.png";
 
 const logos = [
-  Acunetix, Adobe, AutoDesk, Barracuda, CorelDraw, CPanel, Digicert,
-  Dynamics365, Fortinet, Kaspersky, ManageEngine, Microsoft, Nvidia,
-  Office365, Plesk, PortSwigger, Rapid, Ruigie, SolarWinds, Sophos,
-  Symantec, Veeam, Vmware, Zoom,
+  { img: Acunetix, url: "https://www.acunetix.com" },
+  { img: Adobe, url: "https://www.adobe.com" },
+  { img: AutoDesk, url: "https://www.autodesk.com" },
+  { img: Barracuda, url: "https://www.barracuda.com" },
+  { img: CorelDraw, url: "https://www.corel.com" },
+  { img: CPanel, url: "https://cpanel.net" },
+  { img: Digicert, url: "https://www.digicert.com" },
+  { img: Dynamics365, url: "https://dynamics.microsoft.com" },
+  { img: Fortinet, url: "https://www.fortinet.com" },
+  { img: Kaspersky, url: "https://www.kaspersky.com" },
+  { img: ManageEngine, url: "https://www.manageengine.com" },
+  { img: Microsoft, url: "https://www.microsoft.com" },
+  { img: Nvidia, url: "https://www.nvidia.com" },
+  { img: Office365, url: "https://www.microsoft.com/microsoft-365" },
+  { img: Plesk, url: "https://www.plesk.com" },
+  { img: PortSwigger, url: "https://portswigger.net" },
+  { img: Rapid, url: "https://rapidapi.com" },
+  { img: Ruigie, url: "https://www.ruigie.com" },
+  { img: SolarWinds, url: "https://www.solarwinds.com" },
+  { img: Sophos, url: "https://www.sophos.com" },
+  { img: Symantec, url: "https://www.broadcom.com/products/enterprise-software/security" },
+  { img: Veeam, url: "https://www.veeam.com" },
+  { img: Vmware, url: "https://www.vmware.com" },
+  { img: Zoom, url: "https://zoom.us" },
 ];
 
 const HomePartners = () => {
@@ -66,15 +86,19 @@ const HomePartners = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {logos.filter(logo => logo).map((logo, index) => (
+            {logos.filter(logo => logo.img).map((logo, index) => (
               <div className="logo-wrapper" key={index}>
-                <img src={logo} alt={`Partner ${index + 1}`} />
+                <a href={logo.url} target="_blank" rel="noopener noreferrer">
+                  <img src={logo.img} alt={`Partner ${index + 1}`} />
+                </a>
               </div>
             ))}
             {/* Duplicate for seamless loop */}
-            {logos.filter(logo => logo).map((logo, index) => (
+            {logos.filter(logo => logo.img).map((logo, index) => (
               <div className="logo-wrapper" key={`duplicate-${index}`}>
-                <img src={logo} alt={`Partner Duplicate ${index + 1}`} />
+                <a href={logo.url} target="_blank" rel="noopener noreferrer">
+                  <img src={logo.img} alt={`Partner Duplicate ${index + 1}`} />
+                </a>
               </div>
             ))}
           </div>

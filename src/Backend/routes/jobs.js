@@ -1,8 +1,47 @@
 // routes/jobs.js
 import express from 'express';
 import Job from '../models/job.js';
+import jobsSeedData from '../data/jobsSeedData.js';
 
 const router = express.Router();
+
+// Seed the database with initial jobs (must be before /:id route)
+router.post('/seed/init', async (req, res) => {
+  try {
+    // Check if jobs already exist
+    const existingJobs = await Job.countDocuments();
+    
+    if (existingJobs > 0) {
+      return res.status(400).json({ 
+        message: 'Database already has jobs. Clear them first if you want to reseed.',
+        count: existingJobs 
+      });
+    }
+
+    // Insert seed data
+    const savedJobs = await Job.insertMany(jobsSeedData);
+    res.status(201).json({ 
+      message: `Successfully seeded ${savedJobs.length} jobs`,
+      jobs: savedJobs 
+    });
+  } catch (err) {
+    console.error('Error seeding jobs:', err);
+    res.status(500).json({ message: 'Failed to seed jobs', error: err.message });
+  }
+});
+
+// Clear all jobs (must be before /:id route)
+router.delete('/seed/clear', async (req, res) => {
+  try {
+    const result = await Job.deleteMany({});
+    res.json({ 
+      message: `Successfully deleted ${result.deletedCount} jobs`
+    });
+  } catch (err) {
+    console.error('Error clearing jobs:', err);
+    res.status(500).json({ message: 'Failed to clear jobs' });
+  }
+});
 
 // Create a new job
 router.post('/', async (req, res) => {
@@ -38,6 +77,23 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Error fetching jobs:', err);
     res.status(500).json({ message: 'Failed to fetch jobs' });
+  }
+});
+
+// Get a specific job by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const job = await Job.findById(id);
+    
+    if (!job) {
+      return res.status(404).json({ message: 'Job not found' });
+    }
+    
+    res.json(job);
+  } catch (err) {
+    console.error('Error fetching job:', err);
+    res.status(500).json({ message: 'Failed to fetch job' });
   }
 });
 

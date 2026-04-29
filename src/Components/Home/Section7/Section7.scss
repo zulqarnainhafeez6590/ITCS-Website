@@ -121,7 +121,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 70% 50%, rgba(74, 158, 255, 0.1) 0%, transparent 60%);
+      background: radial-gradient(circle at 70% 50%, rgba(0, 91, 169, 0.1) 0%, transparent 60%);
       pointer-events: none;
     }
   
@@ -196,14 +196,14 @@
       border-radius: 50%;
       top: 60%;
       transform: translateY(-50%);
-      box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 91, 169, 0.3);
       border: 1px solid var(--border-color);
       transition: all var(--transition-normal);
       z-index: 2;
       
       &:hover {
         transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+        box-shadow: 0 6px 20px rgba(0, 91, 169, 0.4);
       }
     }
   

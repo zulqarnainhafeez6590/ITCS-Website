@@ -1,94 +1,76 @@
 .cyber-cta {
-  padding: 100px 20px;
+  padding: 40px 24px;
   background: var(--bg-primary);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    background: radial-gradient(circle, rgba(74, 158, 255, 0.15), transparent 70%);
-    filter: blur(60px);
-  }
+  text-align: center;
 
   .cta-container {
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
   }
 
   .cta-content {
-    text-align: center;
     margin-bottom: 50px;
 
     .cta-title {
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: 36px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 20px;
-      line-height: 1.2;
 
       .gradient-text {
-        background: var(--accent-gradient);
+        background: linear-gradient(135deg, #008ABD 0%, #00B4D8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
+
+      @media (max-width: 768px) {
+        font-size: 26px;
+      }
     }
 
     .cta-description {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto 40px;
       line-height: 1.7;
     }
+  }
 
-    .cta-actions {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
 
-      button {
-        padding: 16px 32px;
-        font-size: 16px;
-        font-weight: 600;
-        border-radius: 12px;
+    button {
+      padding: 14px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+
+      &.btn-primary {
+        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        color: white;
         border: none;
-        cursor: pointer;
-        transition: all var(--transition-normal);
-        display: flex;
-        align-items: center;
-        gap: 10px;
 
-        &.btn-primary {
-          background: var(--accent-gradient);
-          color: white;
-          box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
-
-          &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
-          }
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(0, 91, 169, 0.4);
         }
+      }
 
-        &.btn-secondary {
-          background: var(--bg-card);
-          color: var(--text-primary);
-          border: 1px solid var(--border-color);
+      &.btn-secondary {
+        background: var(--bg-card);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
 
-          &:hover {
-            background: var(--bg-tertiary);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-          }
+        &:hover {
+          border-color: #008ABD;
         }
       }
     }
@@ -96,67 +78,45 @@
 
   .cta-stats {
     display: flex;
-    align-items: center;
     justify-content: center;
     gap: 40px;
     flex-wrap: wrap;
-    padding: 40px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
+    padding: 30px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    margin-top: 40px;
 
     .stat-item {
       text-align: center;
 
       .stat-number {
-        font-size: 42px;
+        font-size: 28px;
         font-weight: 700;
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 8px;
+        color: var(--text-primary);
       }
 
       .stat-label {
-        font-size: 14px;
+        font-size: 13px;
         color: var(--text-secondary);
       }
     }
 
     .stat-divider {
       width: 1px;
-      height: 50px;
+      height: 40px;
       background: var(--border-color);
     }
-  }
-}
 
-@media (max-width: 768px) {
-  .cyber-cta {
-    padding: 60px 20px;
-
-    .cta-content {
-      margin-bottom: 40px;
-
-      .cta-actions {
-        flex-direction: column;
-
-        button {
-          width: 100%;
-          justify-content: center;
-        }
-      }
-    }
-
-    .cta-stats {
+    @media (max-width: 600px) {
       gap: 20px;
-      padding: 30px 20px;
 
       .stat-divider {
         display: none;
       }
     }
   }
-}
 
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
+}

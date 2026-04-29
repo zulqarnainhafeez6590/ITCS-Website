@@ -1,126 +1,209 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './NetworkNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faLock, faBolt, faChartLine, faSearch, faTools, faProjectDiagram, faShieldAlt, faWifi } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faNetworkWired, faShieldAlt, faWifi, faServer, faTools, faProjectDiagram, faLock, faSignal } from '@fortawesome/free-solid-svg-icons';
 
-const NetworkHero = () => (
-  <section className="service-hero network-hero">
-    <div className="hero-background">
-      <div className="network-pattern"></div>
-    </div>
-    <div className="hero-container">
+const NetworkHero = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="network-hero-section">
       <div className="hero-badge">
         <FontAwesomeIcon icon={faGlobe} />
         <span>NETWORK SOLUTIONS</span>
       </div>
       <h1 className="hero-title">
-        Build Reliable and Secure
-        <span className="gradient-text"> Network Infrastructure</span>
+        Advanced Network Solutions<br />
+        <span className="gradient-text">for Your Business</span>
       </h1>
       <p className="hero-description">
-        Design, implement, and manage robust network solutions that ensure seamless connectivity, 
-        optimal performance, and enterprise-grade security.
+        Empowering organizations with robust network solutions for seamless connectivity. 
+        We design, implement, and manage networks that drive business productivity.
       </p>
       <div className="hero-actions">
-        <button className="btn-primary">
-          Get Assessment
+        <button className="btn-secondary" onClick={() => navigate('/services/network-solutions/design')}>
+          Network Design
           <span>→</span>
         </button>
-        <button className="btn-secondary">
-          View Solutions
-        </button>
-      </div>
-      <div className="hero-badges-row">
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faLock} />
-          <span>Secure Networks</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faBolt} />
-          <span>High Performance</span>
-        </div>
-        <div className="badge-item">
-          <FontAwesomeIcon icon={faChartLine} />
-          <span>Real-time Monitoring</span>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const NetworkFeatures = () => {
-  const features = [
-    { icon: faProjectDiagram, title: 'Network Design', description: 'Custom network architecture tailored to your business requirements.' },
-    { icon: faShieldAlt, title: 'Security Implementation', description: 'Advanced firewalls, VPNs, and security protocols to protect your network.' },
-    { icon: faWifi, title: 'Wireless Solutions', description: 'Enterprise-grade WiFi solutions for seamless connectivity.' },
-    { icon: faChartLine, title: 'Performance Optimization', description: 'Network optimization for maximum speed and reliability.' },
-    { icon: faSearch, title: 'Network Monitoring', description: 'Proactive monitoring and management for peak performance.' },
-    { icon: faTools, title: 'Maintenance & Support', description: '24/7 network support and maintenance services.' }
-  ];
-
-  return (
-    <section className="service-features">
-      <div className="features-container">
-        <div className="features-header">
-          <span className="section-badge">COMPREHENSIVE NETWORKING</span>
-          <h2 className="section-title">Complete Network Solutions</h2>
-          <p className="section-description">
-            From design to deployment and ongoing management, we handle all aspects of your network infrastructure.
-          </p>
-        </div>
-        <div className="features-grid">
-          {features.map((feature, idx) => (
-            <div className="feature-card" key={idx}>
-               <div className="feature-icon">
-                <FontAwesomeIcon icon={feature.icon} size="2x" />
-              </div>
-              <h3 style={{fontSize: '20px', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '12px'}}>{feature.title}</h3>
-              <p style={{fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6}}>{feature.description}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
 };
 
-const NetworkCTA = () => (
-  <section className="service-cta">
-    <div className="cta-container">
-      <h2 style={{fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px'}}>
-        Upgrade Your <span className="gradient-text">Network</span> Infrastructure
-      </h2>
-      <p style={{fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 40px'}}>
-        Get a free network assessment and discover how we can improve your connectivity.
-      </p>
-      <div style={{display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px'}}>
-        <button className="btn-primary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: 'none', cursor: 'pointer', background: 'var(--accent-gradient)', color: 'white'}}>
-          Free Assessment
-        </button>
-        <button className="btn-secondary" style={{padding: '16px 32px', fontSize: '16px', fontWeight: 600, borderRadius: '12px', border: '1px solid var(--border-color)', cursor: 'pointer', background: 'var(--bg-card)', color: 'var(--text-primary)'}}>
-          Contact Team
-        </button>
-      </div>
-      <div className="cta-stats">
-        <div className="stat-item">
-          <div className="stat-number">250+</div>
-          <div className="stat-label">Networks Deployed</div>
+const NetworkSection2 = () => {
+  const services = [
+    { icon: faNetworkWired, title: 'Network Design', desc: 'Custom network architecture' },
+    { icon: faShieldAlt, title: 'Network Security', desc: 'Advanced protection' },
+    { icon: faWifi, title: 'Wireless Solutions', desc: 'Enterprise WiFi' },
+    { icon: faServer, title: 'Server Solutions', desc: 'Reliable hosting' }
+  ]
+
+  return (
+    <div className='networkSection2'>
+      <div className="networkSection2-wrapper">
+        <div className="content-side">
+          <h2>Comprehensive Network Solutions</h2>
+          <p>Transform your business with our end-to-end network solutions. We deliver scalable, secure, and reliable networks tailored to meet your specific requirements.</p>
+          <p>From small businesses to large enterprises, our network solutions grow with your business, providing the connectivity you need to succeed.</p>
+          
+          <div className="services-list">
+            {services.map((item, idx) => (
+              <div className="service-item" key={idx}>
+                <div className="service-icon">
+                  <FontAwesomeIcon icon={item.icon} />
+                </div>
+                <div>
+                  <strong>{item.title}</strong>
+                  <span>{item.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">99.99%</div>
-          <div className="stat-label">Network Uptime</div>
-        </div>
-        <div className="stat-divider"></div>
-        <div className="stat-item">
-          <div className="stat-number">10Gbps+</div>
-          <div className="stat-label">Network Speeds</div>
+        
+        <div className="image-side">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600" alt="Network Solutions" />
         </div>
       </div>
     </div>
-  </section>
-);
+  )
+}
+
+const NetworkFeatures = () => {
+  const features = [
+    { icon: faProjectDiagram, title: 'Network Design', description: 'Custom architecture for your needs' },
+    { icon: faShieldAlt, title: 'Network Security', description: 'Advanced firewall and VPN protection' },
+    { icon: faWifi, title: 'Wireless Solutions', description: 'Enterprise-grade WiFi deployment' },
+    { icon: faTools, title: 'Network Support', description: '24/7 monitoring and maintenance' },
+    { icon: faServer, title: 'Data Center', description: 'Secure data center solutions' },
+    { icon: faSignal, title: 'Connectivity', description: 'High-speed internet solutions' }
+  ];
+
+  return (
+    <section className="network-features-section">
+      <div className="section-header">
+        <h2>Our Network Solutions</h2>
+        <p>Complete networking services</p>
+      </div>
+      <div className="features-grid">
+        {features.map((feature, idx) => (
+          <div className="feature-card" key={idx}>
+            <div className="card-icon">
+              <FontAwesomeIcon icon={feature.icon} />
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const NetworkSection4 = () => {
+  const benefits = [
+    { title: 'Fast Deployment', description: 'Quick network setup and configuration' },
+    { title: 'Enterprise Security', description: 'Advanced security measures' },
+    { title: 'Scalable Solutions', description: 'Grow your network as needed' },
+    { title: '24/7 Support', description: 'Round-the-clock assistance' }
+  ];
+
+  return (
+    <div className="networkSection4">
+      <div className="section-header">
+        <h2>Why Choose ITCS for Networks?</h2>
+        <p>Trusted network solutions provider</p>
+      </div>
+      <div className="benefits-grid">
+        {benefits.map((benefit, idx) => (
+          <div className="benefit-item" key={idx}>
+            <div className="benefit-check">✓</div>
+            <div className="benefit-text">
+              <strong>{benefit.title}</strong>
+              <span>{benefit.description}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const NetworkSection3 = () => {
+  const benefits = [
+    { text: '300+ Networks' },
+    { text: '99.9% Uptime' },
+    { text: '24/7 Support' },
+    { text: 'Industry Experts' }
+  ]
+
+  return (
+    <div className='networkSection3'>
+      <div className="logo-section">
+        <div className="logo-card">
+          <span className="logo-icon">🔵</span>
+          <span>Cisco</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">🟠</span>
+          <span>Juniper</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">🟢</span>
+          <span>Ubiquiti</span>
+        </div>
+        <div className="logo-card">
+          <span className="logo-icon">🔷</span>
+          <span>MikroTik</span>
+        </div>
+      </div>
+      <div className="benefits-row">
+        {benefits.map((item, idx) => (
+          <div className="benefit-item" key={idx}>
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const NetworkCTA = () => {
+  const navigate = useNavigate();
+  
+  return (
+    <section className="network-cta">
+      <div className="cta-container">
+        <h2>
+          Let's Discuss Your <span className="gradient-text">Project</span>
+        </h2>
+        <p>Get free consultation and transform your business with expert network solutions.</p>
+        <button className="btn-primary" onClick={() => navigate('/contact')}>
+          Get Free Consultation
+          <span>→</span>
+        </button>
+        <div className="cta-stats">
+          <div className="stat-item">
+            <div className="stat-number">300+</div>
+            <div className="stat-label">Networks</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">99.9%</div>
+            <div className="stat-label">Uptime</div>
+          </div>
+          <div className="stat-divider"></div>
+          <div className="stat-item">
+            <div className="stat-number">24/7</div>
+            <div className="stat-label">Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const NetworkNew = () => {
   useEffect(() => {
@@ -130,11 +213,13 @@ const NetworkNew = () => {
   return (
     <>
       <NetworkHero />
+      <NetworkSection2 />
       <NetworkFeatures />
+      <NetworkSection4 />
+      <NetworkSection3 />
       <NetworkCTA />
     </>
   );
 };
 
 export default NetworkNew;
-

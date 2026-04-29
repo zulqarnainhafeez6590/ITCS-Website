@@ -53,8 +53,8 @@
       width: 100%;
       height: 100%;
       background-image: 
-        linear-gradient(rgba(74, 158, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(74, 158, 255, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(0, 91, 169, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 91, 169, 0.05) 1px, transparent 1px);
       background-size: 50px 50px;
       animation: gridMove 20s linear infinite;
     }
@@ -78,7 +78,7 @@
       &-2 {
         width: 500px;
         height: 500px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.4), transparent);
+        background: radial-gradient(circle, rgba(0, 91, 169, 0.4), transparent);
         top: 50%;
         right: -150px;
         animation-delay: 2s;
@@ -108,10 +108,10 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: rgba(74, 158, 255, 0.1);
-    border: 1px solid rgba(74, 158, 255, 0.3);
+    background: rgba(0, 91, 169, 0.1);
+    border: 1px solid rgba(0, 91, 169, 0.3);
     border-radius: 50px;
-    color: var(--accent-blue);
+    color: white;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -173,7 +173,7 @@
       &.btn-primary {
         background: var(--accent-gradient);
         color: white;
-        box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
+        box-shadow: 0 4px 20px rgba(0, 91, 169, 0.4);
 
         .btn-arrow {
           transition: transform var(--transition-normal);
@@ -181,7 +181,7 @@
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
+          box-shadow: 0 6px 30px rgba(0, 91, 169, 0.6);
 
           .btn-arrow {
             transform: translateX(5px);
