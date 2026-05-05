@@ -4,33 +4,33 @@
 }
 
 :root {
-  /* Dark Theme Colors - Brighter Blue */
-  --bg-primary: #0f192e;
-  --bg-secondary: #132640;
-  --bg-tertiary: #1a3a5c;
-  --bg-card: #143256;
-  --bg-accent: #1e4a73;
+  /* Dark Theme Colors - Purple Gradient */
+  --bg-primary: #0d0a18;
+  --bg-secondary: #1E1139;
+  --bg-tertiary: #2a1450;
+  --bg-card: #1E1139;
+  --bg-accent: #2d1a52;
 
   /* Text Colors */
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-muted: rgba(255, 255, 255, 0.4);
 
-  /* Accent Colors - Purple/Violet */
+  /* Accent Colors - Purple/Violet (Matching Email Template) */
   --accent-purple: #7c3aed;
   --accent-purple-hover: #6d28d9;
   --accent-purple-light: rgba(124, 58, 237, 0.1);
   --accent-purple-light-2: #a855f7;
   --accent-purple-light-3: #c084fc;
-  --accent-gradient: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+  --accent-gradient: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
 
-  /* Logo Colors - Blue & Light Blue */
-  --accent-blue: #005BA9;
-  --accent-blue-light: #008ABD;
-  --accent-blue-light-2: #00A894;
+  /* Logo Colors - Purple Gradient (Matching Email) */
+  --accent-blue: #7c3aed;
+  --accent-blue-light: #a855f7;
+  --accent-blue-light-2: #c084fc;
   
-  /* Logo Gradient */
-  --gradient-logo: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+  /* Logo Gradient (Matching Email) */
+  --gradient-logo: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
 
   /* Border Colors */
   --border-color: rgba(255, 255, 255, 0.1);

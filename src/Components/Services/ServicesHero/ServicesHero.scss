@@ -6,7 +6,9 @@
   justify-content: center;
   overflow: hidden;
   background: var(--bg-primary);
-
+  background-image: radial-gradient(ellipse 70% 60% at 85% 20%, rgba(168, 85, 247, 0.4) 0%, transparent 65%),
+                 radial-gradient(ellipse 50% 50% at 15% 85%, rgba(124, 58, 237, 0.35) 0%, transparent 60%);
+  
   .hero-video {
     position: absolute;
     top: 0;
@@ -44,19 +46,20 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: rgba(0, 91, 169, 0.1);
-    border: 1px solid rgba(0, 91, 169, 0.3);
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
     border-radius: 50px;
     color: white;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
     margin-bottom: 30px;
-    animation: fadeInDown 0.8s ease-out 0.2s both;
+    animation: fadeInDown 0.8s ease-out;
 
     .badge-icon {
       font-size: 18px;
       animation: pulse 2s ease-in-out infinite;
+      color: #a855f7;
     }
   }
 
@@ -102,7 +105,7 @@
       font-weight: 500;
 
       svg {
-        color: var(--accent-blue);
+        color: #a855f7;
       }
     }
   }
@@ -122,79 +125,7 @@
     animation: bounce 2s ease-in-out infinite;
 
     svg {
-      color: var(--accent-blue);
-    }
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(-10px);
-  }
-}
-
-@media (max-width: 768px) {
-  .services-hero {
-    min-height: 90vh;
-
-    .hero-badge {
-      font-size: 11px;
-      padding: 8px 16px;
-    }
-
-    .hero-description {
-      font-size: 16px;
-    }
-
-    .hero-features {
-      gap: 20px;
-      
-      .feature-item {
-        font-size: 13px;
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
-    .scroll-indicator {
-      bottom: 30px;
+      color: #a855f7;
     }
   }
 }

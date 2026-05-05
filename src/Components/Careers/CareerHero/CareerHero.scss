@@ -56,7 +56,7 @@
       &.orb-1 {
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.4), transparent);
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent);
         top: -10%;
         right: 10%;
         animation-delay: 0s;
@@ -74,7 +74,7 @@
       &.orb-3 {
         width: 350px;
         height: 350px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.35), transparent);
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.35), transparent);
         top: 50%;
         left: 50%;
         animation-delay: 10s;
@@ -103,8 +103,8 @@
     .hero-badge {
       display: inline-block;
       padding: 8px 20px;
-      background: rgba(0, 91, 169, 0.1);
-      border: 1px solid rgba(0, 91, 169, 0.3);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.3);
       color: white;
       border-radius: 20px;
       font-size: 12px;
@@ -174,11 +174,11 @@
         background: var(--accent-gradient);
         color: white;
         border: none;
-        box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+          box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
         }
       }
 

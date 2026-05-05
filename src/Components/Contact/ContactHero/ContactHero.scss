@@ -51,23 +51,24 @@
       border-radius: 50%;
       filter: blur(80px);
       opacity: 0.3;
-      animation: float 15s infinite ease-in-out;
+      animation: floatOrb 25s infinite ease-in-out;
 
       &.orb-1 {
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.4), transparent);
-        top: -20%;
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent);
+        top: -10%;
         right: 20%;
+        animation-delay: 0s;
       }
 
       &.orb-2 {
         width: 350px;
         height: 350px;
-        background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
-        bottom: -10%;
-        left: 10%;
-        animation-delay: 5s;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent);
+        bottom: -5%;
+        left: 15%;
+        animation-delay: 8s;
       }
     }
   }
@@ -90,8 +91,8 @@
     .hero-badge {
       display: inline-block;
       padding: 8px 20px;
-      background: rgba(0, 91, 169, 0.1);
-      border: 1px solid rgba(0, 91, 169, 0.3);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.3);
       color: white;
       border-radius: 20px;
       font-size: 12px;
@@ -109,7 +110,7 @@
       animation: fadeInUp 0.8s ease-out;
 
       .gradient-text {
-        background: var(--accent-gradient);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }

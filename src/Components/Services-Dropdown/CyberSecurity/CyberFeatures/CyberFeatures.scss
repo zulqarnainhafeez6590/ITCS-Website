@@ -1,6 +1,8 @@
 .cyber-features {
-  padding: 40px 20px;
+  padding: 40px 24px;
   background: var(--bg-secondary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
   position: relative;
 
   &::before {
@@ -23,18 +25,19 @@
     text-align: center;
     margin-bottom: 60px;
 
-    .section-badge {
-      display: inline-block;
-      padding: 8px 16px;
-      background: rgba(0, 91, 169, 0.1);
-      border: 1px solid rgba(0, 91, 169, 0.3);
-      border-radius: 50px;
-color: white;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
+      .section-badge {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 600;
+        color: #a855f7;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+        border: 1px solid rgba(168, 85, 247, 0.3);
+        border-radius: 50px;
+      }
 
     .section-title {
       font-size: clamp(32px, 5vw, 48px);
@@ -89,8 +92,8 @@ color: white;
 
     &:hover {
       transform: translateY(-8px);
-      border-color: var(--accent-blue);
-      box-shadow: 0 8px 30px rgba(0, 91, 169, 0.3);
+      border-color: #7c3aed;
+      box-shadow: 0 8px 30px rgba(124, 58, 237, 0.3);
 
       .card-icon {
         transform: scale(1.2) rotate(10deg);
@@ -122,7 +125,7 @@ color: white;
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(0, 91, 169, 0.5);
+        box-shadow: 0 6px 25px rgba(124, 58, 237, 0.5);
 
         .btn-arrow {
           transform: translateX(5px);

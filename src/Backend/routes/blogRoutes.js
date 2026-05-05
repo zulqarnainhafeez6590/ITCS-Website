@@ -55,7 +55,7 @@ router.patch("/:devId/status", async (req, res) => {
 router.get("/approved-ids", async (req, res) => {
   try {
     const approvedBlogs = await BlogStatus.find({ status: "approved" }).select(
-      "devId customAuthor customDate"
+      "devId customAuthor customDate createdAt"
     );
     res.json(approvedBlogs);
   } catch (err) {

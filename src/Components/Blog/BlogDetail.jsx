@@ -1,51 +1,109 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import DOMPurify from "dompurify";
+import axios from "axios";
 import { apiUrl } from "../../config/api";
 import "./Blog.scss";
 import "./BlogDetail.scss";
 
 const BlogDetail = () => {
-  const { id } = useParams();
+  const { id, slug } = useParams();
+  const location = useLocation();
   const [article, setArticle] = useState(null);
   const [customAuthor, setCustomAuthor] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  
+  const isCustomBlog = location.pathname.includes('/custom-blog/');
+
   useEffect(() => {
-    fetch(`https://dev.to/api/articles/${id}`)
-      .then((res) => res.json())
-      .then((data) => setArticle(data))
-      .catch((err) => console.error("Error fetching article:", err));
-  }, [id]);
+    if (isCustomBlog && slug) {
+      fetchCustomBlog(slug);
+    } else if (id) {
+      fetchDevToArticle(id);
+    }
+  }, [id, slug, isCustomBlog]);
 
-  
-  useEffect(() => {
-    const fetchCustomAuthor = async () => {
-      try {
-        const res = await fetch(apiUrl("/api/blogs/approved-ids"));
-        const data = await res.json();
+  const fetchCustomBlog = async (blogSlug) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await axios.get(apiUrl(`/api/custom-blogs/slug/${blogSlug}`));
 
-        const match = data.find((blog) => blog.devId === Number(id));
-        if (match && match.customAuthor) {
-          setCustomAuthor(match.customAuthor);
-        }
-      } catch (err) {
-        console.error("Error fetching custom author:", err);
+      if (!res.data || !res.data.title) {
+        setError("Blog post not found");
+        setArticle(null);
+        return;
       }
-    };
 
-    fetchCustomAuthor();
-  }, [id]);
+      const blog = res.data;
 
-  if (!article) return <p>Loading...</p>;
+      // Transform custom blog to match Dev.to structure
+      setArticle({
+        title: blog.title,
+        body_html: blog.content,
+        cover_image: blog.featuredImage,
+        user: { name: blog.author },
+        metaTitle: blog.metaTitle,
+        metaDescription: blog.metaDescription,
+        metaKeywords: blog.metaKeywords,
+        ogImage: blog.ogImage,
+      });
 
-  
+      if (blog.author) {
+        setCustomAuthor(blog.author);
+      }
+    } catch (err) {
+      console.error("Error fetching custom blog:", err);
+      setError(err.response?.data?.error || "Failed to load blog post");
+      setArticle(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchDevToArticle = async (articleId) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const res = await fetch(`https://dev.to/api/articles/${articleId}`);
+      const data = await res.json();
+
+      if (!res.ok || data.error || !data.title) {
+        setError(data.error || "Blog post not found or not approved");
+        setArticle(null);
+        return;
+      }
+
+      setArticle(data);
+
+      // Fetch custom author
+      const customRes = await fetch(apiUrl("/api/blogs/approved-ids"));
+      const customData = await customRes.json();
+
+      const match = customData.find((blog) => blog.devId === Number(articleId));
+      if (match && match.customAuthor) {
+        setCustomAuthor(match.customAuthor);
+      }
+    } catch (err) {
+      console.error("Error fetching article:", err);
+      setError("Failed to load blog post. Please try again later.");
+      setArticle(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) return <p className="blog-detail-loading">Loading...</p>;
+  if (error) return <p className="blog-detail-error">Error: {error}</p>;
+  if (!article) return <p className="blog-detail-not-found">Blog not found</p>;
+
   const displayAuthor =
     customAuthor || article.user?.name || article.user?.username || "Unknown Author";
 
   return (
     <div className="blog-detail">
-      {/* Dynamic cover image */}
       {article.cover_image && (
         <img
           src={article.cover_image}
@@ -59,12 +117,17 @@ const BlogDetail = () => {
       {/* Author Info */}
       <p className="author-name">Author - {displayAuthor}</p>
 
-      <div
-        className="blog-body"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(article.body_html),
-        }}
-      />
+      <div className="blog-body">
+        {article.body_html ? (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(article.body_html),
+            }}
+          />
+        ) : (
+          <p>No content available</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -4,7 +4,8 @@
   display: flex;
   align-items: center;
   position: relative;
-  background-color: var(--bg-secondary);
+  background: var(--bg-secondary);
+  background-image: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
   padding: 60px 0;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);

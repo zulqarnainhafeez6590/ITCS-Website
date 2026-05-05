@@ -13,8 +13,8 @@
 .section-badge {
         display: inline-block;
         padding: 6px 16px;
-        background: rgba(0, 91, 169, 0.1);
-        border: 1px solid rgba(0, 91, 169, 0.3);
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+        border: 1px solid rgba(168, 85, 247, 0.3);
         color: white;
         border-radius: 16px;
         font-size: 11px;
@@ -66,7 +66,7 @@
         &:hover {
           transform: translateY(-10px);
           box-shadow: var(--shadow-lg);
-          border-color: var(--accent-blue);
+            border-color: #7c3aed;
           background: var(--bg-card-hover, linear-gradient(135deg, rgba(74, 158, 255, 0.04), transparent)); // subtle optional bg tint
 
           .value-icon {

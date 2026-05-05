@@ -88,7 +88,7 @@
         transition: color var(--transition-normal);
 
         &:hover {
-          color: var(--accent-blue);
+          color: #a855f7;
         }
 
         &::before {
@@ -145,7 +145,7 @@
           font-size: 14px;
 
           &:hover {
-            background-color: var(--accent-blue);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             color: white;
           }
         }
@@ -173,7 +173,7 @@
       background-color var(--transition-normal);
 
     &:hover {
-      color: var(--accent-blue);
+      color: #a855f7;
     }
 
     &::before {
@@ -205,7 +205,7 @@
     border: 1px solid var(--text-primary);
 
     &:hover {
-      background-color: var(--accent-blue);
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
       color: white;
     }
   }
@@ -315,11 +315,11 @@
           }
 
           &::-webkit-scrollbar-thumb {
-            background: rgba(74, 158, 255, 0.5);
+              background: rgba(124, 58, 237, 0.5);
             border-radius: 3px;
 
             &:hover {
-              background: rgba(74, 158, 255, 0.7);
+                background: rgba(124, 58, 237, 0.7);
             }
           }
         }
@@ -341,7 +341,7 @@
         .nav-link {
           padding: 14px 30px;
           font-size: 15px;
-          border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+          border-bottom: 1px solid rgba(168, 85, 247, 0.1);
           display: block;
           margin: 0;
           text-align: left;
@@ -352,7 +352,7 @@
           }
 
           &:hover {
-            background-color: rgba(74, 158, 255, 0.1);
+            background-color: rgba(168, 85, 247, 0.1);
           }
         }
 
@@ -386,8 +386,8 @@
             width: 100%;
 
             &:hover {
-              border-left-color: var(--accent-blue);
-              background-color: rgba(74, 158, 255, 0.15);
+              border-left-color: #a855f7;
+              background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
             }
           }
         }
@@ -451,6 +451,11 @@
           .dropdown-item {
             padding: 10px 25px 10px 45px;
             font-size: 13px;
+
+            &:hover {
+              border-left-color: #a855f7;
+              background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+            }
           }
         }
       }
@@ -517,6 +522,18 @@
         .nav-link {
           font-size: 14px;
           padding: 11px 20px;
+        }
+
+        .dropdown {
+          .dropdown-item {
+            font-size: 12px;
+            padding: 10px 20px 10px 40px;
+
+            &:hover {
+              border-left-color: #a855f7;
+              background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+            }
+          }
         }
 
         .dropdown {
@@ -595,6 +612,11 @@
           .dropdown-item {
             font-size: 11px;
             padding: 8px 18px 8px 35px;
+
+            &:hover {
+              border-left-color: #a855f7;
+              background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+            }
           }
         }
       }

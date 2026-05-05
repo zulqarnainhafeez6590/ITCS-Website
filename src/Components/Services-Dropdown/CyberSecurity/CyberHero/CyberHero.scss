@@ -7,6 +7,8 @@
   padding: 140px 20px 80px;
   overflow: hidden;
   background: var(--bg-primary);
+  background-image: radial-gradient(ellipse 70% 60% at 85% 20%, rgba(168, 85, 247, 0.4) 0%, transparent 65%),
+                 radial-gradient(ellipse 50% 50% at 15% 85%, rgba(124, 58, 237, 0.35) 0%, transparent 60%);
 
   // Banner image
   &::before {
@@ -51,8 +53,8 @@
       width: 100%;
       height: 100%;
       background-image: 
-        repeating-linear-gradient(0deg, rgba(74, 158, 255, 0.03) 0px, transparent 1px, transparent 2px, rgba(74, 158, 255, 0.03) 3px),
-        repeating-linear-gradient(90deg, rgba(74, 158, 255, 0.03) 0px, transparent 1px, transparent 2px, rgba(74, 158, 255, 0.03) 3px);
+        repeating-linear-gradient(0deg, rgba(168, 85, 247, 0.03) 0px, transparent 1px, transparent 2px, rgba(168, 85, 247, 0.03) 3px),
+         repeating-linear-gradient(90deg, rgba(168, 85, 247, 0.03) 0px, transparent 1px, transparent 2px, rgba(168, 85, 247, 0.03) 3px);
       background-size: 40px 40px;
       animation: cyberPulse 3s ease-in-out infinite;
     }
@@ -96,8 +98,8 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: rgba(0, 91, 169, 0.1);
-    border: 1px solid rgba(0, 91, 169, 0.3);
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.3);
     border-radius: 50px;
     color: white;
     font-size: 13px;
@@ -108,6 +110,8 @@
 
     .badge-icon {
       font-size: 18px;
+      animation: pulse 2s ease-in-out infinite;
+      color: #a855f7;
     }
   }
 
@@ -158,13 +162,14 @@
       gap: 10px;
 
       &.btn-primary {
-        background: var(--accent-gradient);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         color: white;
-        box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+        border: 1px solid rgba(192, 132, 252, 0.3);
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
+          box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6);
         }
       }
 
@@ -175,7 +180,7 @@
 
         &:hover {
           background: var(--bg-tertiary);
-          border-color: var(--accent-blue);
+          border-color: #7c3aed;
           transform: translateY(-2px);
         }
       }
@@ -198,7 +203,7 @@
       font-weight: 500;
 
       svg {
-        color: var(--accent-blue);
+        color: #a855f7;
       }
     }
   }

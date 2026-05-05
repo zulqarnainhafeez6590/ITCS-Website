@@ -1,6 +1,8 @@
 .services-grid-section {
   padding: 100px 20px;
   background: var(--bg-secondary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%),
+                    radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
   position: relative;
 
   &::before {
@@ -26,8 +28,8 @@
     .section-badge {
       display: inline-block;
       padding: 8px 16px;
-      background: rgba(0, 91, 169, 0.1);
-      border: 1px solid rgba(0, 91, 169, 0.3);
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.3);
       border-radius: 50px;
       color: white;
       font-size: 13px;
@@ -58,54 +60,56 @@
     gap: 30px;
   }
 
-  .service-card {
-    perspective: 1000px;
-    height: 400px;
+    .service-card {
+      perspective: 1000px;
+      height: 400px;
 
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.6s;
-      transform-style: preserve-3d;
-    }
+      .card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
 
-    .card-front,
-    .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      padding: 32px;
-    }
-
-    .card-front {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      transition: all var(--transition-normal);
-
-      .card-icon {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 24px;
-        padding: 16px;
-        background: rgba(74, 158, 255, 0.1);
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
         border-radius: 16px;
+        padding: 32px;
+      }
+
+      .card-front {
+        background: var(--bg-card);
+        background-image: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+        border: 1px solid var(--border-color);
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         transition: all var(--transition-normal);
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          filter: brightness(0) invert(1);
+        .card-icon {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 24px;
+          padding: 16px;
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+          border: 1px solid rgba(124, 58, 237, 0.3);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all var(--transition-normal);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+          }
         }
-      }
 
       .card-title {
         font-size: 24px;
@@ -121,29 +125,29 @@
         flex: 1;
       }
 
-      .card-hover-indicator {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--accent-blue);
-        font-size: 13px;
-        font-weight: 600;
-        margin-top: 20px;
-        opacity: 0.7;
+        .card-hover-indicator {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--accent-purple-light-3);
+          font-size: 13px;
+          font-weight: 600;
+          margin-top: 20px;
+          opacity: 0.7;
 
-        svg {
-          transition: transform var(--transition-normal);
+          svg {
+            transition: transform var(--transition-normal);
+          }
         }
       }
-    }
 
-    .card-back {
-      background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-      border: 1px solid var(--accent-blue);
-      transform: rotateY(180deg);
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 8px 32px rgba(74, 158, 255, 0.3);
+      .card-back {
+        background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+        border: 1px solid var(--accent-purple);
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
 
       .back-title {
         font-size: 20px;
@@ -175,36 +179,37 @@ color: white;
         }
       }
 
-      .explore-btn {
-        width: 100%;
-        padding: 14px 24px;
-        background: var(--accent-gradient);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transition: all var(--transition-normal);
-        box-shadow: 0 4px 20px rgba(74, 158, 255, 0.4);
-
-        svg {
-          transition: transform var(--transition-normal);
-        }
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 30px rgba(74, 158, 255, 0.6);
+        .explore-btn {
+          width: 100%;
+          padding: 14px 24px;
+          background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+          color: white;
+          border: none;
+          border-radius: 10px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all var(--transition-normal);
+          box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+          border: 1px solid rgba(192, 132, 252, 0.3);
 
           svg {
-            transform: translateX(5px);
+            transition: transform var(--transition-normal);
+          }
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6);
+
+            svg {
+              transform: translateX(5px);
+            }
           }
         }
-      }
     }
 
     &:hover {
@@ -213,10 +218,10 @@ color: white;
       }
 
       .card-front {
-        border-color: var(--accent-blue);
+        border-color: #7c3aed;
 
         .card-icon {
-          background: var(--accent-blue);
+          background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
           transform: scale(1.1);
         }
 

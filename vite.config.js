@@ -11,4 +11,12 @@ export default defineConfig({
       assets: path.resolve(__dirname, 'src/assets'),
     },
   },
+  server: {
+    proxy: {
+      '/uploads': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    },
+  },
 });

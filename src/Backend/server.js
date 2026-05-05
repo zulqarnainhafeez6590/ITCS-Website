@@ -9,6 +9,8 @@ import jobRoutes from './routes/jobRoutes.js'
 import blogRoutes from './routes/blogRoutes.js'
 import adminRoutes from './routes/adminRoutes.js'
 import jobsRoutes from './routes/jobs.js';
+import customBlogRoutes from './routes/customBlogRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -18,10 +20,25 @@ const app = express()
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177'],
-  credentials: true
+  origin: '*', // Allow all origins for development
+  credentials: false,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+// Add CORS headers for static files (images)
+app.use('/uploads', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(express.json())
+
+// Serve uploaded files statically
+const uploadsPath = path.join(__dirname, 'uploads');
+console.log('Serving static files from:', uploadsPath);
+app.use('/uploads', express.static(uploadsPath));
 
 
 // Routes
@@ -30,6 +47,8 @@ app.use('/api/jobs', jobRoutes)
 app.use('/api/blogs', blogRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/jobsAdd', jobsRoutes);
+app.use('/api/custom-blogs', customBlogRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // MongoDB connection
 mongoose

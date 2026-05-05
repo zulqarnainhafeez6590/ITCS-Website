@@ -62,7 +62,7 @@
         transition: color 0.3s;
 
         &:hover {
-          color: #008ABD;
+          color: #a855f7;
         }
       }
 
@@ -70,7 +70,7 @@
         color: rgba(255, 255, 255, 0.5);
 
         &.current {
-          color: #008ABD;
+          color: #a855f7;
         }
       }
     }
@@ -83,7 +83,7 @@
       line-height: 1.2;
 
       .gradient-text {
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 50%, #00A3E0 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #c084fc 50%, #a855f7 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -111,7 +111,7 @@
         align-items: center;
         gap: 10px;
         padding: 16px 32px;
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         color: #fff;
         border-radius: 12px;
         font-weight: 600;
@@ -123,7 +123,7 @@
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 30px rgba(0, 91, 169, 0.4);
+          box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
         }
       }
 
@@ -142,8 +142,8 @@
         transition: all 0.3s;
 
         &:hover {
-          border-color: #008ABD;
-          background: rgba(0, 138, 189, 0.1);
+          border-color: #7c3aed;
+          background: rgba(124, 58, 237, 0.1);
         }
       }
     }
@@ -199,7 +199,7 @@
           color: var(--text-primary);
 
           svg {
-            color: #008ABD;
+            color: #a855f7;
             font-size: 18px;
           }
         }
@@ -209,10 +209,10 @@
     .overview-image {
       .image-card {
         position: relative;
-        background: linear-gradient(135deg, rgba(0, 91, 169, 0.1) 0%, rgba(0, 138, 189, 0.05) 100%);
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
         border-radius: 24px;
         padding: 60px;
-        border: 1px solid rgba(0, 91, 169, 0.2);
+        border: 1px solid rgba(124, 58, 237, 0.2);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -220,7 +220,7 @@
 
         .main-icon {
           font-size: 80px;
-          color: #008ABD;
+          color: #a855f7;
           margin-bottom: 30px;
         }
 
@@ -273,14 +273,14 @@
 
       &:hover {
         transform: translateY(-5px);
-        border-color: #008ABD;
-        box-shadow: 0 20px 40px rgba(0, 91, 169, 0.15);
+        border-color: #7c3aed;
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
       }
 
       .benefit-icon {
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, rgba(0, 91, 169, 0.2) 0%, rgba(0, 138, 189, 0.1) 100%);
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
         border-radius: 16px;
         display: flex;
         align-items: center;
@@ -289,7 +289,7 @@
 
         svg {
           font-size: 24px;
-          color: #008ABD;
+          color: #a855f7;
         }
       }
 
@@ -343,14 +343,14 @@
       transition: all 0.3s;
 
       &:hover {
-        border-color: #008ABD;
+        border-color: #7c3aed;
         transform: translateY(-5px);
       }
 
       .industry-icon {
         width: 70px;
         height: 70px;
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         border-radius: 20px;
         display: flex;
         align-items: center;
@@ -414,9 +414,9 @@
         position: absolute;
         top: -15px;
         left: 30px;
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         color: #fff;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         padding: 6px 16px;
         border-radius: 20px;
@@ -441,7 +441,7 @@
 
 .nested-cta {
   padding: 100px 0;
-  background: linear-gradient(135deg, rgba(0, 91, 169, 0.1) 0%, rgba(0, 138, 189, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
   text-align: center;
 
   h2 {
@@ -468,20 +468,20 @@
       align-items: center;
       gap: 10px;
       padding: 16px 40px;
-      background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
-      color: #fff;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        color: #fff;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
 
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(0, 91, 169, 0.4);
-      }
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
     }
 
     .btn-secondary {
@@ -498,15 +498,15 @@
       text-decoration: none;
       transition: all 0.3s;
 
-      &:hover {
-        border-color: #008ABD;
-      }
+        &:hover {
+          border-color: #7c3aed;
+        }
     }
   }
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #005BA9 0%, #008ABD 50%, #00A3E0 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

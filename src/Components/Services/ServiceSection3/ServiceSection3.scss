@@ -16,14 +16,17 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .subtitle {
-      font-size: 14px;
-      color: var(--accent-blue);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 12px;
-    }
+      .subtitle {
+        font-size: 14px;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 12px;
+      }
 
     .title {
       font-size: 36px;
@@ -63,19 +66,22 @@
           border: 1px solid var(--border-color);
 
           .progress {
-            height: 100%;
-            background: var(--accent-gradient);
+            height:100%;
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             border-radius: 6px;
             transition: width 0.4s ease-in-out;
-            box-shadow: 0 0 10px rgba(0, 91, 169, 0.4);
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
           }
         }
 
         .percentage {
-          flex: 0.5;
+          flex:0.5;
           font-size: 15px;
           font-weight: 600;
-          color: var(--accent-blue);
+          background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
         }
       }
     }

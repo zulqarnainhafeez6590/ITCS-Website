@@ -1,5 +1,7 @@
 .section2 {
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%),
+                 radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
   padding: 80px 20px;
 
   .cards {
@@ -43,7 +45,7 @@
       &:hover {
         transform: translateY(-8px);
         box-shadow: var(--shadow-lg);
-        border-color: var(--accent-blue);
+        border-color: #7c3aed;
       }
 
       .card-img-top {
@@ -78,9 +80,9 @@
 
         .card-link {
           font-size: 15px;
-          color: var(--accent-blue);
+          color: #a855f7;
           text-decoration: none;
-          border: 2px solid var(--accent-blue);
+          border: 2px solid #a855f7;
           padding: 10px 24px;
           border-radius: 8px;
           display: inline-block;
@@ -89,9 +91,10 @@
           transition: all var(--transition-normal);
 
           &:hover {
-            background-color: var(--accent-blue);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             color: white;
             transform: translateY(-2px);
+            border-color: transparent;
           }
         }
       }

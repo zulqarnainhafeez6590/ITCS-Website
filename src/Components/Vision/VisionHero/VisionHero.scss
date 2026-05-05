@@ -5,7 +5,9 @@
   align-items: center;
   justify-content: center;
   padding: 140px 40px 80px;
-  background-color: var(--bg-primary);
+  background: var(--bg-primary);
+  background-image: radial-gradient(ellipse 70% 60% at 85% 20%, rgba(168, 85, 247, 0.4) 0%, transparent 65%),
+                 radial-gradient(ellipse 50% 50% at 15% 85%, rgba(124, 58, 237, 0.35) 0%, transparent 60%);
   overflow: hidden;
   margin-top: 80px;
 
@@ -53,8 +55,8 @@
       top: -50%;
       left: -50%;
       background-image: 
-        linear-gradient(to right, rgba(74, 158, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(74, 158, 255, 0.03) 1px, transparent 1px);
+        linear-gradient(to right, rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
       background-size: 50px 50px;
       animation: gridMove 20s linear infinite;
     }
@@ -78,7 +80,7 @@
       &.orb-1 {
         width: 500px;
         height: 500px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.4), transparent);
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.4), transparent);
         top: -10%;
         right: 15%;
         animation-delay: 0s;
@@ -87,7 +89,7 @@
       &.orb-2 {
         width: 400px;
         height: 400px;
-        background: radial-gradient(circle, rgba(102, 126, 234, 0.3), transparent);
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent);
         bottom: -5%;
         left: 10%;
         animation-delay: 8s;
@@ -96,7 +98,7 @@
       &.orb-3 {
         width: 450px;
         height: 450px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.35), transparent);
+        background: radial-gradient(circle, rgba(168, 85, 247, 0.35), transparent);
         top: 40%;
         left: 50%;
         animation-delay: 15s;
@@ -129,7 +131,7 @@
       color: var(--text-primary);
       margin-bottom: 24px;
       animation: fadeInUp 1s ease-out;
-      text-shadow: 0 4px 20px rgba(74, 158, 255, 0.2);
+      text-shadow: 0 4px 20px rgba(124, 58, 237, 0.2);
 
       .gradient-text {
         background: var(--accent-gradient);

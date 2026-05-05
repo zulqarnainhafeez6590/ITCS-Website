@@ -1,15 +1,16 @@
 .consulting-hero-section {
   padding: 140px 24px 60px;
   text-align: center;
-  background: linear-gradient(135deg, rgba(0, 91, 169, 0.1) 0%, rgba(0, 138, 189, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
 
   .hero-badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: rgba(0, 91, 169, 0.1);
-    border: 1px solid rgba(0, 91, 169, 0.3);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+    border: 1px solid rgba(124, 58, 237, 0.3);
     border-radius: 50px;
     color: white;
     font-size: 13px;
@@ -65,7 +66,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        border-color: #008ABD;
+        border-color: #7c3aed;
       }
 
       span {
@@ -82,6 +83,7 @@
 .consultingSection2 {
   padding: 40px 24px;
   background: transparent;
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
 
   .consultingSection2-wrapper {
     max-width: 1200px;
@@ -134,16 +136,16 @@
       border: 1px solid var(--border-color);
       transition: all 0.3s ease;
 
-      &:hover {
-        border-color: #008ABD;
-        transform: translateX(3px);
-      }
+        &:hover {
+          border-color: #7c3aed;
+          transform: translateX(3px);
+        }
 
       .service-icon {
         width: 32px;
         height: 32px;
         min-width: 32px;
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         border-radius: 6px;
         display: flex;
         align-items: center;
@@ -183,6 +185,7 @@
 .consulting-features-section {
   padding: 40px 24px;
   background: var(--bg-secondary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
 
   .section-header {
     text-align: center;
@@ -225,7 +228,7 @@
       transition: all 0.3s ease;
 
       &:hover {
-        border-color: #008ABD;
+        border-color: #7c3aed;
         transform: translateY(-5px);
       }
 
@@ -233,7 +236,7 @@
         width: 56px;
         height: 56px;
         margin: 0 auto 16px;
-        background: linear-gradient(135deg, rgba(0, 91, 169, 0.15) 0%, rgba(0, 138, 189, 0.1) 100%);
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
         border-radius: 14px;
         display: flex;
         align-items: center;
@@ -241,7 +244,7 @@
 
         svg {
           font-size: 24px;
-          color: #008ABD;
+          color: #a855f7;
         }
       }
 
@@ -264,6 +267,7 @@
 .consultingSection4 {
   padding: 40px 24px;
   background: var(--bg-primary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
 
   .section-header {
     text-align: center;
@@ -307,7 +311,7 @@
         width: 24px;
         height: 24px;
         min-width: 24px;
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -338,6 +342,7 @@
 .consultingSection3 {
   padding: 40px 24px;
   background: var(--bg-secondary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
 
   .logo-section {
     display: flex;
@@ -386,6 +391,7 @@
 .consulting-cta {
   padding: 40px 24px;
   background: var(--bg-primary);
+  background-image: radial-gradient(ellipse 80% 70% at 20% 50%, rgba(109, 40, 217, 0.3) 0%, transparent 60%), radial-gradient(ellipse 60% 60% at 80% 100%, rgba(76, 29, 149, 0.2) 0%, transparent 55%);
   text-align: center;
 
   .cta-container {
@@ -416,7 +422,7 @@
       font-size: 14px;
       font-weight: 600;
       border-radius: 50px;
-      background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
       color: white;
       border: none;
       cursor: pointer;
@@ -427,7 +433,7 @@
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(0, 91, 169, 0.4);
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
       }
     }
 

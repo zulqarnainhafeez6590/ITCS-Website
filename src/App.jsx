@@ -17,6 +17,7 @@ import BlogDetail from './Components/Blog/BlogDetail'
 import AdminPanel from './Components/AdminPanel/AdminPanel'
 import BlogApproval from "./Components/AdminPanel/BlogApproval/BlogApproval";
 import AdminBlogDetail from "./Components/AdminPanel/BlogApproval/AdminBlogDetail";
+import AdminCustomBlogDetail from "./Components/AdminPanel/BlogApproval/AdminCustomBlogDetail";
 import AdminRoute from './Components/AdminPanel/AdminRoute'
 
 //Dropdowns
@@ -76,6 +77,7 @@ function App() {
         {/*<Route path="/signup" element={<Signup />} />*/}
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/custom-blog/:slug" element={<BlogDetail />} />
         <Route
           path="/admin"
           element={
@@ -97,6 +99,14 @@ function App() {
           element={
             <AdminRoute>
               <AdminBlogDetail />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/custom-blog/:id"
+          element={
+            <AdminRoute>
+              <AdminCustomBlogDetail />
             </AdminRoute>
           }
         />

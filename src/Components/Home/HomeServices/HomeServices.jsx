@@ -11,7 +11,7 @@ const HomeServices = () => {
       icon: MordernWorkplace,
       title: "MODERN WORKPLACE",
       description: "Unleash the potential of modern work with an array of transformative solutions.",
-      color: "#005BA9",
+      color: "#7c3aed",
       link: "/services/it-services",
     },
     {

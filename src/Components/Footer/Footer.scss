@@ -37,7 +37,7 @@
       left: 0;
       width: 40px;
       height: 3px;
-      background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
       border-radius: 2px;
     }
   }
@@ -84,10 +84,10 @@
       }
 
       &:hover {
-        background: linear-gradient(135deg, #005BA9 0%, #008ABD 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
         border-color: transparent;
         transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(0, 91, 169, 0.3);
+        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
 
         img {
           filter: brightness(1) invert(1);
@@ -149,14 +149,14 @@
         &::before {
           content: '›';
           font-size: 16px;
-          color: #008ABD;
+          color: #a855f7;
           opacity: 0;
           transform: translateX(-10px);
           transition: all 0.3s ease;
         }
 
         &:hover {
-          color: #008ABD;
+          color: #a855f7;
           padding-left: 4px;
 
           &::before {
@@ -190,14 +190,14 @@
         &::before {
           content: '›';
           font-size: 16px;
-          color: #008ABD;
+          color: #a855f7;
           opacity: 0;
           transform: translateX(-10px);
           transition: all 0.3s ease;
         }
 
         &:hover {
-          color: #008ABD;
+          color: #a855f7;
           padding-left: 4px;
 
           &::before {

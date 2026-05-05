@@ -17,13 +17,15 @@ export default function Blog() {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const [devRes, approvedRes] = await Promise.all([
+        const [devRes, approvedRes, customRes] = await Promise.all([
           fetch(`${devtoApiBase}/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
-          axios.get(apiUrl("/api/blogs/approved-ids"))
+          axios.get(apiUrl("/api/blogs/approved-ids")),
+          axios.get(apiUrl("/api/custom-blogs/published"))
         ]);
 
         const devBlogs = await devRes.json();
         const approvedData = approvedRes.data;
+        const customBlogs = customRes.data;
 
         const approvedIds = approvedData.map(item => item.devId);
         const authorMap = {};
@@ -34,18 +36,45 @@ export default function Blog() {
           if (item.customDate) dateMap[item.devId] = item.customDate;
         });
 
-        const approvedBlogs = devBlogs
+        const approvedDevBlogs = devBlogs
           .filter(blog => approvedIds.includes(blog.id))
-          .map(blog => ({
-            ...blog,
-            displayAuthor: authorMap[blog.id] || blog.user?.username || "Unknown",
-            displayDate: dateMap[blog.id] || blog.readable_publish_date
-          }));
+          .map(blog => {
+            const approvedRecord = approvedData.find(item => item.devId === blog.id);
+            return {
+              ...blog,
+              displayAuthor: authorMap[blog.id] || blog.user?.username || "Unknown",
+              displayDate: dateMap[blog.id] || blog.readable_publish_date,
+              isCustom: false,
+              approvedAt: approvedRecord?.createdAt || new Date(0)
+            };
+          });
 
-        approvedBlogs.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-        setPosts(approvedBlogs);
+        const formattedCustomBlogs = customBlogs.map(blog => ({
+          id: blog._id,
+          title: blog.title,
+          description: blog.excerpt || blog.metaDescription,
+          cover_image: blog.featuredImage,
+          social_image: blog.ogImage,
+          user: { username: blog.author, name: blog.author },
+          published_at: blog.publishDate,
+          readable_publish_date: new Date(blog.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+          reading_time_minutes: Math.ceil(blog.content.split(' ').length / 200),
+          tag_list: blog.tags || [],
+          displayAuthor: blog.author,
+          displayDate: blog.publishDate,
+          isCustom: true,
+          slug: blog.slug
+        }));
 
-        const allTags = approvedBlogs.flatMap(blog => blog.tag_list || []);
+        const allPosts = [...approvedDevBlogs, ...formattedCustomBlogs];
+        allPosts.sort((a, b) => {
+          const dateA = a.isCustom ? new Date(a.publishDate) : new Date(a.approvedAt);
+          const dateB = b.isCustom ? new Date(b.publishDate) : new Date(b.approvedAt);
+          return dateB - dateA;
+        });
+        setPosts(allPosts);
+
+        const allTags = allPosts.flatMap(blog => blog.tag_list || []);
         const uniqueTags = Array.from(new Set(allTags)).sort();
         setTags(["all", ...uniqueTags]);
 
@@ -64,7 +93,12 @@ export default function Blog() {
     : posts.filter(post => post.tag_list?.includes(activeTag));
 
   // Function to format date like "September 23, 2025"
-  const formatDate = (dateStr) => {
+  const formatDate = (dateStr, isCustom = false) => {
+    if (!dateStr) return '';
+    // If it's already a formatted string (for Dev.to), return as is
+    if (typeof dateStr === 'string' && !isCustom && isNaN(Date.parse(dateStr))) {
+      return dateStr;
+    }
     const date = new Date(dateStr);
     return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   };
@@ -105,7 +139,7 @@ export default function Blog() {
                 <h3>{post.title}</h3>
 
                 <p className="meta">
-                  {post.displayAuthor} • {formatDate(post.displayDate)} • {post.reading_time_minutes} min read
+                  {post.displayAuthor} • {formatDate(post.displayDate, post.isCustom)} • {post.reading_time_minutes} min read
                 </p>
 
                 <p className="description">{post.description}</p>
@@ -116,7 +150,7 @@ export default function Blog() {
                   ))}
                 </div>
 
-                <Link to={`/blog/${post.id}`} className="read-more">
+                <Link to={post.isCustom ? `/custom-blog/${post.slug}` : `/blog/${post.id}`} className="read-more">
                   Read more
                 </Link>
               </div>

@@ -46,7 +46,7 @@
       transition: all var(--transition-normal);
 
       &:hover {
-        border-color: var(--accent-blue);
+        border-color: #7c3aed;
         box-shadow: var(--shadow-lg);
       }
 
@@ -104,7 +104,7 @@
           justify-content: center;
 
           .explore-btn {
-            background: var(--accent-gradient);
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             color: white;
             border: none;
             padding: 12px 32px;
@@ -113,12 +113,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all var(--transition-normal);
-            box-shadow: 0 4px 12px rgba(0, 91, 169, 0.3);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            border: 1px solid rgba(192, 132, 252, 0.3);
             margin-top: 20px;
 
             &:hover {
               transform: translateY(-2px);
-              box-shadow: 0 6px 20px rgba(0, 91, 169, 0.4);
+              box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
             }
           }
         }

@@ -14,8 +14,8 @@
       .section-badge {
         display: inline-block;
         padding: 6px 16px;
-        background: rgba(0, 91, 169, 0.1);
-        border: 1px solid rgba(0, 91, 169, 0.3);
+        background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+        border: 1px solid rgba(168, 85, 247, 0.3);
         color: white;
         border-radius: 16px;
         font-size: 11px;
@@ -57,7 +57,7 @@
         &:hover {
           transform: translateY(-8px);
           box-shadow: var(--shadow-lg);
-          border-color: var(--accent-blue);
+            border-color: #7c3aed;
 
           h3 {
             transform: scale(1.1);
@@ -105,7 +105,7 @@
         &:hover {
           transform: translateY(-8px);
           box-shadow: var(--shadow-md);
-          border-color: var(--accent-blue);
+            border-color: #7c3aed;
 
           .dept-icon {
             transform: scale(1.2) rotate(10deg);
@@ -156,7 +156,7 @@ color: white;
     .join-cta {
       text-align: center;
       padding: 60px 40px;
-      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(102, 126, 234, 0.1));
+          background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.1));
       border: 1px solid var(--border-color);
       border-radius: 20px;
       position: relative;
@@ -169,7 +169,7 @@ color: white;
         right: -50%;
         width: 200px;
         height: 200px;
-        background: radial-gradient(circle, rgba(74, 158, 255, 0.2), transparent);
+          background: radial-gradient(circle, rgba(124, 58, 237, 0.2), transparent);
         border-radius: 50%;
         animation: pulse 3s ease-in-out infinite;
       }
@@ -209,13 +209,13 @@ color: white;
         font-weight: 600;
         text-decoration: none;
         transition: all var(--transition-normal);
-        box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+          box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         position: relative;
         z-index: 1;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
         }
       }
     }
