@@ -38,14 +38,19 @@ const Login = () => {
       const response = await instance.loginPopup(loginRequest)
       await handleMicrosoftLoginSuccess(response.account)
     } catch (err) {
-      console.error('Login error:', err)
-      setError(err.message || 'Failed to sign in with Microsoft 365')
+      if (err.name === 'BrowserAuthError' && err.errorCode === 'user_cancelled') {
+        console.log('User cancelled login');
+      } else {
+        console.error('Login error:', err);
+        setError(err.message || 'Failed to sign in with Microsoft 365');
+      }
       setLoading(false)
     }
   }
 
   const handleMicrosoftLoginSuccess = async (account) => {
     try {
+      console.log("Microsoft login popup successful, acquiring token silently...");
       // Get access token
       const tokenResponse = await instance.acquireTokenSilent({
         ...loginRequest,
@@ -53,6 +58,7 @@ const Login = () => {
       })
 
       // Send token to backend for verification
+      console.log("Token acquired silently. Sending to backend for verification:", tokenResponse.accessToken ? "Token present" : "No token");
       const response = await fetch(apiUrl('/api/auth/microsoft'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -63,10 +69,10 @@ const Login = () => {
         }),
       })
 
+      console.log("Backend response received. Status:", response.status);
       const data = await response.json()
       if (!response.ok) {
-        setLoading(false)
-        throw new Error(data.message || 'Authentication failed.')
+        throw new Error(data.message || 'Authentication failed.');
       }
 
       // Store auth info
@@ -78,7 +84,7 @@ const Login = () => {
       navigate('/admin', { replace: true })
     } catch (err) {
       console.error('Backend authentication error:', err)
-      setError(err.message || 'Failed to authenticate with server')
+      setError(err.message.includes('Unexpected token') ? 'Server error: Check backend console' : err.message)
       setLoading(false)
     }
   }

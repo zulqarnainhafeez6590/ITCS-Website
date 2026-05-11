@@ -60,11 +60,13 @@ router.post('/microsoft', async (req, res) => {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
+        timeout: 15000 // 15 seconds timeout
       })
 
       const microsoftUser = graphResponse.data
       const userEmail = microsoftUser.mail || microsoftUser.userPrincipalName || email
       const userName = microsoftUser.displayName || name || microsoftUser.givenName || 'User'
+      const isAllowedAdmin = ALLOWED_ADMIN_EMAILS.includes(userEmail.toLowerCase());
 
       // Check if user exists in database
       let user = await User.findOne({ email: userEmail })
@@ -75,15 +77,19 @@ router.post('/microsoft', async (req, res) => {
           username: userEmail.split('@')[0],
           email: userEmail,
           password: '',
-          role: 'admin',
-          isAdmin: true,
+          role: isAllowedAdmin ? 'admin' : 'user',
+          isAdmin: isAllowedAdmin,
         })
         await user.save()
       } else {
         user.fullName = userName
-        user.isAdmin = true
-        user.role = 'admin'
+        user.isAdmin = isAllowedAdmin;
+        user.role = isAllowedAdmin ? 'admin' : 'user';
         await user.save()
+      }
+
+      if (!user.isAdmin) {
+        return res.status(403).json({ message: 'Access denied. You are not authorized to access the admin panel.' });
       }
 
       // Generate JWT token
@@ -104,8 +110,10 @@ router.post('/microsoft', async (req, res) => {
         },
       })
     } catch (graphError) {
-      console.error('Microsoft Graph API error:', graphError.response?.data || graphError.message)
-      return res.status(401).json({ message: 'Invalid Microsoft token' })
+      const errDetail = graphError.response?.data || graphError.message
+      console.error('Microsoft Graph API error:', JSON.stringify(errDetail))
+      console.error('Full error:', graphError.code, graphError.message)
+      return res.status(401).json({ message: `Invalid Microsoft token: ${typeof errDetail === 'string' ? errDetail : errDetail.error?.message || errDetail.message || 'Unknown error'}` })
     }
   } catch (error) {
     console.error('Microsoft login error:', error)

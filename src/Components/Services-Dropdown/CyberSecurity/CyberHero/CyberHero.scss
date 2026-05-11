@@ -58,31 +58,6 @@
       background-size: 40px 40px;
       animation: cyberPulse 3s ease-in-out infinite;
     }
-
-    .shield-icon {
-      position: absolute;
-      font-size: 50px;
-      opacity: 0.1;
-      animation: float 8s ease-in-out infinite;
-
-      &.shield-1 {
-        top: 15%;
-        left: 15%;
-        animation-delay: 0s;
-      }
-
-      &.shield-2 {
-        top: 65%;
-        right: 10%;
-        animation-delay: 2s;
-      }
-
-      &.shield-3 {
-        bottom: 15%;
-        left: 50%;
-        animation-delay: 4s;
-      }
-    }
   }
 
   .hero-container {
@@ -187,6 +162,55 @@
     }
   }
 
+  .partner-logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease-out 0.8s both;
+
+    .partner-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all var(--transition-normal);
+
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      .partner-logo-img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+        opacity: 0.7;
+        transition: all var(--transition-normal);
+      }
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      &:hover {
+        .partner-logo-img {
+          filter: none;
+          opacity: 1;
+        }
+        span {
+          color: var(--text-primary);
+        }
+      }
+    }
+  }
+
   .hero-badges-row {
     display: flex;
     justify-content: center;
@@ -280,5 +304,5 @@
       }
     }
   }
-}
 
+}

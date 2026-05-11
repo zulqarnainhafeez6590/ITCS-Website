@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './ConsultingNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faBriefcase, faChartLine, faHandshake, faLightbulb, faRocket, faUsers, faCogs, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 const ConsultingHero = () => {

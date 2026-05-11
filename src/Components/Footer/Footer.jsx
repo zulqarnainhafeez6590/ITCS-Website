@@ -1,82 +1,130 @@
 import React from 'react';
 import itcsLogo from "../../assets/logos/itcsLogo.png";
-import Twitter from "./../../assets/logos/Twitter.svg";
-import Facebook from "./../../assets/logos/Facebook.svg";
-import Instagram from "./../../assets/logos/Instagram.svg";
-import LinkedIn from "./../../assets/logos/LinkedIn.svg";
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faXTwitter, faFacebookF, faInstagram, faLinkedinIn
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faMapMarkerAlt, faEnvelope, faPhoneAlt, faFax,
+  faArrowRight, faGlobe
+} from '@fortawesome/free-solid-svg-icons';
 import "./Footer.scss";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
+  const socialLinks = [
+    { icon: faXTwitter, url: 'https://x.com/itcspakistan', label: 'X (Twitter)', color: '#1da1f2' },
+    { icon: faFacebookF, url: 'https://www.facebook.com/itcspakistan', label: 'Facebook', color: '#1877f2' },
+    { icon: faInstagram, url: 'https://www.instagram.com/itcs.pakistan', label: 'Instagram', color: '#e4405f' },
+    { icon: faLinkedinIn, url: 'https://www.linkedin.com/company/itconsultingandservices', label: 'LinkedIn', color: '#0a66c2' },
+  ];
+
+  const services = [
+    { name: 'Cloud Solutions', path: '/services/cloud' },
+    { name: 'IT Consulting', path: '/services/consulting' },
+    { name: 'Enterprise Solutions', path: '/services/enterprise-solutions' },
+    { name: 'IT Services', path: '/services/it-services' },
+    { name: 'Network Solutions', path: '/services/network-solutions' },
+    { name: 'Cybersecurity', path: '/services/cyber-security' },
+    { name: 'Web Development', path: '/services/web-development' },
+  ];
+
+  const quickLinks = [
+    { name: 'About Us', path: '/about-us' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Careers', path: '/careers' },
+    { name: 'Blog', path: '/blog' },
+  ];
+
   return (
     <footer className="footer">
+      <div className="footer-glow" />
       <div className="footer-container">
-        
-        {/* Logo & Intro Section */}
-        <div className="footer-col logo-section">
-          <a href="/" className="logo-link">
-            <img src={itcsLogo} alt="ITCS Logo" className="itcs-logo" />
+
+        <div className="footer-col brand-col">
+          <a href="/" className="footer-logo-link">
+            <img src={itcsLogo} alt="ITCS Logo" className="footer-logo" />
           </a>
-          <p className="intro-para">
+          <p className="footer-desc">
             ITCS strives to provide its customers with the best possible
             solutions using the latest available technology.
           </p>
-          <div className="social-icons">
-            <a href="https://x.com/itcspakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="X">
-              <img src={Twitter} alt="X" />
-            </a>
-            <a href="https://www.facebook.com/itcspakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-              <img src={Facebook} alt="Facebook" />
-            </a>
-            <a href="https://www.instagram.com/itcs.pakistan" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
-              <img src={Instagram} alt="Instagram" />
-            </a>
-            <a href="https://www.linkedin.com/company/itconsultingandservices" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
-              <img src={LinkedIn} alt="LinkedIn" />
-            </a>
+          <div className="social-row">
+            {socialLinks.map((s, i) => (
+              <a
+                key={i}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon-link"
+                aria-label={s.label}
+                style={{ '--brand': s.color }}
+              >
+                <FontAwesomeIcon icon={s.icon} />
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Head Office Info */}
-        <div className="footer-col info-section">
-          <h3>Head Office</h3>
-          <div className="contact-info">
-            <p><span className="icon">📍</span> 6/K Block 2, P.E.C.H.S, Karachi, Pakistan</p>
-            <p><span className="icon">📧</span> <a href="mailto:info@itcs.com.pk">info@itcs.com.pk</a></p>
-            <p><span className="icon">📞</span> <a href="tel:+9221111482711">021 111-482-711</a></p>
-            <p><span className="icon">📠</span> Fax: 021 4554818</p>
-          </div>
-        </div>
-
-        {/* Services Links */}
-        <div className="footer-col services-section">
-          <h3>Services</h3>
-          <ul className="services-links">
-            <li><Link to="/services/cloud">Cloud Solutions</Link></li>
-            <li><Link to="/services/consulting">IT Consulting</Link></li>
-            <li><Link to="/services/enterprise-solutions">Enterprise Solutions</Link></li>
-            <li><Link to="/services/it-services">IT Services</Link></li>
-            <li><Link to="/services/network-solutions">Network Solutions</Link></li>
-            <li><Link to="/services/cyber-security">Cybersecurity</Link></li>
-            <li><Link to="/services/web-development">Web Development</Link></li>
+        <div className="footer-col info-col">
+          <h3 className="footer-heading">Head Office</h3>
+          <ul className="contact-list">
+            <li>
+              <span className="contact-icon"><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
+              <span>6/K Block 2, P.E.C.H.S, Karachi, Pakistan</span>
+            </li>
+            <li>
+              <span className="contact-icon"><FontAwesomeIcon icon={faEnvelope} /></span>
+              <a href="mailto:info@itcs.com.pk">info@itcs.com.pk</a>
+            </li>
+            <li>
+              <span className="contact-icon"><FontAwesomeIcon icon={faPhoneAlt} /></span>
+              <a href="tel:+9221111482711">021 111-482-711</a>
+            </li>
+            <li>
+              <span className="contact-icon"><FontAwesomeIcon icon={faFax} /></span>
+              <span>Fax: 021 4554818</span>
+            </li>
           </ul>
         </div>
 
-        {/* Quick Links */}
-        <div className="footer-col quick-links">
-          <h3>Quick Links</h3>
-          <ul className="links-list">
-            <li><Link to="/about-us">About Us</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/careers">Careers</Link></li>
-            <li><Link to="/blog">Blog</Link></li>
+        <div className="footer-col links-col">
+          <h3 className="footer-heading">Services</h3>
+          <ul className="footer-links">
+            {services.map((s, i) => (
+              <li key={i}>
+                <Link to={s.path}>
+                  <FontAwesomeIcon icon={faArrowRight} className="link-arrow" />
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="footer-col links-col">
+          <h3 className="footer-heading">Quick Links</h3>
+          <ul className="footer-links">
+            {quickLinks.map((l, i) => (
+              <li key={i}>
+                <Link to={l.path}>
+                  <FontAwesomeIcon icon={faArrowRight} className="link-arrow" />
+                  {l.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <div className="footer-bottom-content">
-          <p>&copy; {new Date().getFullYear()} ITCS Pakistan. All rights reserved.</p>
+        <div className="footer-bottom-inner">
+          <p>&copy; {year} ITCS Pakistan. All rights reserved. Powered by <a href="https://itcs.com.pk" target="_blank" rel="noopener noreferrer" className="footer-site-link">ITCS</a></p>
+          <p className="footer-tagline">
+            <FontAwesomeIcon icon={faGlobe} /> Empowering Businesses Through Technology
+          </p>
         </div>
       </div>
     </footer>

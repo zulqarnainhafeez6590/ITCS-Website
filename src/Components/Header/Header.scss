@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: var(--bg-primary);
+  background: transparent;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-md);
@@ -143,6 +143,12 @@
           padding: 12px 24px;
           transition: all var(--transition-fast);
           font-size: 14px;
+
+          &.active {
+            color: #a855f7;
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 3px solid #a855f7;
+          }
 
           &:hover {
             background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
@@ -385,6 +391,12 @@
             white-space: normal;
             width: 100%;
 
+            &.active {
+              border-left-color: #a855f7;
+              background: rgba(124, 58, 237, 0.15);
+              color: #a855f7;
+            }
+
             &:hover {
               border-left-color: #a855f7;
               background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
@@ -529,17 +541,16 @@
             font-size: 12px;
             padding: 10px 20px 10px 40px;
 
+            &.active {
+              border-left-color: #a855f7;
+              background: rgba(124, 58, 237, 0.15);
+              color: #a855f7;
+            }
+
             &:hover {
               border-left-color: #a855f7;
               background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
             }
-          }
-        }
-
-        .dropdown {
-          .dropdown-item {
-            padding: 10px 20px 10px 40px;
-            font-size: 12px;
           }
         }
       }
@@ -612,6 +623,12 @@
           .dropdown-item {
             font-size: 11px;
             padding: 8px 18px 8px 35px;
+
+            &.active {
+              border-left-color: #a855f7;
+              background: rgba(124, 58, 237, 0.15);
+              color: #a855f7;
+            }
 
             &:hover {
               border-left-color: #a855f7;

@@ -189,4 +189,50 @@
       }
     }
   }
+
+  @media (max-width: 480px) {
+    padding: 24px 16px;
+
+    .features-header {
+      margin-bottom: 30px;
+
+      .section-title {
+        font-size: 22px;
+      }
+
+      .section-desc {
+        font-size: 14px;
+      }
+    }
+
+    .service-card {
+      padding: 20px;
+
+      .card-header {
+        gap: 12px;
+
+        .card-icon {
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+
+          svg {
+            font-size: 20px;
+          }
+        }
+
+        .card-title {
+          font-size: 17px;
+        }
+      }
+
+      .card-description {
+        font-size: 13px;
+      }
+
+      .card-features li {
+        font-size: 12px;
+      }
+    }
+  }
 }

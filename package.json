@@ -13,6 +13,7 @@
     "@azure/msal-browser": "^4.26.2",
     "@azure/msal-react": "^3.0.22",
     "@formspree/react": "^2.5.1",
+    "@fortawesome/free-brands-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
     "axios": "^1.13.2",
@@ -20,6 +21,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.14.1",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^7.1.1",
     "sass": "^1.83.0",
     "swiper": "^11.2.1"

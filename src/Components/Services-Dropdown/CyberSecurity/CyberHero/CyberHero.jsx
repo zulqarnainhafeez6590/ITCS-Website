@@ -9,9 +9,9 @@ const CyberHero = () => {
     <section className="cyber-hero">
       <div className="hero-background">
         <div className="cyber-grid"></div>
-        <div className="shield-icon shield-1">🛡️</div>
-        <div className="shield-icon shield-2">🔒</div>
-        <div className="shield-icon shield-3">🔐</div>
+        <div className="shield-icon shield-1" style={{ position: 'absolute', top: '15%', left: '15%', fontSize: '50px', opacity: '0.1' }}>🛡️</div>
+        <div className="shield-icon shield-2" style={{ position: 'absolute', top: '65%', right: '10%', fontSize: '50px', opacity: '0.1' }}>🔒</div>
+        <div className="shield-icon shield-3" style={{ position: 'absolute', bottom: '15%', left: '50%', fontSize: '50px', opacity: '0.1' }}>🔐</div>
       </div>
 
       <div className="hero-container">
@@ -43,4 +43,3 @@ const CyberHero = () => {
 };
 
 export default CyberHero;
-

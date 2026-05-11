@@ -64,27 +64,6 @@ color: white;
     overflow: hidden;
     padding: 30px 0;
 
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 100px;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    &::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--bg-secondary), transparent);
-    }
-
-    &::after {
-      right: 0;
-      background: linear-gradient(270deg, var(--bg-secondary), transparent);
-    }
-
     .slider-track {
       display: flex;
       gap: 60px;

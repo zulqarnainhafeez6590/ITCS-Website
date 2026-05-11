@@ -17,9 +17,10 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.2.0",
     "mongoose": "^8.10.1",
     "multer": "^2.0.2",
-    "nodemailer": "^7.0.10",
+    "nodemailer": "^8.0.7",
     "slugify": "^1.6.9"
   },
   "devDependencies": {

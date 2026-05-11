@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link, NavLink } from 'react-router-dom'
 import alignitLogo from '../../assets/logos/itcsLogo.png'
 import './Header.scss'
 
@@ -9,13 +9,6 @@ const Header = () => {
 
   const toggleMenu = () => setIsOpen(prev => !prev)
   const closeMenu = () => setIsOpen(false)
-
-  const handleServiceNavigation = (e) => {
-    if (window.innerWidth > 992) {
-      e.preventDefault()
-      navigate('/services')
-    }
-  }
 
   return (
     <div className="header">
@@ -36,38 +29,38 @@ const Header = () => {
               <ul className="navbar-nav">
                 {/* ← ALL YOUR NAV ITEMS EXACTLY AS BEFORE → */}
                 <li className="nav-item">
-                  <a className="nav-link active" onClick={() => { navigate('/'); closeMenu() }} style={{ cursor: 'pointer' }}>
+                  <Link className="nav-link active" to="/" onClick={closeMenu}>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
                     className="nav-link dropdown-toggle"
-                    href="/services"
+                    to="/services"
                     id="servicesDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    onClick={(e) => { handleServiceNavigation(e); closeMenu() }}
+                    onClick={closeMenu}
                   >
                     Services
-                  </a>
+                  </Link>
                   <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/cloud'); closeMenu() }} style={{ cursor: 'pointer' }}>Cloud Solutions</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/cyber-security'); closeMenu() }} style={{ cursor: 'pointer' }}>Cybersecurity</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/consulting'); closeMenu() }} style={{ cursor: 'pointer' }}>Consulting</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/enterprise-solutions'); closeMenu() }} style={{ cursor: 'pointer' }}>Enterprise Solutions</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/it-services'); closeMenu() }} style={{ cursor: 'pointer' }}>IT Services</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/network-solutions'); closeMenu() }} style={{ cursor: 'pointer' }}>Network Solutions</a></li>
-                    <li><a className="dropdown-item" onClick={() => { navigate('/services/web-development'); closeMenu() }} style={{ cursor: 'pointer' }}>Web Development</a></li>
+                    <li><NavLink className="dropdown-item" to="/services/cloud" onClick={closeMenu}>Cloud Solutions</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/cyber-security" onClick={closeMenu}>Cybersecurity</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/consulting" onClick={closeMenu}>Consulting</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/enterprise-solutions" onClick={closeMenu}>Enterprise Solutions</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/it-services" onClick={closeMenu}>IT Services</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/network-solutions" onClick={closeMenu}>Network Solutions</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/services/web-development" onClick={closeMenu}>Web Development</NavLink></li>
                   </ul>
                 </li>
                 
-                <li className="nav-item"><a className="nav-link" onClick={() => { navigate('/vision-mission'); closeMenu() }} style={{ cursor: 'pointer' }}>Vision & Mission</a></li>
-                <li className="nav-item"><a className="nav-link" onClick={() => { navigate('/blog'); closeMenu() }} style={{ cursor: 'pointer' }}>Blogs</a></li>
-                <li className="nav-item"><a className="nav-link" onClick={() => { navigate('/about-us'); closeMenu() }} style={{ cursor: 'pointer' }}>About Us</a></li>
-                <li className="nav-item"><a className="nav-link" onClick={() => { navigate('/contact'); closeMenu() }} style={{ cursor: 'pointer' }}>Contact</a></li>
-                <li className="nav-item"><a className="nav-link" onClick={() => { navigate('/careers'); closeMenu() }} style={{ cursor: 'pointer' }}>Careers</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/vision-mission" onClick={closeMenu}>Vision & Mission</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/blog" onClick={closeMenu}>Blogs</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/about-us" onClick={closeMenu}>About Us</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/contact" onClick={closeMenu}>Contact</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/careers" onClick={closeMenu}>Careers</Link></li>
               </ul>
             </div>
           </div>

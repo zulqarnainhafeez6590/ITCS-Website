@@ -42,11 +42,12 @@ import JobDetail from './Components/Careers/JobDetail/JobDetail'
 function App() {
   const location = useLocation()
 
-  const hideLayoutRoutes = ['/signup', '/login', '/admin']
+  // Check if current path is auth or any admin sub-route
+  const isHideLayout = ['/signup', '/login'].includes(location.pathname) || location.pathname.startsWith('/admin');
 
   return (
     <>
-      {!hideLayoutRoutes.includes(location.pathname) && <Header />}
+      {!isHideLayout && <Header />}
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -113,7 +114,7 @@ function App() {
 
 
       </Routes>
-      {!hideLayoutRoutes.includes(location.pathname) && <Footer />}
+      {!isHideLayout && <Footer />}
     </>
   )
 }

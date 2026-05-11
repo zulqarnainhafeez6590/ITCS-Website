@@ -8,7 +8,7 @@ export const msalConfig = {
   auth: {
     clientId,
     authority: `https://login.microsoftonline.com/${tenantId}`,
-    redirectUri: `${window.location.origin}${redirectPath}`,
+    redirectUri: window.location.origin.includes('localhost') ? `${window.location.origin}${redirectPath}` : undefined,
   },
   cache: {
     cacheLocation: 'sessionStorage',
