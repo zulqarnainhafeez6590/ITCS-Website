@@ -3,8 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import '../_shared/service-common.scss';
 import './ConsultingNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faBriefcase, faChartLine, faHandshake, faLightbulb, faRocket, faUsers, faCogs, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import PartnerLogos from '../_shared/PartnerLogos/PartnerLogos';
+import { faMicrosoft, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faBuilding, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
+
+const consultingPartners = [
+  { icon: faMicrosoft, name: 'Microsoft Consulting', type: 'Gold Partner', description: 'Authorized Microsoft consulting partner for enterprise transformation, cloud strategy, and digital workplace solutions.', status: 'Verified Partner' },
+  { icon: faGoogle, name: 'Google Cloud Consulting', type: 'Partner', description: 'Google Cloud consulting partner specializing in data-driven transformation and AI/ML strategy.', status: 'Verified Partner' },
+  { icon: faBuilding, name: 'Deloitte Alliance', type: 'Strategic Alliance', description: 'Strategic alliance for enterprise-grade consulting services in digital transformation and operational excellence.', status: 'Verified Partner' },
+];
 
 const ConsultingHero = () => {
   const navigate = useNavigate();
@@ -175,6 +183,7 @@ const ConsultingNew = () => {
       <ConsultingHero />
       <ConsultingSection2 />
       <ConsultingFeatures />
+      <PartnerLogos partners={consultingPartners} />
       <ConsultingSection4 />
       <ConsultingCTA />
     </>

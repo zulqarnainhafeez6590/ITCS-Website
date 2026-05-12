@@ -4,6 +4,14 @@ import '../_shared/service-common.scss';
 import './WebDevelopment.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCode, faLaptopCode, faMobileAlt, faShoppingCart, faSearch, faCloud, faPalette, faRocket, faCheckCircle, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import PartnerLogos from '../_shared/PartnerLogos/PartnerLogos';
+import { faMicrosoft, faGoogle, faWordpress } from '@fortawesome/free-brands-svg-icons';
+
+const webPartners = [
+  { icon: faMicrosoft, name: 'Microsoft Technologies', type: 'Technology Partner', description: 'Built on Microsoft technologies including .NET, Azure, and SharePoint for enterprise web solutions.', status: 'Verified Partner' },
+  { icon: faGoogle, name: 'Google Technologies', type: 'Technology Partner', description: 'Google-certified developers for Angular, Firebase, and cloud-based web applications.', status: 'Verified Partner' },
+  { icon: faWordpress, name: 'WordPress Ecosystem', type: 'Development Partner', description: 'Expert WordPress development for custom themes, plugins, and enterprise-scale content management.', status: 'Verified Partner' },
+];
 
 const WebDevelopment = () => {
   useEffect(() => {
@@ -101,6 +109,8 @@ const WebDevelopment = () => {
           ))}
         </div>
       </section>
+
+      <PartnerLogos partners={webPartners} />
 
       <div className="networkSection4">
         <div className="section-header">

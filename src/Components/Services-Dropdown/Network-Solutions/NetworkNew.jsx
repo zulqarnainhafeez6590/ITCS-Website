@@ -4,6 +4,14 @@ import '../_shared/service-common.scss';
 import './NetworkNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe, faNetworkWired, faShieldAlt, faWifi, faServer, faTools, faProjectDiagram, faLock, faSignal } from '@fortawesome/free-solid-svg-icons';
+import PartnerLogos from '../_shared/PartnerLogos/PartnerLogos';
+import { faMicrosoft, faAws, faGoogle } from '@fortawesome/free-brands-svg-icons';
+
+const networkPartners = [
+  { icon: faMicrosoft, name: 'Microsoft Networking', type: 'Gold Partner', description: 'Microsoft networking partner for Azure networking, ExpressRoute, and hybrid connectivity solutions.', status: 'Verified Partner' },
+  { icon: faAws, name: 'AWS Networking', type: 'Advanced Partner', description: 'AWS networking partner delivering VPC design, Direct Connect, and global network infrastructure.', status: 'Verified Partner' },
+  { icon: faProjectDiagram, name: 'Cisco Solutions', type: 'Technology Partner', description: 'Authorized partner for Cisco networking equipment, SD-WAN, and enterprise network architecture.', status: 'Verified Partner' },
+];
 
 const NetworkHero = () => {
   const navigate = useNavigate();
@@ -176,6 +184,7 @@ const NetworkNew = () => {
       <NetworkHero />
       <NetworkSection2 />
       <NetworkFeatures />
+      <PartnerLogos partners={networkPartners} />
       <NetworkSection4 />
       <NetworkCTA />
     </>

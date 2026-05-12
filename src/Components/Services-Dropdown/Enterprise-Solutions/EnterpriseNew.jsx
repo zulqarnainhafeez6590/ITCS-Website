@@ -4,6 +4,14 @@ import '../_shared/service-common.scss';
 import './EnterpriseNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBuilding, faChartLine, faHandshake, faCogs, faUsers, faNetworkWired, faCloud, faDatabase } from '@fortawesome/free-solid-svg-icons';
+import PartnerLogos from '../_shared/PartnerLogos/PartnerLogos';
+import { faMicrosoft, faAws } from '@fortawesome/free-brands-svg-icons';
+
+const enterprisePartners = [
+  { icon: faMicrosoft, name: 'Microsoft Enterprise', type: 'Gold Partner', description: 'Enterprise licensing and solutions partner for Dynamics 365, Power Platform, and Azure enterprise services.', status: 'Verified Partner' },
+  { icon: faAws, name: 'AWS Enterprise', type: 'Advanced Partner', description: 'AWS enterprise partner delivering scalable cloud infrastructure and digital transformation solutions.', status: 'Verified Partner' },
+  { icon: faBuilding, name: 'SAP Integration', type: 'Implementation Partner', description: 'Certified SAP integration partner for enterprise resource planning and business process optimization.', status: 'Verified Partner' },
+];
 
 const EnterpriseHero = () => {
   const navigate = useNavigate();
@@ -176,6 +184,7 @@ const EnterpriseNew = () => {
       <EnterpriseHero />
       <EnterpriseSection2 />
       <EnterpriseFeatures />
+      <PartnerLogos partners={enterprisePartners} />
       <EnterpriseSection4 />
       <EnterpriseCTA />
     </>

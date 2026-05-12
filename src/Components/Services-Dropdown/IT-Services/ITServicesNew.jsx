@@ -4,6 +4,14 @@ import '../_shared/service-common.scss';
 import './ITServicesNew.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faServer, faNetworkWired, faCloud, faShieldAlt, faHeadset, faClock, faWrench, faTools, faDatabase } from '@fortawesome/free-solid-svg-icons';
+import PartnerLogos from '../_shared/PartnerLogos/PartnerLogos';
+import { faMicrosoft, faAws, faLinux } from '@fortawesome/free-brands-svg-icons';
+
+const itPartners = [
+  { icon: faMicrosoft, name: 'Microsoft Services', type: 'Gold Partner', description: 'Authorized managed services partner for Microsoft 365, Azure, and enterprise support solutions.', status: 'Verified Partner' },
+  { icon: faAws, name: 'AWS Managed Services', type: 'Advanced Partner', description: 'AWS managed service provider delivering infrastructure management, monitoring, and optimization.', status: 'Verified Partner' },
+  { icon: faLinux, name: 'Linux Foundation', type: 'Technology Partner', description: 'Open-source technology partner for enterprise Linux support, automation, and infrastructure management.', status: 'Verified Partner' },
+];
 
 const ITHero = () => {
   const navigate = useNavigate();
@@ -176,6 +184,7 @@ const ITServicesNew = () => {
       <ITHero />
       <ITSection2 />
       <ITFeatures />
+      <PartnerLogos partners={itPartners} />
       <ITSection4 />
       <ITCTA />
     </>
