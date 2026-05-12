@@ -38,9 +38,6 @@ const Header = () => {
                     className="nav-link dropdown-toggle"
                     to="/services"
                     id="servicesDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
                     onClick={closeMenu}
                   >
                     Services

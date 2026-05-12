@@ -4,7 +4,6 @@ import { useMsal } from '@azure/msal-react';
 import PostJob from './PostJob/PostJob';
 import JobList from './JobList/JobList';
 import BlogApproval from './BlogApproval/BlogApproval';
-import AdminBlogDetail from './BlogApproval/AdminBlogDetail';
 import AddCustomBlog from './AddCustomBlog/AddCustomBlog';
 import './AdminPanel.scss';
 import axios from 'axios';
@@ -16,16 +15,18 @@ import {
   faBlog, 
   faArrowRightFromBracket, 
   faUsers,
-  faPenFancy
+  faPenFancy,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons';
 
 const AdminPanel = () => {
-  const [activeTab, setActiveTab] = useState('post-job');
+  const [activeTab, setActiveTab] = useState('add-blog');
   const [message, setMessage] = useState('');
   const [fullName, setFullName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [newUserRole, setNewUserRole] = useState('author');
   const [currentUser, setCurrentUser] = useState(null);
   
   const navigate = useNavigate();
@@ -64,8 +65,7 @@ const AdminPanel = () => {
           username,
           email,
           password,
-          role: 'admin',
-          isAdmin: true,
+          role: newUserRole,
         },
         {
           headers: { 
@@ -84,6 +84,8 @@ const AdminPanel = () => {
     }
   };
 
+  const isAuthor = currentUser?.role === 'author';
+
   return (
     <div className="admin-panel">
       <div className="admin-sidebar">
@@ -95,29 +97,35 @@ const AdminPanel = () => {
         </div>
 
         <nav className="sidebar-nav">
-          <button
-            className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
-            onClick={() => setActiveTab('post-job')}
-          >
-            <span className="nav-icon"><FontAwesomeIcon icon={faAddressCard} /></span>
-            <span className="nav-text">Post a Job</span>
-          </button>
+          {!isAuthor && (
+            <button
+              className={`nav-item ${activeTab === 'post-job' ? 'active' : ''}`}
+              onClick={() => setActiveTab('post-job')}
+            >
+              <span className="nav-icon"><FontAwesomeIcon icon={faAddressCard} /></span>
+              <span className="nav-text">Post a Job</span>
+            </button>
+          )}
 
-          <button
-            className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
-            onClick={() => setActiveTab('job-list')}
-          >
-            <span className="nav-icon"><FontAwesomeIcon icon={faList} /></span>
-            <span className="nav-text">Job List</span>
-          </button>
+          {!isAuthor && (
+            <button
+              className={`nav-item ${activeTab === 'job-list' ? 'active' : ''}`}
+              onClick={() => setActiveTab('job-list')}
+            >
+              <span className="nav-icon"><FontAwesomeIcon icon={faList} /></span>
+              <span className="nav-text">Job List</span>
+            </button>
+          )}
 
-          <button
-            className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
-            onClick={() => setActiveTab('blog-approval')}
-          >
-            <span className="nav-icon"><FontAwesomeIcon icon={faBlog} /></span>
-            <span className="nav-text">Blog Approval</span>
-          </button>
+          {!isAuthor && (
+            <button
+              className={`nav-item ${activeTab === 'blog-approval' ? 'active' : ''}`}
+              onClick={() => setActiveTab('blog-approval')}
+            >
+              <span className="nav-icon"><FontAwesomeIcon icon={faBlog} /></span>
+              <span className="nav-text">Blog Approval</span>
+            </button>
+          )}
 
           <button
             className={`nav-item ${activeTab === 'add-blog' ? 'active' : ''}`}
@@ -127,16 +135,22 @@ const AdminPanel = () => {
             <span className="nav-text">Create Blog</span>
           </button>
 
-          <button
-            className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
-            onClick={() => setActiveTab('add-admin')}
-          >
-            <span className="nav-icon"><FontAwesomeIcon icon={faUsers} /></span>
-            <span className="nav-text">Add Admin</span>
-          </button>
+          {!isAuthor && (
+            <button
+              className={`nav-item ${activeTab === 'add-admin' ? 'active' : ''}`}
+              onClick={() => setActiveTab('add-admin')}
+            >
+              <span className="nav-icon"><FontAwesomeIcon icon={faUsers} /></span>
+              <span className="nav-text">Add User</span>
+            </button>
+          )}
         </nav>
 
         <div className="sidebar-footer">
+          <button className="back-btn" onClick={() => navigate('/')}>
+            <span className="nav-icon"><FontAwesomeIcon icon={faArrowLeft} /></span>
+            <span className="nav-text">Back to Website</span>
+          </button>
           <button className="logout-btn" onClick={handleLogout}>
             <span className="nav-icon"><FontAwesomeIcon icon={faArrowRightFromBracket} /></span>
             <span className="nav-text">Logout</span>
@@ -152,7 +166,7 @@ const AdminPanel = () => {
         
         {activeTab === 'add-admin' && (
           <div className="add-admin-form">
-            <h3>Add New Admin</h3>
+            <h3>Add New User</h3>
             
             {message && (
               <div className={`alert ${message.toLowerCase().includes('error') || message.toLowerCase().includes('fail') ? 'alert-error' : 'alert-success'}`}>
@@ -208,8 +222,22 @@ const AdminPanel = () => {
                   </div>
                 </div>
 
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Role</label>
+                    <select
+                      value={newUserRole}
+                      onChange={(e) => setNewUserRole(e.target.value)}
+                      className="role-select"
+                    >
+                      <option value="author">Author</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div className="form-actions">
-                  <button type="submit">Add Admin</button>
+                  <button type="submit">Add {newUserRole === 'admin' ? 'Admin' : 'Author'}</button>
                 </div>
               </form>
             </div>

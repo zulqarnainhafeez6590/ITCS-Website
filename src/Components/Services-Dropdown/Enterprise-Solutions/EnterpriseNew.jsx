@@ -131,45 +131,6 @@ const EnterpriseSection4 = () => {
   );
 };
 
-const EnterpriseSection3 = () => {
-  const benefits = [
-    { text: '150+ Enterprise Clients' },
-    { text: '99.5% Uptime' },
-    { text: '50M+ Transactions' },
-    { text: 'Industry Leaders' }
-  ]
-
-  return (
-    <div className='enterpriseSection3'>
-      <div className="logo-section">
-        <div className="logo-card">
-          <span className="logo-icon">🏢</span>
-          <span>SAP</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">💿</span>
-          <span>Microsoft</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🟦</span>
-          <span>Oracle</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">📊</span>
-          <span>Salesforce</span>
-        </div>
-      </div>
-      <div className="benefits-row">
-        {benefits.map((item, idx) => (
-          <div className="benefit-item" key={idx}>
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const EnterpriseCTA = () => {
   const navigate = useNavigate();
   
@@ -216,7 +177,6 @@ const EnterpriseNew = () => {
       <EnterpriseSection2 />
       <EnterpriseFeatures />
       <EnterpriseSection4 />
-      <EnterpriseSection3 />
       <EnterpriseCTA />
     </>
   );

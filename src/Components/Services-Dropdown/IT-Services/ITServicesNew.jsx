@@ -131,45 +131,6 @@ const ITSection4 = () => {
   );
 };
 
-const ITSection3 = () => {
-  const benefits = [
-    { text: '500+ Clients' },
-    { text: '99.9% Uptime' },
-    { text: '24/7 Support' },
-    { text: 'Industry Experts' }
-  ]
-
-  return (
-    <div className='itSection3'>
-      <div className="logo-section">
-        <div className="logo-card">
-          <span className="logo-icon">🖥️</span>
-          <span>Dell</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">💻</span>
-          <span>HP</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🔵</span>
-          <span>Cisco</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🟢</span>
-          <span>Lenovo</span>
-        </div>
-      </div>
-      <div className="benefits-row">
-        {benefits.map((item, idx) => (
-          <div className="benefit-item" key={idx}>
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const ITCTA = () => {
   const navigate = useNavigate();
   
@@ -216,7 +177,6 @@ const ITServicesNew = () => {
       <ITSection2 />
       <ITFeatures />
       <ITSection4 />
-      <ITSection3 />
       <ITCTA />
     </>
   );

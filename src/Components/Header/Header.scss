@@ -12,40 +12,82 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-md);
+  flex-wrap: nowrap;
 
   @media (max-width: 992px) {
-    padding: 15px 20px;
+    padding: 12px 16px;
 
     .auth-buttons {
-      margin-right: 10px;
-      gap: 10px;
+      margin-right: 0;
+      gap: 8px;
       align-items: center;
       display: flex;
+
+      .btn-login {
+        display: none;
+      }
     }
 
-
-    .custom-toggler {
+    .auth-buttons .custom-toggler {
       display: flex !important;
-      background: none;
-      border: none;
-      padding: 8px;
-    }
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(124, 58, 237, 0.12);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 10px;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1001;
+      backdrop-filter: blur(8px);
 
-    .custom-toggler-icon {
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+      &:hover {
+        background: rgba(124, 58, 237, 0.2);
+        border-color: rgba(124, 58, 237, 0.4);
+        transform: scale(1.05);
+      }
 
-    .custom-toggler-icon span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: all 0.3s ease-in-out;
+      .custom-toggler-icon {
+        width: 20px;
+        height: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+
+        span {
+          display: block;
+          width: 100%;
+          height: 2px;
+          background: white !important;
+          border-radius: 2px;
+          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          transform-origin: center;
+        }
+      }
+
+      &[aria-expanded='true'] {
+        background: rgba(124, 58, 237, 0.2);
+        border-color: rgba(124, 58, 237, 0.4);
+
+        .custom-toggler-icon {
+          span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+            background: white;
+          }
+          span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-12px);
+          }
+          span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+            background: white;
+          }
+        }
+      }
     }
   }
 
@@ -65,14 +107,10 @@
 
   .links {
     margin: 0 auto;
+    min-width: 0;
 
 
     .navbar-toggler-icon {
-      display: none;
-    }
-
-
-    .custom-toggler {
       display: none;
     }
 
@@ -126,14 +164,16 @@
           position: absolute;
           top: 100%;
           left: 0;
-          background-color: var(--bg-secondary);
-          border: 1px solid var(--border-color);
-          border-radius: 8px;
-          box-shadow: var(--shadow-lg);
+          background: linear-gradient(135deg, rgba(18, 12, 36, 0.98) 0%, rgba(26, 16, 48, 0.98) 100%);
+          border: 1px solid rgba(124, 58, 237, 0.2);
+          border-radius: 12px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 58, 237, 0.08);
           z-index: 1000;
           padding: 8px 0;
           transform: translateY(-10px);
           min-width: 220px;
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
           transition: opacity var(--transition-normal),
             transform var(--transition-normal);
         }
@@ -228,7 +268,6 @@
 
     .links {
       margin: 0;
-      position: relative;
 
       .navbar {
         padding: 0;
@@ -236,96 +275,48 @@
 
       .container-fluid {
         padding: 0;
-        position: relative;
       }
-
-      .custom-toggler {
-        display: block;
-        border: none;
-        background-color: transparent;
-        padding: 8px;
-        cursor: pointer;
-        position: relative;
-        z-index: 1001;
-
-        &:focus {
-          box-shadow: none;
-          outline: none;
-        }
-
-        .custom-toggler-icon {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          width: 30px;
-          height: 22px;
-          cursor: pointer;
-
-          span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-          }
-        }
-
-        &[aria-expanded='true'] {
-          .custom-toggler-icon {
-            span:nth-child(1) {
-              transform: translateY(9.5px) rotate(45deg);
-            }
-
-            span:nth-child(2) {
-              opacity: 0;
-              transform: translateX(-20px);
-            }
-
-            span:nth-child(3) {
-              transform: translateY(-9.5px) rotate(-45deg);
-            }
-          }
-        }
-      }
-
 
       .navbar-collapse {
         position: fixed;
-        top: 65px;
-        left: 0;
-        right: 0;
-        width: 100vw;
-        background-color: rgba(26, 26, 26, 0.98);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border-color);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        top: 68px;
+        left: 8px;
+        right: 8px;
+        width: auto;
+        background: rgba(18, 12, 36, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(124, 58, 237, 0.15);
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 58, 237, 0.08);
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-          box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.3s ease, box-shadow 0.4s ease;
+        opacity: 0;
         z-index: 999;
 
         &.show {
-          max-height: calc(100vh - 65px);
+          max-height: calc(100vh - 85px);
+          opacity: 1;
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
-
+          padding: 8px 0;
 
           &::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
           }
 
           &::-webkit-scrollbar-track {
-            background: rgba(31, 31, 31, 0.5);
+            background: transparent;
           }
 
           &::-webkit-scrollbar-thumb {
-              background: rgba(124, 58, 237, 0.5);
-            border-radius: 3px;
+            background: rgba(124, 58, 237, 0.4);
+            border-radius: 2px;
 
             &:hover {
-                background: rgba(124, 58, 237, 0.7);
+              background: rgba(124, 58, 237, 0.6);
             }
           }
         }
@@ -333,9 +324,8 @@
 
       .navbar-nav {
         background-color: transparent;
-        border-radius: 0;
         margin: 0;
-        padding: 20px 0;
+        padding: 4px 0;
         width: 100%;
         flex-direction: column;
 
@@ -408,60 +398,35 @@
   }
 
   @media (max-width: 768px) {
-    padding: 12px 15px;
-    background-color: rgba(26, 26, 26, 0.98);
+    padding: 10px 14px;
 
     .header-img {
       img {
-        width: 100px;
+        width: 90px;
       }
     }
 
     .links {
-      .custom-toggler {
-        padding: 6px;
-
-        .custom-toggler-icon {
-          width: 28px;
-          height: 21px;
-
-          span {
-            height: 3px;
-          }
-        }
-
-        &[aria-expanded='true'] {
-          .custom-toggler-icon {
-            span:nth-child(1) {
-              transform: translateY(9px) rotate(45deg);
-            }
-
-            span:nth-child(3) {
-              transform: translateY(-9px) rotate(-45deg);
-            }
-          }
-        }
-      }
-
       .navbar-collapse {
-        top: 56px; // Adjusted for smaller header
+        top: 60px;
 
         &.show {
-          max-height: calc(100vh - 56px);
+          max-height: calc(100vh - 76px);
         }
       }
 
       .navbar-nav {
-        padding: 15px 0;
+        padding: 4px 0;
 
         .nav-link {
-          padding: 12px 25px;
-          font-size: 14px;
+          padding: 12px 20px;
+          font-size: 13px;
+          margin: 0 6px;
         }
 
         .dropdown {
           .dropdown-item {
-            padding: 10px 25px 10px 45px;
+            padding: 10px 20px 10px 36px;
             font-size: 13px;
 
             &:hover {
@@ -474,15 +439,26 @@
     }
 
     .auth-buttons {
-      margin-right: 8px;
-      gap: 8px;
+      margin-right: 4px;
+      gap: 6px;
     }
 
     .btn-login,
     .btn-signup {
-      padding: 6px 12px;
-      font-size: 12px;
+      padding: 6px 10px;
+      font-size: 11px;
     }
+  }
+
+  .auth-buttons {
+    margin-right: 8px;
+    gap: 8px;
+  }
+
+  .btn-login,
+  .btn-signup {
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
   @media (max-width: 480px) {
@@ -495,31 +471,6 @@
     }
 
     .links {
-      .custom-toggler {
-        padding: 5px;
-
-        .custom-toggler-icon {
-          width: 26px;
-          height: 19px;
-
-          span {
-            height: 2.5px;
-          }
-        }
-
-        &[aria-expanded='true'] {
-          .custom-toggler-icon {
-            span:nth-child(1) {
-              transform: translateY(8px) rotate(45deg);
-            }
-
-            span:nth-child(3) {
-              transform: translateY(-8px) rotate(-45deg);
-            }
-          }
-        }
-      }
-
       .navbar-collapse {
         top: 50px;
 
@@ -529,17 +480,18 @@
       }
 
       .navbar-nav {
-        padding: 12px 0;
+        padding: 4px 0;
 
         .nav-link {
-          font-size: 14px;
-          padding: 11px 20px;
+          font-size: 13px;
+          padding: 10px 16px;
+          margin: 0 4px;
         }
 
         .dropdown {
           .dropdown-item {
             font-size: 12px;
-            padding: 10px 20px 10px 40px;
+            padding: 10px 16px 10px 32px;
 
             &.active {
               border-left-color: #a855f7;
@@ -559,70 +511,44 @@
     .auth-buttons {
       margin-right: 6px;
       gap: 6px;
-     
     }
 
     .btn-login,
     .btn-signup {
       padding: 5px 10px;
       font-size: 11px;
-     
     }
   }
 
   @media (max-width: 360px) {
     .header-img {
       img {
-        width: 75px;
+        width: 55px;
       }
     }
 
     .links {
-      .custom-toggler {
-        padding: 4px;
-
-        .custom-toggler-icon {
-          width: 24px;
-          height: 17px;
-
-          span {
-            height: 2px;
-          }
-        }
-
-        &[aria-expanded='true'] {
-          .custom-toggler-icon {
-            span:nth-child(1) {
-              transform: translateY(7.5px) rotate(45deg);
-            }
-
-            span:nth-child(3) {
-              transform: translateY(-7.5px) rotate(-45deg);
-            }
-          }
-        }
-      }
-
       .navbar-collapse {
-        top: 48px;
+        top: 44px;
 
         &.show {
-          max-height: calc(100vh - 48px);
+          max-height: calc(100vh - 44px);
         }
       }
 
       .navbar-nav {
-        padding: 10px 0;
+        padding: 2px 0;
 
         .nav-link {
-          font-size: 13px;
-          padding: 10px 18px;
+          font-size: 12px;
+          padding: 8px 14px;
+          margin: 0 2px;
         }
 
         .dropdown {
           .dropdown-item {
             font-size: 11px;
-            padding: 8px 18px 8px 35px;
+            padding: 8px 14px 8px 28px;
 
             &.active {
               border-left-color: #a855f7;
@@ -647,20 +573,41 @@
   }
 }
 
+@media (min-width: 993px) and (max-width: 1200px) {
+  .header {
+    padding: 15px 20px;
+
+    .header-img img {
+      width: 110px;
+    }
+
+    .links {
+      margin: 0;
+    }
+
+    .links .navbar-nav .nav-link {
+      margin: 0 6px;
+      font-size: 11px;
+    }
+
+    .auth-buttons .btn-login,
+    .auth-buttons .btn-signup {
+      padding: 5px 8px;
+      font-size: 10px;
+    }
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 993px) {
+  .header .links .navbar-nav .nav-link {
+    margin: 0 4px;
+    font-size: 10px;
+    letter-spacing: 0;
+  }
+}
+
 @media (max-width: 992px) {
   .header .auth-buttons {
     order: 3;
-  }
-
-  @media (max-width: 480px) {
-    .header {
-      padding: 12px 22px !important;
-      /* adds side space */
-    }
-
-    .auth-buttons {
-      margin-right: 5px !important;
-      /* prevents touching boundary */
-    }
   }
 }

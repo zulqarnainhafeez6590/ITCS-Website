@@ -121,34 +121,6 @@ const NetworkDesign = () => {
         </div>
       </div>
 
-      <div className='networkSection3'>
-        <div className="logo-section">
-          <div className="logo-card">
-            <span className="logo-icon">🔵</span>
-            <span>Cisco</span>
-          </div>
-          <div className="logo-card">
-            <span className="logo-icon">🟠</span>
-            <span>Juniper</span>
-          </div>
-          <div className="logo-card">
-            <span className="logo-icon">🟢</span>
-            <span>Ubiquiti</span>
-          </div>
-          <div className="logo-card">
-            <span className="logo-icon">🔷</span>
-            <span>MikroTik</span>
-          </div>
-        </div>
-        <div className="benefits-row">
-          {stats.map((item, idx) => (
-            <div className="benefit-item" key={idx}>
-              <span>{item.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <section className="network-cta">
         <div className="cta-container">
           <h2>

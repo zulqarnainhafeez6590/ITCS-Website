@@ -27,22 +27,26 @@ const isAdmin = async (req, res, next) => {
 
 router.post('/add-user', isAdmin, async (req, res) => {
   try {
-    const { fullName, username, email, password } = req.body
+    const { fullName, username, email, password, role } = req.body
 
     const existingUser = await User.findOne({ email })
     if (existingUser) return res.status(400).json({ message: 'Email already exists' })
 
     const hashedPassword = await bcrypt.hash(password, 10)
 
+    const isAdminRole = role === 'admin'
+
     const newUser = new User({
       fullName,
       username,
       email,
       password: hashedPassword,
+      role: role || 'user',
+      isAdmin: isAdminRole,
     })
 
     await newUser.save()
-    res.status(201).json({ message: 'Admin added successfully', user: newUser })
+    res.status(201).json({ message: `${role === 'admin' ? 'Admin' : 'Author'} added successfully`, user: newUser })
   } catch (err) {
     console.error(err)
     res.status(500).json({ message: 'Server error' })

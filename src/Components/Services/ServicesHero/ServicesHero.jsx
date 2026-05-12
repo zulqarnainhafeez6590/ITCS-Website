@@ -1,19 +1,11 @@
 import React from "react";
 import "./ServicesHero.scss";
-import ServicesBg from "./../../../assets/images/alienvideo2.mp4";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRocket, faStar, faHeadset } from '@fortawesome/free-solid-svg-icons';
 
 const ServicesHero = () => {
   return (
     <section className="services-hero">
-      <video autoPlay muted loop className="hero-video">
-        <source src={ServicesBg} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      <div className="hero-overlay"></div>
-
       <div className="hero-content">
         <div className="hero-badge">
           <span className="badge-icon">

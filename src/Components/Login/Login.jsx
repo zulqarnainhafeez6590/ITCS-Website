@@ -11,6 +11,9 @@ const Login = () => {
   const { instance } = useMsal()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [loginMethod, setLoginMethod] = useState('microsoft')
+  const [loginEmail, setLoginEmail] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -29,6 +32,33 @@ const Login = () => {
       instance.clearCache()
     }
   }, [])
+
+  const handleEmailLogin = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch(apiUrl('/api/auth/login'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      })
+
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.message || 'Login failed')
+
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('user', JSON.stringify(data.user))
+      localStorage.setItem('email', data.user.email)
+
+      navigate('/admin', { replace: true })
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleMicrosoftLogin = async () => {
     setLoading(true)
@@ -57,13 +87,14 @@ const Login = () => {
         account: account,
       })
 
-      // Send token to backend for verification
+      // Send tokens to backend for verification
       console.log("Token acquired silently. Sending to backend for verification:", tokenResponse.accessToken ? "Token present" : "No token");
       const response = await fetch(apiUrl('/api/auth/microsoft'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           accessToken: tokenResponse.accessToken,
+          idToken: tokenResponse.idToken,
           email: account.username,
           name: account.name,
         }),
@@ -103,54 +134,74 @@ const Login = () => {
 
           <div className="login-form">
             {error && (
-              <div className="error-message" style={{ 
-                color: '#ff4444', 
-                marginBottom: '1rem', 
-                textAlign: 'center',
-                padding: '0.5rem',
-                backgroundColor: '#ffe6e6',
-                borderRadius: '4px'
-              }}>
+              <div className="error-message">
                 {error}
               </div>
             )}
 
-            <button 
-              type="button" 
-              className="submit-btn microsoft-btn" 
-              onClick={handleMicrosoftLogin}
-              disabled={loading}
-              style={{
-                width: '100%',
-                padding: '12px',
-                backgroundColor: loading ? '#ccc' : '#0078d4',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                fontSize: '16px',
-                fontWeight: '600',
-                cursor: loading ? 'not-allowed' : 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                marginBottom: '1rem'
-              }}
-            >
-              {loading ? (
-                <span className="loading-spinner">Signing in...</span>
-              ) : (
-                <>
-                  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="0.5" y="0.5" width="9" height="9" fill="#F25022"/>
-                    <rect x="10.5" y="0.5" width="9" height="9" fill="#7FBA00"/>
-                    <rect x="0.5" y="10.5" width="9" height="9" fill="#00A4EF"/>
-                    <rect x="10.5" y="10.5" width="9" height="9" fill="#FFB900"/>
-                  </svg>
-                  Sign in with Microsoft 365
-                </>
-              )}
-            </button>
+            <div className="login-tabs">
+              <button
+                type="button"
+                className={`tab-btn ${loginMethod === 'microsoft' ? 'active' : ''}`}
+                onClick={() => setLoginMethod('microsoft')}
+              >
+                Microsoft 365
+              </button>
+              <button
+                type="button"
+                className={`tab-btn ${loginMethod === 'email' ? 'active' : ''}`}
+                onClick={() => setLoginMethod('email')}
+              >
+                Email & Password
+              </button>
+            </div>
+
+            {loginMethod === 'microsoft' ? (
+              <button 
+                type="button" 
+                className="submit-btn microsoft-btn" 
+                onClick={handleMicrosoftLogin}
+                disabled={loading}
+              >
+                {loading ? (
+                  <span className="loading-spinner">Signing in...</span>
+                ) : (
+                  <>
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0.5" y="0.5" width="9" height="9" fill="#F25022"/>
+                      <rect x="10.5" y="0.5" width="9" height="9" fill="#7FBA00"/>
+                      <rect x="0.5" y="10.5" width="9" height="9" fill="#00A4EF"/>
+                      <rect x="10.5" y="10.5" width="9" height="9" fill="#FFB900"/>
+                    </svg>
+                    Sign in with Microsoft 365
+                  </>
+                )}
+              </button>
+            ) : (
+              <form onSubmit={handleEmailLogin} className="email-login-form">
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="form-group password-group">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? <span className="loading-spinner">Signing in...</span> : 'Sign In'}
+                </button>
+              </form>
+            )}
 
             <div className="form-footer">
               <button

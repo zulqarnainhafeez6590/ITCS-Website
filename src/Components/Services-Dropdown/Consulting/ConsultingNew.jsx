@@ -130,45 +130,6 @@ const ConsultingSection4 = () => {
   );
 };
 
-const ConsultingSection3 = () => {
-  const benefits = [
-    { text: '200+ Projects Delivered' },
-    { text: '15+ Years Experience' },
-    { text: '98% Client Satisfaction' },
-    { text: 'Industry Experts' }
-  ]
-
-  return (
-    <div className='consultingSection3'>
-      <div className="logo-section">
-        <div className="logo-card">
-          <span className="logo-icon">📊</span>
-          <span>McKinsey</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">💼</span>
-          <span>Deloitte</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🔷</span>
-          <span>BCG</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">📈</span>
-          <span>Bain</span>
-        </div>
-      </div>
-      <div className="benefits-row">
-        {benefits.map((item, idx) => (
-          <div className="benefit-item" key={idx}>
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const ConsultingCTA = () => {
   const navigate = useNavigate();
   
@@ -215,7 +176,6 @@ const ConsultingNew = () => {
       <ConsultingSection2 />
       <ConsultingFeatures />
       <ConsultingSection4 />
-      <ConsultingSection3 />
       <ConsultingCTA />
     </>
   );

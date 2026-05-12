@@ -131,45 +131,6 @@ const NetworkSection4 = () => {
   );
 };
 
-const NetworkSection3 = () => {
-  const benefits = [
-    { text: '300+ Networks' },
-    { text: '99.9% Uptime' },
-    { text: '24/7 Support' },
-    { text: 'Industry Experts' }
-  ]
-
-  return (
-    <div className='networkSection3'>
-      <div className="logo-section">
-        <div className="logo-card">
-          <span className="logo-icon">🔵</span>
-          <span>Cisco</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🟠</span>
-          <span>Juniper</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🟢</span>
-          <span>Ubiquiti</span>
-        </div>
-        <div className="logo-card">
-          <span className="logo-icon">🔷</span>
-          <span>MikroTik</span>
-        </div>
-      </div>
-      <div className="benefits-row">
-        {benefits.map((item, idx) => (
-          <div className="benefit-item" key={idx}>
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const NetworkCTA = () => {
   const navigate = useNavigate();
   
@@ -216,7 +177,6 @@ const NetworkNew = () => {
       <NetworkSection2 />
       <NetworkFeatures />
       <NetworkSection4 />
-      <NetworkSection3 />
       <NetworkCTA />
     </>
   );
