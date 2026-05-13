@@ -63,13 +63,14 @@ export default function Blog() {
           displayAuthor: blog.author,
           displayDate: blog.publishDate,
           isCustom: true,
-          slug: blog.slug
+          slug: blog.slug,
+          updatedAt: blog.updatedAt
         }));
 
         const allPosts = [...approvedDevBlogs, ...formattedCustomBlogs];
         allPosts.sort((a, b) => {
-          const dateA = a.isCustom ? new Date(a.publishDate) : new Date(a.approvedAt);
-          const dateB = b.isCustom ? new Date(b.publishDate) : new Date(b.approvedAt);
+          const dateA = a.isCustom ? new Date(a.updatedAt || a.published_at) : new Date(a.approvedAt);
+          const dateB = b.isCustom ? new Date(b.updatedAt || b.published_at) : new Date(b.approvedAt);
           return dateB - dateA;
         });
         setPosts(allPosts);

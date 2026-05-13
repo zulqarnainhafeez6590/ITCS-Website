@@ -1,7 +1,7 @@
 import React from "react";
 import "./HomeFeature.scss";
 import { Link } from 'react-router-dom'
-import Section3img from "./../../../assets/images/section3.jpg";
+import CyberSecurityImg from "./../../../assets/images/modern-cybersecurity-feature.png";
 
 const HomeFeature = () => {
   const features = [
@@ -52,7 +52,7 @@ const HomeFeature = () => {
 
         <div className="feature-image">
           <div className="image-glow"></div>
-          <img src={Section3img} alt="Cybersecurity" />
+          <img src={CyberSecurityImg} alt="Cybersecurity" />
           <div className="image-overlay"></div>
         </div>
       </div>

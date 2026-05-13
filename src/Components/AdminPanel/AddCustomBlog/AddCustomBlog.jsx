@@ -83,7 +83,10 @@ const AddCustomBlog = () => {
   const fetchBlogs = useCallback(async () => {
     setBlogsLoading(true);
     try {
-      const res = await axios.get(apiUrl('/api/custom-blogs/all'));
+      const token = localStorage.getItem('token');
+      const res = await axios.get(apiUrl('/api/custom-blogs/all'), {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setBlogs(Array.isArray(res.data) ? res.data : []);
     } catch {
       setBlogs([]);

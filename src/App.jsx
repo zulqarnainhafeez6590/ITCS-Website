@@ -1,119 +1,124 @@
-import './App.css'
+import { lazy, Suspense } from 'react'
 import ScrollToTop from './Components/ScrollToTop'
 
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import Home from './Components/Home/Home'
-import Services from './Components/Services/Services'
-import Vision from './Components/Vision/Vision'
-import AboutUs from './Components/AboutUs/AboutUs'
-import Contact from './Components/Contact/Contact'
-//import Signup from './Components/Signup/Signup'
-import Login from './Components/Login/Login'
-
-import Blog from './Components/Blog/Blog'
-import BlogDetail from './Components/Blog/BlogDetail'
-import AdminPanel from './Components/AdminPanel/AdminPanel'
-import BlogApproval from "./Components/AdminPanel/BlogApproval/BlogApproval";
-import AdminBlogDetail from "./Components/AdminPanel/BlogApproval/AdminBlogDetail";
-import AdminCustomBlogDetail from "./Components/AdminPanel/BlogApproval/AdminCustomBlogDetail";
 import AdminRoute from './Components/AdminPanel/AdminRoute'
+import { Route, Routes, useLocation } from 'react-router-dom'
 
-//Dropdowns
-import Cloud from './Components/Services-Dropdown/Cloud/Cloud'
-import CloudDesign from './Components/Services-Dropdown/Cloud/CloudDesign/CloudDesign'
-import CloudMigration from './Components/Services-Dropdown/Cloud/CloudMigration/CloudMigration'
-import CloudSecurity from './Components/Services-Dropdown/Cloud/CloudSecurity/CloudSecurity'
-import Consulting from './Components/Services-Dropdown/Consulting/Consulting'
-import CyberSecurity from './Components/Services-Dropdown/CyberSecurity/CyberSecurity'
-import Enterprise from './Components/Services-Dropdown/Enterprise-Solutions/Enterprise'
-import ITServices from './Components/Services-Dropdown/IT-Services/ITServices'
-import Network from './Components/Services-Dropdown/Network-Solutions/Network'
-import NetworkDesign from './Components/Services-Dropdown/Network-Solutions/NetworkDesign/NetworkDesign'
-import NetworkSecurity from './Components/Services-Dropdown/Network-Solutions/NetworkSecurity/NetworkSecurity'
-import NetworkSupport from './Components/Services-Dropdown/Network-Solutions/NetworkSupport/NetworkSupport'
-import WebDevelopment from './Components/Services-Dropdown/WebDevelopment/WebDevelopment'
-import SecurityAssessment from './Components/Services-Dropdown/CyberSecurity/SecurityAssessment/SecurityAssessment'
-import Careers from './Components/Careers/Careers'
-import ApplyJob from './Components/Careers/ApplyJob/ApplyJob'
-import JobDetail from './Components/Careers/JobDetail/JobDetail'
+const Home = lazy(() => import('./Components/Home/Home'))
+const Services = lazy(() => import('./Components/Services/Services'))
+const Vision = lazy(() => import('./Components/Vision/Vision'))
+const AboutUs = lazy(() => import('./Components/AboutUs/AboutUs'))
+const Contact = lazy(() => import('./Components/Contact/Contact'))
+const Login = lazy(() => import('./Components/Login/Login'))
+const ForgotPassword = lazy(() => import('./Components/Login/ForgotPassword'))
+const ResetPassword = lazy(() => import('./Components/Login/ResetPassword'))
+const Blog = lazy(() => import('./Components/Blog/Blog'))
+const BlogDetail = lazy(() => import('./Components/Blog/BlogDetail'))
+const AdminPanel = lazy(() => import('./Components/AdminPanel/AdminPanel'))
+const BlogApproval = lazy(() => import('./Components/AdminPanel/BlogApproval/BlogApproval'))
+const AdminBlogDetail = lazy(() => import('./Components/AdminPanel/BlogApproval/AdminBlogDetail'))
+const AdminCustomBlogDetail = lazy(() => import('./Components/AdminPanel/BlogApproval/AdminCustomBlogDetail'))
+const Cloud = lazy(() => import('./Components/Services-Dropdown/Cloud/Cloud'))
+const CloudDesign = lazy(() => import('./Components/Services-Dropdown/Cloud/CloudDesign/CloudDesign'))
+const CloudMigration = lazy(() => import('./Components/Services-Dropdown/Cloud/CloudMigration/CloudMigration'))
+const CloudSecurity = lazy(() => import('./Components/Services-Dropdown/Cloud/CloudSecurity/CloudSecurity'))
+const Consulting = lazy(() => import('./Components/Services-Dropdown/Consulting/Consulting'))
+const CyberSecurity = lazy(() => import('./Components/Services-Dropdown/CyberSecurity/CyberSecurity'))
+const Enterprise = lazy(() => import('./Components/Services-Dropdown/Enterprise-Solutions/Enterprise'))
+const ITServices = lazy(() => import('./Components/Services-Dropdown/IT-Services/ITServices'))
+const Network = lazy(() => import('./Components/Services-Dropdown/Network-Solutions/Network'))
+const NetworkDesign = lazy(() => import('./Components/Services-Dropdown/Network-Solutions/NetworkDesign/NetworkDesign'))
+const NetworkSecurity = lazy(() => import('./Components/Services-Dropdown/Network-Solutions/NetworkSecurity/NetworkSecurity'))
+const NetworkSupport = lazy(() => import('./Components/Services-Dropdown/Network-Solutions/NetworkSupport/NetworkSupport'))
+const WebDevelopment = lazy(() => import('./Components/Services-Dropdown/WebDevelopment/WebDevelopment'))
+const SecurityAssessment = lazy(() => import('./Components/Services-Dropdown/CyberSecurity/SecurityAssessment/SecurityAssessment'))
+const Careers = lazy(() => import('./Components/Careers/Careers'))
+const ApplyJob = lazy(() => import('./Components/Careers/ApplyJob/ApplyJob'))
+const JobDetail = lazy(() => import('./Components/Careers/JobDetail/JobDetail'))
+
+const Loading = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: '#130d24' }}>
+    <div style={{ width: 40, height: 40, border: '3px solid rgba(124,58,237,0.2)', borderTopColor: '#7c3aed', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+    <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
+  </div>
+)
 
 function App() {
   const location = useLocation()
-
-  // Check if current path is auth or any admin sub-route
-  const isHideLayout = ['/signup', '/login'].includes(location.pathname) || location.pathname.startsWith('/admin');
+  const isHideLayout = ['/signup', '/login', '/forgot-password'].includes(location.pathname) || location.pathname.startsWith('/admin') || location.pathname.startsWith('/reset-password')
 
   return (
     <>
       {!isHideLayout && <Header />}
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/cloud" element={<Cloud />} />
-        <Route path="/services/cloud/design" element={<CloudDesign />} />
-        <Route path="/services/cloud/migration" element={<CloudMigration />} />
-        <Route path="/services/cloud/security" element={<CloudSecurity />} />
-        <Route path="/services/cyber-security" element={<CyberSecurity />} />
-        <Route path="/services/cyber-security/assessment" element={<SecurityAssessment />} />
-        <Route path="/services/consulting" element={<Consulting />} />
-        <Route path="/services/enterprise-solutions" element={<Enterprise />} />
-        <Route path="/services/it-services" element={<ITServices />} />
-        <Route path="/services/network-solutions" element={<Network />} />
-        <Route path="/services/network-solutions/design" element={<NetworkDesign />} />
-        <Route path="/services/network-solutions/security" element={<NetworkSecurity />} />
-        <Route path="/services/network-solutions/support" element={<NetworkSupport />} />
-        <Route path="/services/web-development" element={<WebDevelopment />} />
-        <Route path="/vision-mission" element={<Vision />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/careers/:id" element={<JobDetail />} />
-        <Route path="/apply" element={<ApplyJob />} />
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/cloud" element={<Cloud />} />
+          <Route path="/services/cloud/design" element={<CloudDesign />} />
+          <Route path="/services/cloud/migration" element={<CloudMigration />} />
+          <Route path="/services/cloud/security" element={<CloudSecurity />} />
+          <Route path="/services/cyber-security" element={<CyberSecurity />} />
+          <Route path="/services/cyber-security/assessment" element={<SecurityAssessment />} />
+          <Route path="/services/consulting" element={<Consulting />} />
+          <Route path="/services/enterprise-solutions" element={<Enterprise />} />
+          <Route path="/services/it-services" element={<ITServices />} />
+          <Route path="/services/network-solutions" element={<Network />} />
+          <Route path="/services/network-solutions/design" element={<NetworkDesign />} />
+          <Route path="/services/network-solutions/security" element={<NetworkSecurity />} />
+          <Route path="/services/network-solutions/support" element={<NetworkSupport />} />
+          <Route path="/services/web-development" element={<WebDevelopment />} />
+          <Route path="/vision-mission" element={<Vision />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/:id" element={<JobDetail />} />
+          <Route path="/apply" element={<ApplyJob />} />
 
-        <Route path="/login" element={<Login />} />
-        {/*<Route path="/signup" element={<Signup />} />*/}
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetail />} />
-        <Route path="/custom-blog/:slug" element={<BlogDetail />} />
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminPanel />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin/blogs"
-          element={
-            <AdminRoute>
-              <BlogApproval />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin/blog/:id"
-          element={
-            <AdminRoute>
-              <AdminBlogDetail />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin/custom-blog/:id"
-          element={
-            <AdminRoute>
-              <AdminCustomBlogDetail />
-            </AdminRoute>
-          }
-        />
-
-
-      </Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
+          <Route path="/custom-blog/:slug" element={<BlogDetail />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminPanel />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/blogs"
+            element={
+              <AdminRoute>
+                <BlogApproval />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/blog/:id"
+            element={
+              <AdminRoute>
+                <AdminBlogDetail />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/custom-blog/:id"
+            element={
+              <AdminRoute>
+                <AdminCustomBlogDetail />
+              </AdminRoute>
+            }
+          />
+        </Routes>
+      </Suspense>
       {!isHideLayout && <Footer />}
     </>
   )

@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import BlogStatus from "../models/blog.js";
 import CustomBlog from "../models/customBlog.js";
+import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -11,11 +13,23 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   try {
     const { title, slug, content, author, excerpt, tags, featuredImage, metaTitle, metaDescription, metaKeywords } = req.body;
+    
+    let ownerId = null;
+    const authHeader = req.headers.authorization;
+    if (authHeader) {
+      try {
+        const token = authHeader.split(' ')[1];
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        ownerId = decoded.id;
+      } catch (err) {}
+    }
+
     const blog = new CustomBlog({
       title, slug, content, author, excerpt,
       tags: Array.isArray(tags) ? tags : [],
       featuredImage, metaTitle, metaDescription, metaKeywords,
       status: 'pending',
+      ownerId,
       publishDate: new Date()
     });
     const saved = await blog.save();
@@ -29,7 +43,32 @@ router.post('/', async (req, res) => {
 // GET /all - Get all custom blogs (admin management)
 router.get('/all', async (req, res) => {
   try {
-    const blogs = await CustomBlog.find().sort({ createdAt: -1 });
+    let query = {};
+    const authHeader = req.headers.authorization;
+    
+    if (!authHeader) {
+      return res.status(401).json({ message: "Unauthorized: No token provided" });
+    }
+
+    try {
+      const token = authHeader.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await User.findById(decoded.id);
+      
+      if (!user) {
+        return res.status(401).json({ message: "Unauthorized: User not found" });
+      }
+
+      // If user is author and NOT admin, show only their own blogs
+      if (user.role === 'author' && !user.isAdmin) {
+        query = { ownerId: user._id };
+      }
+      // If admin, query remains {} so they see all blogs
+    } catch (err) {
+      return res.status(401).json({ message: "Unauthorized: Invalid token" });
+    }
+
+    const blogs = await CustomBlog.find(query).sort({ createdAt: -1 });
     res.status(200).json(blogs);
   } catch (error) {
     res.status(500).json({ message: "Server error fetching blogs", error: error.message });

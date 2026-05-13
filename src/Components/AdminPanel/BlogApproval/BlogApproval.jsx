@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { apiUrl } from "../../../config/api";
@@ -24,8 +24,15 @@ export default function BlogApproval() {
       const res = await fetch(
         `https://dev.to/api/organizations/${organization}/articles?per_page=100&page=${page}`
       );
+      if (!res.ok) {
+        if (res.status === 429) {
+          console.warn('Dev.to API rate limited, skipping dev blogs');
+          return allBlogs;
+        }
+        break;
+      }
       const data = await res.json();
-      if (data.length === 0) break;
+      if (!data || data.length === 0) break;
       allBlogs = [...allBlogs, ...data];
       page++;
     }
@@ -45,9 +52,10 @@ export default function BlogApproval() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
+      const token = localStorage.getItem('token');
       const [devBlogsData, customBlogsRes, statusRes] = await Promise.all([
         fetchAllDevBlogs(),
-        axios.get(apiUrl("/api/custom-blogs/all")),
+        axios.get(apiUrl("/api/custom-blogs/all"), { headers: { Authorization: `Bearer ${token}` } }),
         axios.get(apiUrl("/api/blogs/statuses"))
       ]);
 
@@ -73,9 +81,9 @@ export default function BlogApproval() {
         displayDate: dateMap[blog.id] || blog.readable_publish_date
       }));
 
-      // Process custom blogs (pending status)
-      const pendingCustomBlogs = customBlogsRes.data
-        .filter(blog => blog.status === 'pending')
+      // Process custom blogs (pending or published, not rejected)
+      const visibleCustomBlogs = customBlogsRes.data
+        .filter(blog => blog.status !== 'rejected')
         .map(blog => ({
           ...blog,
           type: 'custom',
@@ -95,7 +103,7 @@ export default function BlogApproval() {
       setAuthors(authorMap);
       setDates(dateMap);
       setDevBlogs(visibleDevBlogs);
-      setCustomBlogs(pendingCustomBlogs);
+      setCustomBlogs(visibleCustomBlogs);
 
     } catch (err) {
       console.error(err);
@@ -118,12 +126,16 @@ export default function BlogApproval() {
     }
   };
 
-  // Update Custom blog status
   const updateCustomBlogStatus = async (id, status) => {
     try {
       await axios.patch(apiUrl(`/api/custom-blogs/${id}/status`), { status });
-      // Remove from pending list after approval/rejection
-      setCustomBlogs(prev => prev.filter(blog => blog._id !== id && blog.id !== id));
+      if (status === 'rejected') {
+        setCustomBlogs(prev => prev.filter(blog => blog._id !== id && blog.id !== id));
+      } else {
+        setCustomBlogs(prev => prev.map(blog => 
+          (blog._id === id || blog.id === id) ? { ...blog, status } : blog
+        ));
+      }
     } catch {
       alert("Failed to update custom blog status.");
     }
@@ -289,9 +301,10 @@ export default function BlogApproval() {
                 <div className="approval-buttons">
                   <button
                     className="approve-btn"
+                    disabled={blog.status === "published"}
                     onClick={() => updateCustomBlogStatus(blog.id || blog._id, "published")}
                   >
-                    Approve & Publish
+                    {blog.status === 'published' ? 'Published' : 'Approve & Publish'}
                   </button>
                   <button
                     className="reject-btn"

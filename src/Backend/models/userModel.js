@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: false },
   role: { type: String, default: 'user' },      
   isAdmin: { type: Boolean, default: false }, 
+  resetPasswordToken: { type: String, required: false },
+  resetPasswordExpires: { type: Date, required: false },
 })
 
 export default mongoose.model('User', userSchema)

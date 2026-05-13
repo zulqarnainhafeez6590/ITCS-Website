@@ -233,6 +233,12 @@ color: white;
   }
 }
 
+@media (max-width: 992px) {
+  .services-grid-section {
+    padding: 80px 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .services-grid-section {
     padding: 60px 20px;
@@ -285,6 +291,145 @@ color: white;
         .explore-btn {
           font-size: 15px;
           padding: 12px 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid-section {
+    padding: 40px 16px;
+
+    .services-grid-header {
+      margin-bottom: 30px;
+
+      .section-title {
+        font-size: clamp(24px, 7vw, 28px);
+      }
+
+      .section-description {
+        font-size: 14px;
+      }
+    }
+
+    .services-grid {
+      gap: 16px;
+    }
+
+    .service-card {
+      height: auto;
+      min-height: 320px;
+
+      .card-front,
+      .card-back {
+        padding: 20px;
+        position: relative;
+      }
+
+      .card-front {
+        .card-icon {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 16px;
+          padding: 12px;
+        }
+
+        .card-title {
+          font-size: 20px;
+          margin-bottom: 12px;
+        }
+
+        .card-description {
+          font-size: 12px;
+        }
+
+        .card-hover-indicator {
+          font-size: 12px;
+          margin-top: 16px;
+        }
+      }
+
+      .card-back {
+        position: absolute;
+
+        .back-title {
+          font-size: 16px;
+          margin-bottom: 16px;
+        }
+
+        .features-list {
+          gap: 8px;
+          margin-bottom: 16px;
+
+          li {
+            font-size: 12px;
+            gap: 8px;
+          }
+        }
+
+        .explore-btn {
+          font-size: 14px;
+          padding: 10px 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .services-grid-section {
+    padding: 30px 12px;
+
+    .services-grid-header {
+      margin-bottom: 24px;
+
+      .section-title {
+        font-size: clamp(20px, 6vw, 24px);
+      }
+
+      .section-description {
+        font-size: 13px;
+      }
+    }
+
+    .service-card {
+      min-height: 280px;
+
+      .card-front,
+      .card-back {
+        padding: 16px;
+      }
+
+      .card-front {
+        .card-icon {
+          width: 50px;
+          height: 50px;
+          padding: 10px;
+          margin-bottom: 12px;
+        }
+
+        .card-title {
+          font-size: 18px;
+        }
+
+        .card-description {
+          font-size: 11px;
+        }
+      }
+
+      .card-back {
+        .back-title {
+          font-size: 15px;
+        }
+
+        .features-list li {
+          font-size: 11px;
+        }
+
+        .explore-btn {
+          font-size: 13px;
+          padding: 8px 14px;
         }
       }
     }

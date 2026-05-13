@@ -61,6 +61,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  caret-color: transparent !important;
 }
 
 body {
@@ -222,39 +223,6 @@ html {
   color: white;
   transform: translateY(-2px);
 }
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--accent-blue);
-  border: 2px solid var(--accent-blue);
-  padding: 10px 30px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-normal);
-}
-
-.btn-secondary:hover {
-  background: var(--accent-blue);
-  color: white;
-  transform: translateY(-2px);
-}
-
-
-* {
-  caret-color: transparent !important;
-}
-
-a {
-  text-decoration: none !important;
-}
-
 
 input, textarea {
   caret-color: auto !important;

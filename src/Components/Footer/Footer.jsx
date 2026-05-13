@@ -120,11 +120,8 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <div className="footer-bottom-inner">
-          <p>&copy; {year} ITCS Pakistan. All rights reserved. Powered by <a href="https://itcs.com.pk" target="_blank" rel="noopener noreferrer" className="footer-site-link">ITCS</a></p>
-          <p className="footer-tagline">
-            <FontAwesomeIcon icon={faGlobe} /> Empowering Businesses Through Technology
-          </p>
+        <div className="footer-bottom-inner" style={{ justifyContent: 'center' }}>
+          <p style={{ textAlign: 'center' }}>&copy; {year} ITCS Pakistan. All rights reserved. Powered by <a href="https://itcs.com.pk" target="_blank" rel="noopener noreferrer" className="footer-site-link">ITCS</a></p>
         </div>
       </div>
     </footer>

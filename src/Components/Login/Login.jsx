@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useMsal } from '@azure/msal-react'
 import { loginRequest } from '../../config/msalConfig'
 import { apiUrl } from '../../config/api'
@@ -19,12 +19,16 @@ const Login = () => {
     const token = localStorage.getItem('token')
     const user = JSON.parse(localStorage.getItem('user') || 'null')
     
-    if (token && user?.isAdmin) {
-      navigate('/admin', { replace: true })
-      return
-    } else if (token) {
-      navigate('/admin', { replace: true })
-      return
+    if (token) {
+      if (user?.role === 'admin' || user?.role === 'author') {
+        navigate('/admin', { replace: true })
+        return
+      } else {
+        // Clear invalid or non-admin session to break infinite redirect loop
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        localStorage.removeItem('email')
+      }
     }
 
     const accounts = instance.getAllAccounts()
@@ -196,6 +200,11 @@ const Login = () => {
                     onChange={(e) => setLoginPassword(e.target.value)}
                     required
                   />
+                </div>
+                <div style={{ textAlign: 'right', marginBottom: '15px', marginTop: '-10px' }}>
+                  <Link to="/forgot-password" style={{ color: '#7c3aed', fontSize: '0.9rem', textDecoration: 'none' }}>
+                    Forgot Password?
+                  </Link>
                 </div>
                 <button type="submit" className="submit-btn" disabled={loading}>
                   {loading ? <span className="loading-spinner">Signing in...</span> : 'Sign In'}
