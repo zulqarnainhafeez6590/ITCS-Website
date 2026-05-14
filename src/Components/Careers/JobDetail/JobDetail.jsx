@@ -110,7 +110,9 @@ const JobDetail = () => {
             <section className="job-description">
               <h2>About This Role</h2>
               <div className="description-content">
-                {job.description ? (
+                {job.aboutRole ? (
+                  <p>{job.aboutRole}</p>
+                ) : job.description ? (
                   <p>{job.description}</p>
                 ) : (
                   <p>We're looking for a talented professional to join our {job.department} team. If you're passionate about technology and innovation, we'd love to hear from you!</p>
@@ -121,32 +123,51 @@ const JobDetail = () => {
             <section className="job-responsibilities">
               <h2>Key Responsibilities</h2>
               <ul className="responsibilities-list">
-                <li>Contribute to innovative projects and solutions</li>
-                <li>Collaborate with a talented and diverse team</li>
-                <li>Work on cutting-edge technology and tools</li>
-                <li>Drive impact and create meaningful value</li>
+                {job.responsibilities ? (
+                  job.responsibilities.split('\n').filter(line => line.trim()).map((item, idx) => (
+                    <li key={idx}>{item.trim()}</li>
+                  ))
+                ) : (
+                  <>
+                    <li>Contribute to innovative projects and solutions</li>
+                    <li>Collaborate with a talented and diverse team</li>
+                    <li>Work on cutting-edge technology and tools</li>
+                    <li>Drive impact and create meaningful value</li>
+                  </>
+                )}
               </ul>
             </section>
 
             <section className="job-requirements">
               <h2>What We're Looking For</h2>
               <div className="requirements-grid">
-                <div className="requirement-card">
-                  <h3>Technical Skills</h3>
-                  <p>Strong technical foundation relevant to the {job.title.toLowerCase()} position</p>
-                </div>
-                <div className="requirement-card">
-                  <h3>Experience</h3>
-                  <p>{job.experience}</p>
-                </div>
-                <div className="requirement-card">
-                  <h3>Soft Skills</h3>
-                  <p>Communication, teamwork, and problem-solving abilities</p>
-                </div>
-                <div className="requirement-card">
-                  <h3>Passion</h3>
-                  <p>Enthusiasm for learning and growing with our organization</p>
-                </div>
+                {job.requirements ? (
+                  job.requirements.split('\n').filter(line => line.trim()).map((item, idx) => (
+                    <div className="requirement-card" key={idx}>
+                      <h3>{idx === 0 ? "Core Requirement" : idx === 1 ? "Skills" : idx === 2 ? "Qualifications" : "Expectation"}</h3>
+                      <p>{item.trim()}</p>
+                    </div>
+                  ))
+                ) : (
+                  <>
+                    <div className="requirement-card">
+                      <h3>Technical Skills</h3>
+                      <p>Strong technical foundation relevant to the {job.title.toLowerCase()} position</p>
+                    </div>
+                    <div className="requirement-card">
+                      <h3>Experience</h3>
+                      <p>{job.experience}</p>
+                    </div>
+                    <div className="requirement-card">
+                      <h3>Soft Skills</h3>
+                      <p>Communication, teamwork, and problem-solving abilities</p>
+                    </div>
+                    <div className="requirement-card">
+                      <h3>Passion</h3>
+                      <p>Enthusiasm for learning and growing with our organization</p>
+                    </div>
+                  </>
+                )}
               </div>
             </section>
 

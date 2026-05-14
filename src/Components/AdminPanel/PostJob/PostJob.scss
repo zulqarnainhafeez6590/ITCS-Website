@@ -101,6 +101,26 @@
         }
       }
 
+      .form-divider {
+        grid-column: 1 / -1;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--accent-blue, #4a9eff);
+        margin: 32px 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        &::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(90deg, rgba(74, 158, 255, 0.2), transparent);
+        }
+      }
+
       .form-actions {
         margin-top: 32px;
         display: flex;

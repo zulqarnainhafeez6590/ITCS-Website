@@ -7,6 +7,9 @@ const jobSchema = new mongoose.Schema({
   location: String,
   experience: String,
   description: String,
+  aboutRole: String,
+  responsibilities: String,
+  requirements: String,
   createdAt: {
     type: Date,
     default: Date.now,

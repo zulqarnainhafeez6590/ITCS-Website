@@ -10,7 +10,9 @@ const PostJob = () => {
     location: '',
     type: 'Full-time',
     experience: '',
-    description: ''
+    aboutRole: '',
+    responsibilities: '',
+    requirements: ''
   });
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -29,8 +31,8 @@ const PostJob = () => {
     setError('');
     setSuccess('');
 
-    if (!formData.title || !formData.department || !formData.location || !formData.experience || !formData.description) {
-      setError('Please fill in all fields.');
+    if (!formData.title || !formData.department || !formData.location || !formData.experience || !formData.aboutRole || !formData.responsibilities || !formData.requirements) {
+      setError('Please fill in all required fields.');
       return;
     }
 
@@ -47,7 +49,9 @@ const PostJob = () => {
         location: '',
         type: 'Full-time',
         experience: '',
-        description: ''
+        aboutRole: '',
+        responsibilities: '',
+        requirements: ''
       });
 
       setTimeout(() => setSuccess(''), 3000);
@@ -75,7 +79,7 @@ const PostJob = () => {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="title">Job Title *</label>
-              <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} required />
+              <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} required placeholder="e.g. Senior Software Engineer" />
             </div>
             <div className="form-group">
               <label htmlFor="department">Department *</label>
@@ -89,7 +93,7 @@ const PostJob = () => {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="location">Location *</label>
-              <input type="text" id="location" name="location" value={formData.location} onChange={handleChange} required />
+              <input type="text" id="location" name="location" value={formData.location} onChange={handleChange} required placeholder="e.g. Karachi, Pakistan" />
             </div>
             <div className="form-group">
               <label htmlFor="type">Job Type *</label>
@@ -102,14 +106,26 @@ const PostJob = () => {
             </div>
           </div>
 
-
           <div className="form-group">
             <label htmlFor="experience">Experience Required *</label>
-            <input type="text" id="experience" name="experience" value={formData.experience} onChange={handleChange} required />
+            <input type="text" id="experience" name="experience" value={formData.experience} onChange={handleChange} required placeholder="e.g. 3+ years in React.js" />
           </div>
+
+          <div className="form-divider">Detailed Content</div>
+
           <div className="form-group">
-            <label htmlFor="description">Job Description *</label>
-            <textarea id="description" name="description" value={formData.description} onChange={handleChange} rows="6" required />
+            <label htmlFor="aboutRole">About This Role *</label>
+            <textarea id="aboutRole" name="aboutRole" value={formData.aboutRole} onChange={handleChange} rows="4" required placeholder="Describe the role in detail..." />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="responsibilities">Key Responsibilities (One per line) *</label>
+            <textarea id="responsibilities" name="responsibilities" value={formData.responsibilities} onChange={handleChange} rows="6" required placeholder="Collaborate with team...&#10;Develop new features...&#10;Write clean code..." />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="requirements">What We're Looking For (Requirements) *</label>
+            <textarea id="requirements" name="requirements" value={formData.requirements} onChange={handleChange} rows="6" required placeholder="Bachelor's degree in CS...&#10;Strong problem solving skills...&#10;Passion for innovation..." />
           </div>
 
           <div className="form-actions">
