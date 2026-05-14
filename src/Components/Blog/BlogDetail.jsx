@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import DOMPurify from "dompurify";
 import axios from "axios";
 import { apiUrl } from "../../config/api";
 import "./Blog.scss";
 import "./BlogDetail.scss";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const BlogDetail = () => {
   const { id, slug } = useParams();
@@ -13,6 +19,7 @@ const BlogDetail = () => {
   const [customAuthor, setCustomAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
 
   const isCustomBlog = location.pathname.includes('/custom-blog/');
 
@@ -22,7 +29,53 @@ const BlogDetail = () => {
     } else if (id) {
       fetchDevToArticle(id);
     }
+    fetchRelatedPosts();
   }, [id, slug, isCustomBlog]);
+
+  const fetchRelatedPosts = async () => {
+    try {
+      const organization = "itcs11";
+      const [devRes, approvedRes, customRes] = await Promise.all([
+        fetch(`https://dev.to/api/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
+        axios.get(apiUrl("/api/blogs/approved-ids")),
+        axios.get(apiUrl("/api/custom-blogs/published"))
+      ]);
+
+      const devBlogs = await devRes.json();
+      const approvedData = approvedRes.data;
+      const customBlogs = customRes.data;
+      const approvedIds = approvedData.map(item => item.devId);
+
+      const allPosts = [
+        ...devBlogs.filter(b => approvedIds.includes(b.id)).map(b => ({
+          id: b.id,
+          title: b.title,
+          cover_image: b.cover_image || b.social_image,
+          displayAuthor: b.user?.username || "Unknown",
+          reading_time_minutes: b.reading_time_minutes || 1,
+          isCustom: false,
+          slug: b.id
+        })),
+        ...customBlogs.map(b => ({
+          id: b._id,
+          title: b.title,
+          cover_image: b.featuredImage,
+          displayAuthor: b.author,
+          reading_time_minutes: Math.ceil((b.content || "").split(" ").length / 200) || 1,
+          isCustom: true,
+          slug: b.slug
+        }))
+      ];
+
+      const currentId = isCustomBlog ? slug : id;
+      const filtered = allPosts.filter(p => String(p.id) !== String(currentId) && String(p.slug) !== String(currentId));
+      
+      // Shuffle and take 6
+      setRelatedPosts(filtered.sort(() => 0.5 - Math.random()).slice(0, 6));
+    } catch (err) {
+      console.error("Error fetching related posts:", err);
+    }
+  };
 
   const fetchCustomBlog = async (blogSlug) => {
     try {
@@ -37,24 +90,17 @@ const BlogDetail = () => {
       }
 
       const blog = res.data;
-
-      // Transform custom blog to match Dev.to structure
       setArticle({
         title: blog.title,
         body_html: blog.content,
         cover_image: blog.featuredImage,
-        user: { name: blog.author },
-        metaTitle: blog.metaTitle,
-        metaDescription: blog.metaDescription,
-        metaKeywords: blog.metaKeywords,
-        ogImage: blog.ogImage,
+        publishDate: blog.publishDate,
+        reading_time_minutes: Math.ceil((blog.content || "").split(" ").length / 200),
+        user: { name: blog.author }
       });
 
-      if (blog.author) {
-        setCustomAuthor(blog.author);
-      }
+      if (blog.author) setCustomAuthor(blog.author);
     } catch (err) {
-      console.error("Error fetching custom blog:", err);
       setError(err.response?.data?.error || "Failed to load blog post");
       setArticle(null);
     } finally {
@@ -71,24 +117,19 @@ const BlogDetail = () => {
       const data = await res.json();
 
       if (!res.ok || data.error || !data.title) {
-        setError(data.error || "Blog post not found or not approved");
+        setError(data.error || "Blog post not found");
         setArticle(null);
         return;
       }
 
       setArticle(data);
 
-      // Fetch custom author
       const customRes = await fetch(apiUrl("/api/blogs/approved-ids"));
       const customData = await customRes.json();
-
       const match = customData.find((blog) => blog.devId === Number(articleId));
-      if (match && match.customAuthor) {
-        setCustomAuthor(match.customAuthor);
-      }
+      if (match && match.customAuthor) setCustomAuthor(match.customAuthor);
     } catch (err) {
-      console.error("Error fetching article:", err);
-      setError("Failed to load blog post. Please try again later.");
+      setError("Failed to load blog post");
       setArticle(null);
     } finally {
       setLoading(false);
@@ -99,33 +140,94 @@ const BlogDetail = () => {
   if (error) return <p className="blog-detail-error">Error: {error}</p>;
   if (!article) return <p className="blog-detail-not-found">Blog not found</p>;
 
-  const displayAuthor =
-    customAuthor || article.user?.name || article.user?.username || "Unknown Author";
+  const displayAuthor = customAuthor || article.user?.name || article.user?.username || "Unknown Author";
 
   return (
     <div className="blog-detail">
       {article.cover_image && (
-        <img
-          src={article.cover_image}
-          alt={article.title}
-          className="detail-cover"
-        />
+        <img src={article.cover_image} alt={article.title} className="detail-cover" />
       )}
 
-      <h1>{article.title}</h1>
+      <h1 className="center-title">{article.title}</h1>
 
-      {/* Author Info */}
-      <p className="author-name">Author - {displayAuthor}</p>
+      <div className="blog-meta-modern center-meta">
+        <div className="meta-item">
+          <span className="meta-label">Author</span>
+          <span className="meta-value">{displayAuthor}</span>
+        </div>
+        <div className="meta-divider"></div>
+        <div className="meta-item">
+          <span className="meta-label">Published on</span>
+          <span className="meta-value">
+            {article.readable_publish_date || 
+             (article.publishDate ? new Date(article.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : 
+             article.published_at ? new Date(article.published_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) : "Recently")}
+          </span>
+        </div>
+        <div className="meta-divider"></div>
+        <div className="meta-item">
+          <span className="meta-label">Reading Time</span>
+          <span className="meta-value">{article.reading_time_minutes || 1} min read</span>
+        </div>
+      </div>
 
       <div className="blog-body">
         {article.body_html ? (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(article.body_html),
-            }}
-          />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.body_html) }} />
         ) : (
           <p>No content available</p>
+        )}
+
+        {relatedPosts.length > 0 && (
+          <div className="related-blogs-section">
+            <h2 className="section-title">Related Articles</h2>
+            
+            <div className="carousel-container">
+              {/* Custom Navigation Arrows outside Swiper */}
+              <div className="swiper-nav-prev"></div>
+              <div className="swiper-nav-next"></div>
+
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={30}
+                slidesPerView={1}
+                navigation={{
+                  prevEl: '.swiper-nav-prev',
+                  nextEl: '.swiper-nav-next',
+                }}
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                breakpoints={{
+                  640: { slidesPerView: 1 },
+                  768: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+                className="related-swiper"
+              >
+                {relatedPosts.map(post => (
+                  <SwiperSlide key={post.id}>
+                    <Link to={post.isCustom ? `/custom-blog/${post.slug}` : `/blog/${post.id}`} className="modern-related-card">
+                      <div className="card-img-wrap">
+                        <img 
+                          src={post.cover_image || "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=800&auto=format&fit=crop"} 
+                          alt={post.title} 
+                        />
+                        <div className="card-overlay"><span>Read Article</span></div>
+                      </div>
+                      <div className="card-content">
+                        <h3>{post.title}</h3>
+                        <div className="card-footer">
+                          <span>{post.displayAuthor}</span>
+                          <div className="dot"></div>
+                          <span>{post.reading_time_minutes || 1} min read</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
         )}
       </div>
     </div>

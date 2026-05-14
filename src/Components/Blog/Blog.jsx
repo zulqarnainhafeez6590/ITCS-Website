@@ -9,6 +9,8 @@ export default function Blog() {
   const [tags, setTags] = useState([]);
   const [activeTag, setActiveTag] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
 
   const organization = import.meta.env.VITE_DEVTO_ORG || "itcs11";
   const devtoApiBase = import.meta.env.VITE_DEVTO_API_BASE || "https://dev.to/api";
@@ -18,7 +20,7 @@ export default function Blog() {
       setLoading(true);
       try {
         const [devRes, approvedRes, customRes] = await Promise.all([
-          fetch(`${devtoApiBase}/organizations/${organization}/articles?per_page=50&_=${Date.now()}`),
+          fetch(`${devtoApiBase}/organizations/${organization}/articles?per_page=100&_=${Date.now()}`),
           axios.get(apiUrl("/api/blogs/approved-ids")),
           axios.get(apiUrl("/api/custom-blogs/published"))
         ]);
@@ -49,23 +51,32 @@ export default function Blog() {
             };
           });
 
-        const formattedCustomBlogs = customBlogs.map(blog => ({
-          id: blog._id,
-          title: blog.title,
-          description: blog.excerpt || blog.metaDescription,
-          cover_image: blog.featuredImage,
-          social_image: blog.ogImage,
-          user: { username: blog.author, name: blog.author },
-          published_at: blog.publishDate,
-          readable_publish_date: new Date(blog.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
-          reading_time_minutes: Math.ceil(blog.content.split(' ').length / 200),
-          tag_list: blog.tags || [],
-          displayAuthor: blog.author,
-          displayDate: blog.publishDate,
-          isCustom: true,
-          slug: blog.slug,
-          updatedAt: blog.updatedAt
-        }));
+        const formattedCustomBlogs = customBlogs.map(blog => {
+          // Fix for text that has no space after punctuation (e.g. "Question?Answer")
+          // This prevents the browser from seeing it as one giant word and breaking it badly.
+          let description = blog.excerpt || blog.metaDescription || "";
+          
+          // Add space after ? ! : if a letter follows directly
+          description = description.replace(/([?!:])([a-zA-Z])/g, '$1 $2');
+          
+          return {
+            id: blog._id,
+            title: blog.title,
+            description: description,
+            cover_image: blog.featuredImage,
+            social_image: blog.ogImage,
+            user: { username: blog.author, name: blog.author },
+            published_at: blog.publishDate,
+            readable_publish_date: new Date(blog.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+            reading_time_minutes: Math.ceil(blog.content.split(' ').length / 200),
+            tag_list: blog.tags || [],
+            displayAuthor: blog.author,
+            displayDate: blog.publishDate,
+            isCustom: true,
+            slug: blog.slug,
+            updatedAt: blog.updatedAt
+          };
+        });
 
         const allPosts = [...approvedDevBlogs, ...formattedCustomBlogs];
         allPosts.sort((a, b) => {
@@ -92,6 +103,17 @@ export default function Blog() {
   const filteredPosts = activeTag === "all"
     ? posts
     : posts.filter(post => post.tag_list?.includes(activeTag));
+
+  // Pagination Logic
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Function to format date like "September 23, 2025"
   const formatDate = (dateStr, isCustom = false) => {
@@ -124,19 +146,21 @@ export default function Blog() {
       </div> */}
 
       <div className="blog-grid">
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map(post => (
+        {currentPosts.length > 0 ? (
+          currentPosts.map(post => (
             <article key={post.id} className="blog-card">
-              <div className="blog-card__content">
-                {(post.cover_image || post.social_image) && (
+              {(post.cover_image || post.social_image) && (
+                <div className="blog-cover-wrap">
                   <img
                     src={post.cover_image || post.social_image}
                     alt={post.title}
                     className="blog-cover"
                     loading="lazy"
                   />
-                )}
+                </div>
+              )}
 
+              <div className="blog-card__content">
                 <h3>{post.title}</h3>
 
                 <p className="meta">
@@ -163,6 +187,39 @@ export default function Blog() {
           </p>
         )}
       </div>
+
+      {/* Modern Pagination UI */}
+      {totalPages > 1 && (
+        <div className="modern-pagination">
+          <button 
+            className="pagination-arrow" 
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            &larr;
+          </button>
+          
+          <div className="page-numbers">
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index + 1}
+                className={`page-number ${currentPage === index + 1 ? "active" : ""}`}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
+
+          <button 
+            className="pagination-arrow" 
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            &rarr;
+          </button>
+        </div>
+      )}
     </div>
   );
 }

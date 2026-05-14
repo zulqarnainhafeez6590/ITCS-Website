@@ -48,22 +48,32 @@ export default function Blog() {
           });
 
         // Format custom published blogs
-        const formattedCustomBlogs = customBlogs.map(blog => ({
-          id: blog._id,
-          title: blog.title,
-          description: blog.excerpt || blog.metaDescription,
-          cover_image: blog.featuredImage,
-          social_image: blog.ogImage,
-          user: { username: blog.author, name: blog.author },
-          published_at: blog.publishDate,
-          readable_publish_date: new Date(blog.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
-          reading_time_minutes: Math.ceil(blog.content.split(' ').length / 200),
-          displayAuthor: blog.author,
-          displayDate: blog.publishDate,
-          isCustom: true,
-          slug: blog.slug,
-          updatedAt: blog.updatedAt
-        }));
+        const formattedCustomBlogs = customBlogs.map(blog => {
+          let description = blog.excerpt || blog.metaDescription || "";
+          let title = blog.title || "";
+          
+          // Smart Spacing for titles and descriptions
+          title = title.replace(/([?!:])([a-zA-Z])/g, '$1 $2');
+          description = description.replace(/([?!:])([a-zA-Z])/g, '$1 $2');
+          
+          return {
+            id: blog._id,
+            title: title,
+            description: description,
+            cover_image: blog.featuredImage,
+            social_image: blog.ogImage,
+            user: { username: blog.author, name: blog.author },
+            published_at: blog.publishDate,
+            readable_publish_date: new Date(blog.publishDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+            reading_time_minutes: Math.ceil(blog.content.split(' ').length / 200),
+            tag_list: blog.tags || [],
+            displayAuthor: blog.author,
+            displayDate: blog.publishDate,
+            isCustom: true,
+            slug: blog.slug,
+            updatedAt: blog.updatedAt
+          };
+        });
 
         // Combine and sort by latest (approval date for Dev.to, publishDate for custom)
         const allPosts = [...approvedDevBlogs, ...formattedCustomBlogs];
@@ -86,7 +96,7 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="blog-public-container">
+    <div className="home-blog-section">
       <h2 className="blog-public-title">Our Blogs</h2>
 
       {loading && <p className="loading-text">Loading approved blogs...</p>}
@@ -95,16 +105,18 @@ export default function Blog() {
         {posts.length > 0 ? (
           posts.slice(0, 3).map(post => (
             <article key={post.id} className="blog-card">
-              <div className="blog-card__content">
-                {(post.cover_image || post.social_image) && (
+              {(post.cover_image || post.social_image) && (
+                <div className="blog-cover-wrap">
                   <img
                     src={post.cover_image || post.social_image}
                     alt={post.title}
                     className="blog-cover"
                     loading="lazy"
                   />
-                )}
+                </div>
+              )}
 
+              <div className="blog-card__content">
                 <h3>{post.title}</h3>
 
                 <p className="meta">
